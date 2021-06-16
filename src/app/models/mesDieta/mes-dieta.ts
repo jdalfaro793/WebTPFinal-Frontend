@@ -4,4 +4,7 @@ export class MesDieta {
     _id:string;
     mes: number;
     planSemanal: Array<Dieta>;
+    objetivo: string;
+    
+    constructor() {}
 }

@@ -4,15 +4,17 @@ import { Usuario } from "../usuario/usuario";
 
 export class Alumno {
     _id:string;
-    alu_apellido: string;          
-    alu_nombre: string;        
-    alu_dni: string;             
-    alu_fecha_nacimiento: Date;  
-    alu_celular: string;           
-    alu_domicilio: string;       
-    alu_email: string;           
-    alu_fechaInicio: Date;     
-    alu_plan: Plan;            
-    alu_rutinas: Array<RutinaPersonalizada>;    
-    alu_usuario: Usuario; 
+    apellido: string;          
+    nombre: string;        
+    dni: string;             
+    fecha_nacimiento: Date;  
+    celular: string;           
+    domicilio: string;       
+    email: string;           
+    fecha_inicio: Date;     
+    plan: Plan;            
+    rutinas: Array<RutinaPersonalizada>;    
+    usuario: Usuario;
+     
+    constructor() {}
 }        

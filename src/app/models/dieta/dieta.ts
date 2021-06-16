@@ -6,4 +6,6 @@ export class Dieta {
     merienda: string;
     cena: string;
 
+    constructor() {}
+
 }
