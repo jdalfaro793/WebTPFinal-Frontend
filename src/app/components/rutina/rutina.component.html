@@ -1,0 +1,93 @@
+<div class="col-8 offset-2">
+
+    <div class="table-responsive">
+
+        <H4>Rutina Asignada: {{listaRutina[0].nombreRutina}}</H4>
+        <table class="table table-striped" [mfData]="listaRutina" #mf="mfDataTable" [mfRowsOnPage]="5">
+            <thead>
+                <tr>
+                    <th style="width: 10%;background-color: cornsilk;">
+                        MES: {{listaRutina[0].mes}}
+                    </th>
+                    <th style="width: 10%">
+                        EJERCICIO
+                    </th>
+                    <th style="width: 40%">
+                        DESCRIPCION
+                    </th>
+
+                    <th style="width: 10%">
+                        PESO
+                    </th>
+                    <th style="width: 10%">
+                        SERIE
+                    </th>
+                    <th style="width: 10%">
+                        REPETICION
+                    </th>
+
+                    <th style="width: 10%">
+                        FOTO
+                    </th>
+
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr *ngFor="let rutina of listaRutina">
+                    <td>{{rutina.dia}}</td>
+                    <td>
+                        <p *ngFor="let ejercicio of rutina.ejercicio">
+                            {{ejercicio.nombre}}
+                        </p>
+                    </td>
+                    <td>
+                        <p *ngFor="let ejercicio of rutina.ejercicio">
+                            {{ejercicio.descripcion}}
+                        </p>
+                    </td>
+
+                    <td>
+                        <p *ngFor="let peso of rutina.peso">
+                            {{peso}} kgs.
+                        </p>
+                    </td>
+                    <td>
+                        <p *ngFor="let serie of rutina.serie">
+                            {{serie}}
+                        </p>
+                    </td>
+                    <td>
+                        <p *ngFor="let repeticion of rutina.repeticion">
+                            {{repeticion}}
+                        </p>
+                    </td>
+
+                    <td>
+                        <div *ngFor="let ejercicio of rutina.ejercicio">
+
+
+                            <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#imagenModal" (click)="verFoto(ejercicio.imagen)">Ver</button>
+    
+                            <!-- Modal -->
+                            <div class="modal fade" id="imagenModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-body">
+                                        <img src="{{foto}}" class="img-fluid" alt="">
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                            
+
+                        </div>
+                        
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>   
+</div>
+
+

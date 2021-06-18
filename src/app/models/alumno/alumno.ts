@@ -1,5 +1,4 @@
 import { Plan } from "../plan/plan";
-import { RutinaPersonalizada } from "../rutinaPersonalizada/rutina-personalizada";
 import { Usuario } from "../usuario/usuario";
 
 export class Alumno {
@@ -13,8 +12,8 @@ export class Alumno {
     email: string;           
     fecha_inicio: Date;     
     plan: Plan;            
-    rutinas: Array<RutinaPersonalizada>;    
     usuario: Usuario;
+    
      
     constructor() {}
 }        

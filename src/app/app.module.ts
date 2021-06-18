@@ -9,6 +9,7 @@ import { FooterComponent } from './components/layout/footer/footer.component';
 import { HomeComponent } from './components/home/home.component';
 import { AsistenciaComponent } from './components/asistencia/asistencia.component';
 import { NgxDataTableModule} from "angular-9-datatable";
+import { RutinaComponent } from './components/rutina/rutina.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { NgxDataTableModule} from "angular-9-datatable";
     HeaderComponent,
     FooterComponent,
     HomeComponent,
-    AsistenciaComponent
+    AsistenciaComponent,
+    RutinaComponent
   ],
   imports: [
     BrowserModule,

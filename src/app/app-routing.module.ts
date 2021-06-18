@@ -1,9 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AsistenciaComponent } from './components/asistencia/asistencia.component';
+import { RutinaComponent } from './components/rutina/rutina.component';
 
 const routes: Routes = [
-  { path: 'asistencia/:id',component: AsistenciaComponent }
+  { path: 'asistencia/:id',component: AsistenciaComponent },
+  { path: 'rutinapersonal/:id',component: RutinaComponent },
+
 ];
 
 @NgModule({
