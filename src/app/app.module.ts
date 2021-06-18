@@ -13,6 +13,7 @@ import { RutinaComponent } from './components/rutina/rutina.component';
 import { LoginComponent } from './components/login/login.component';
 import { GestionCuotaComponent } from './components/cuota/gestion-cuota/gestion-cuota.component';
 import { FormsModule } from '@angular/forms';
+import { FormAlumnoComponent } from './components/form-alumno/form-alumno/form-alumno.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { FormsModule } from '@angular/forms';
     AsistenciaComponent,
     RutinaComponent,
     LoginComponent,
-    GestionCuotaComponent
+    GestionCuotaComponent,
+    FormAlumnoComponent
   ],
   imports: [
     BrowserModule,
