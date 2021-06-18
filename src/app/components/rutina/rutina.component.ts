@@ -12,7 +12,9 @@ import { RutinaService } from 'src/app/services/rutina/rutina.service';
 export class RutinaComponent implements OnInit {
   listaRutina:Array<Rutina>=new Array<Rutina>();
   listaEjercicios:Array<Ejercicio>=new Array<Ejercicio>();
+  nombre:string;
   foto:string;
+  descrip:string;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -26,8 +28,14 @@ export class RutinaComponent implements OnInit {
   }
 
   
-  verFoto(imagen:string){
-    this.foto=imagen;
+  verFoto(ejercicio:Ejercicio){
+    this.nombre=ejercicio.nombre;
+    this.foto=ejercicio.imagen;
+    this.descrip=ejercicio.descripcion;
+  }
+
+  verDescrip(descrip:string){
+    this.descrip=descrip;
   }
 
   cargarAluRutina(id:string){
@@ -57,4 +65,3 @@ export class RutinaComponent implements OnInit {
     );
   }
   }
-

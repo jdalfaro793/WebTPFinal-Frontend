@@ -12,22 +12,19 @@
                     <th style="width: 10%">
                         EJERCICIO
                     </th>
-                    <th style="width: 40%">
-                        DESCRIPCION
-                    </th>
-
+                 
                     <th style="width: 10%">
                         PESO
                     </th>
                     <th style="width: 10%">
-                        SERIE
+                        SERIES
                     </th>
                     <th style="width: 10%">
-                        REPETICION
+                        REPETICIONES
                     </th>
 
                     <th style="width: 10%">
-                        FOTO
+                        EJEMPLO
                     </th>
 
                 </tr>
@@ -41,11 +38,7 @@
                             {{ejercicio.nombre}}
                         </p>
                     </td>
-                    <td>
-                        <p *ngFor="let ejercicio of rutina.ejercicio">
-                            {{ejercicio.descripcion}}
-                        </p>
-                    </td>
+                 
 
                     <td>
                         <p *ngFor="let peso of rutina.peso">
@@ -67,14 +60,20 @@
                         <div *ngFor="let ejercicio of rutina.ejercicio">
 
 
-                            <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#imagenModal" (click)="verFoto(ejercicio.imagen)">Ver</button>
+                            <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#imagenModal" (click)="verFoto(ejercicio)">Ver</button>
     
                             <!-- Modal -->
                             <div class="modal fade" id="imagenModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                 <div class="modal-content">
+                                    <div class="modal-header">
+                                       <h5 >{{nombre}}</h5>
+                                    </div>
                                     <div class="modal-body">
                                         <img src="{{foto}}" class="img-fluid" alt="">
+                                    </div>
+                                    <div class="modal-footer">
+                                        {{descrip}}
                                     </div>
                                 </div>
                                 </div>
@@ -84,6 +83,8 @@
                         </div>
                         
                     </td>
+
+
                 </tr>
             </tbody>
         </table>
