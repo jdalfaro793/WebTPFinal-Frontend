@@ -14,6 +14,7 @@ import { LoginComponent } from './components/login/login.component';
 import { GestionCuotaComponent } from './components/cuota/gestion-cuota/gestion-cuota.component';
 import { FormsModule } from '@angular/forms';
 import { FormAlumnoComponent } from './components/form-alumno/form-alumno/form-alumno.component';
+import { GestionAlumnosComponent } from './components/entrenador/gestion-alumnos/gestion-alumnos.component';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { FormAlumnoComponent } from './components/form-alumno/form-alumno/form-a
     RutinaComponent,
     LoginComponent,
     GestionCuotaComponent,
-    FormAlumnoComponent
+    FormAlumnoComponent,
+    GestionAlumnosComponent
   ],
   imports: [
     BrowserModule,
