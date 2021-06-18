@@ -10,6 +10,7 @@ import { HomeComponent } from './components/home/home.component';
 import { AsistenciaComponent } from './components/asistencia/asistencia.component';
 import { NgxDataTableModule} from "angular-9-datatable";
 import { RutinaComponent } from './components/rutina/rutina.component';
+import { LoginComponent } from './components/login/login.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { RutinaComponent } from './components/rutina/rutina.component';
     FooterComponent,
     HomeComponent,
     AsistenciaComponent,
-    RutinaComponent
+    RutinaComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

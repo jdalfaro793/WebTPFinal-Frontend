@@ -1,1 +1,57 @@
-<p class="bg-danger">header works!</p>
+<header class="row m-0 header-container pb-5 pt-4">
+    <div class="col-6 px-5 pb-5 row m-0 mb-5 contenido">
+        <img src="" class="w-25 col-4" alt="">
+        <div class="col-8 text-white text-start px-2 py-3">
+            <h1 class="fs-1 fw-bold">Gimnasio</h1>
+            <h2 class="fs-3 fw-light">GRUPO 10</h2>
+        </div>
+    </div>
+</header>
+<nav class="navbar sticky-top navbar-expand-lg navbar-dark">
+    <div class="container-fluid">
+        <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarTogglerDemo02"
+            aria-controls="navbarTogglerDemo02"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+        >
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="row collapse navbar-collapse p-3 p-sm-0" id="navbarTogglerDemo02">
+            <ul class="navbar-nav col-12 col-sm-9 me-auto mb-2 mb-lg-0 d-flex justify-content-evenly">
+                <li class="nav-item" routerLinkActive="active">
+                    <a class="nav-link active" [routerLink]="['']">Home</a>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle active" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Alumno</a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+                        <li><a class="dropdown-item" [routerLink]="['rutinapersonal/0']">Rutinas</a></li>
+                        <li><a class="dropdown-item" [routerLink]="['']">Cuotas</a></li>
+                        <li><a class="dropdown-item" [routerLink]="['asistencia/0']">Asistencias</a></li>
+                    </ul>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle active" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Entrenador</a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+                        <li><a class="dropdown-item" [routerLink]="['']">Gestion Alumnos</a></li>
+                        <li><a class="dropdown-item" [routerLink]="['']">Gestion Ejercicios</a></li>
+                        <li><a class="dropdown-item" [routerLink]="['']">Gestion Planes Alimenticios</a></li>
+                    </ul>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link active" [routerLink]="['']">Estadisticas</a>
+                </li>
+
+            </ul>
+            <form class="col-12 col-sm-3 row p-0 m-0 d-flex justify-content-evenly">
+                <button class="btn btn-light btn-sm col-12 col-sm-5 mt-2 mt-sm-0" type="button" [routerLink]="['login']">Ingresar</button>
+            </form>
+        </div>
+    </div>
+</nav>

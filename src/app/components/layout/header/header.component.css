@@ -1,0 +1,38 @@
+header {
+    background-color: white;
+}
+
+.navbar {
+    background-color: #011125 !important;
+    -webkit-box-shadow: 0px 5px 8px 0px rgba(136,136,136,1);
+    -moz-box-shadow: 0px 5px 8px 0px rgba(136,136,136,1);
+    box-shadow: 0px 5px 8px 0px rgba(136,136,136,1);
+}
+
+.nav-item:hover {
+    background-color: #000b1a;
+}
+
+.header-container {
+    background-image: url('../../../../assets/img/header.jpg');
+    background-size: cover;
+	text-align: center;
+	background-position: center center;
+	background-size: cover;
+	background-repeat: no-repeat;
+	position: relative;
+}
+
+.header-container::before {
+    content:'';
+	position: absolute;
+        top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background-color: rgba(0,0,0,0.2);
+}
+
+.contenido {
+    position: relative
+}
