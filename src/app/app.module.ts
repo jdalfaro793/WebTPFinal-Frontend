@@ -11,6 +11,8 @@ import { AsistenciaComponent } from './components/asistencia/asistencia.componen
 import { NgxDataTableModule} from "angular-9-datatable";
 import { RutinaComponent } from './components/rutina/rutina.component';
 import { LoginComponent } from './components/login/login.component';
+import { GestionCuotaComponent } from './components/cuota/gestion-cuota/gestion-cuota.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -21,13 +23,15 @@ import { LoginComponent } from './components/login/login.component';
     HomeComponent,
     AsistenciaComponent,
     RutinaComponent,
-    LoginComponent
+    LoginComponent,
+    GestionCuotaComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    NgxDataTableModule
+    NgxDataTableModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

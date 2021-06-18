@@ -1,0 +1,85 @@
+<!-- Contenedor principal -->
+<div class="container-fluid m-0">
+    <div class="row my-5 py-5">
+
+        <!-- Sección de filtros de búsqueda -->
+        <section class="col-12 col-sm-10 mx-auto">
+            <form action="" class="row m-0">
+                <div class="col-5 row m-0">
+                    <!--
+                    <label for="medioPago" class="form-label col-6">Medio de pago</label>
+                    <div class="col-6">
+                        <input type="text" class="form-control" id="medioPago" name="medioPago" [(ngModel)]="filters.modo_pago">
+                    </div> -->
+                    <label for="modoPago" class="form-label col-6">Medio de pago</label>
+                    <div class="col-6 p-0">
+                        <select id="modoPago" name="modoPago" class="form-select form-select-sm" [(ngModel)]="filters.modo_pago">
+                            <option selected>Eliga una opción</option>
+                            <option value="efec">Efectivo</option>
+                            <option value="tarj">Tarjeta de crédito</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-5 row m-0">
+                    <label for="monto" class="form-label col-6">Hasta monto</label>
+                    <div class="col-6 p-0">
+                        <select id="monto" name="monto" class="form-select form-select-sm" [(ngModel)]="filters.monto">
+                            <option selected>Eliga una opción</option>
+                            <option value="1000">1000</option>
+                            <option value="2000">2000</option>
+                            <option value="3000">3000</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-2">
+                    <button class="btn btn-success btn-sm w-100" (click)="findFilters()">Filtros</button>
+                </div>
+            </form>
+
+        </section>
+        <!-- Sección de filtros de búsqueda -->
+        <section class="col-12 col-sm-10 mx-auto my-4">
+            <form action="" class="">
+                <div class="row m-0 gy-2 g-sm-2">
+                    <div class="col-12 col-sm-10">
+                      <input type="text" name="nombreAlu" class="form-control" placeholder="Buscar por nombre del alumno..." [(ngModel)]="filters.alumno.nombre">
+                    </div>
+                    <div class="col-12 col-sm-2">
+                        <button class="btn btn-primary w-100" (click)="findFilters()">Buscar</button>
+                    </div>
+                </div>
+            </form>
+        </section>
+
+        <!-- Sección de resultado de búsquedas -->
+        <section class="col-12 col-sm-10 mx-auto mt-2">
+            <div class="table-responsive px-1">
+                <table class="table align-middle">
+                    <thead class="table-dark">
+                        <tr class="text-center ">
+                            <th scope="col" >DNI</th>
+                            <th scope="col">Apellido</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Medio de pago</th>
+                            <th scope="col">Fecha</th>
+                            <th scope="col">Monto</th>
+                            
+                            <th scope="col">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-center">
+                        <tr *ngFor="let c of cuotas">
+                            <th> {{c.alumno.dni}} </th>
+                            <td> {{c.alumno.apellido}} </td>
+                            <td>{{c.alumno.nombre}}</td>
+                            <td>{{c.modo_pago}}</td>
+                            <td>{{c.fecha_pago | date}}</td>
+                            <td>{{c.monto | currency}}</td>
+                        </tr>
+                    </tbody>
+                  </table>
+            </div>
+        </section>
+    </div>
+    
+</div>
