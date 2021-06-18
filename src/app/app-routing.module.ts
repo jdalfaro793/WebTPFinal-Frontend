@@ -4,12 +4,14 @@ import { AsistenciaComponent } from './components/asistencia/asistencia.componen
 import { RutinaComponent } from './components/rutina/rutina.component';
 import { LoginComponent } from './components/login/login.component';
 import { GestionCuotaComponent } from './components/cuota/gestion-cuota/gestion-cuota.component';
+import { FormAlumnoComponent } from './components/form-alumno/form-alumno/form-alumno.component';
 
 const routes: Routes = [
   { path: 'asistencia/:id',component: AsistenciaComponent },
   { path: 'rutinapersonal/:id',component: RutinaComponent },
   { path: 'login',component: LoginComponent },
-  { path: 'gestion-cuota', component: GestionCuotaComponent}
+  { path: 'gestion-cuota', component: GestionCuotaComponent},
+  { path: 'alumno/form-alumno', component: FormAlumnoComponent}
 
 ];
 
