@@ -57,4 +57,14 @@ export class GestionCuotaComponent implements OnInit {
     this.cargarCuotas();
   }
 
+  onChangeModoPago(event): void {
+    this.filters.modo_pago = event;
+    this.cargarCuotas();
+  }
+
+  cleanFilters(): void {
+    this.initFilters();
+    this.cargarCuotas();
+  }
+
 }
