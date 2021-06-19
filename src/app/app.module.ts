@@ -17,6 +17,7 @@ import { FormAlumnoComponent } from './components/form-alumno/form-alumno/form-a
 import { GestionAlumnosComponent } from './components/entrenador/gestion-alumnos/gestion-alumnos.component';
 import { CuotaComponent } from './components/cuota/cuota/cuota.component';
 import { MisCuotasComponent } from './components/cuota/mis-cuotas/mis-cuotas.component';
+import { MiPlanComponent } from './components/plan/mi-plan/mi-plan.component';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { MisCuotasComponent } from './components/cuota/mis-cuotas/mis-cuotas.com
     FormAlumnoComponent,
     GestionAlumnosComponent,
     CuotaComponent,
-    MisCuotasComponent
+    MisCuotasComponent,
+    MiPlanComponent
   ],
   imports: [
     BrowserModule,

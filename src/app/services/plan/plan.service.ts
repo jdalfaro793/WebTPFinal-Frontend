@@ -19,4 +19,12 @@ export class PlanService {
     }
     return this._http.get(this.urlBase,options);
   }
+
+  getPlanByID(id: string): Observable<any> {
+    let options = {
+      header: new HttpHeaders({}),
+      params: new HttpParams({})
+    }
+    return this._http.get(this.urlBase + '/' + id,options);
+  }
 }

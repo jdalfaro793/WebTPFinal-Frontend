@@ -32,7 +32,6 @@ export class MisCuotasComponent implements OnInit {
   cargarCuotas(): void {
     this.cuotaService.get(this.filters).subscribe(
       (result) => {
-        console.log(result)
         this.cuotas = new Array<Cuota>();
         result.forEach((element) => {
           let cuota = new Cuota();
