@@ -24,4 +24,12 @@ export class CuotaService {
     }
     return this._http.get(this.URL, httpOptions)
   }
+
+  getByAlumno(id: string): Observable<any> {
+    const httpOptions = {
+      headers: new HttpHeaders(),
+      params: new HttpParams()
+    }
+    return this._http.get(this.URL + '/alumno/' + id, httpOptions)
+  }
 }

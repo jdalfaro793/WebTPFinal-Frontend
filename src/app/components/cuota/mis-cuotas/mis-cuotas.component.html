@@ -1,0 +1,43 @@
+<!-- Contenedor principal -->
+<div class="row my-5 min-vh-100 m-0 ">
+    <div class="col-9 mx-auto bg-body">
+        <div class="row text-uppercase bg-dark py-5 text-center align-items-center">
+            <div class="col-12">
+                <p class=" fs-2 fw-bold text-white m-0">Mis CUotas</p>
+            </div>
+        </div>
+
+        <div class="row py-5 px-5 bg-light">
+            <div class="col-12 p-0">
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle m-0 bg-white">
+                        <thead class="table-dark">
+                            <tr class="text-center ">
+                                <!--
+                                <th scope="col" >DNI</th>
+                                <th scope="col">Apellido</th>
+                                <th scope="col">Nombre</th> -->
+                                <th scope="col">Medio de pago</th>
+                                <th scope="col">Fecha</th>
+                                <th scope="col">Monto</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-center">
+                            <tr *ngFor="let c of cuotas">
+                                <!--
+                                <th> {{c.alumno.dni}} </th>
+                                <td> {{c.alumno.apellido}} </td>
+                                <td>{{c.alumno.nombre}}</td> -->
+                                <td>{{c.modo_pago}}</td>
+                                <td>{{c.fecha_pago | date : 'fullDate'}}</td>
+                                <td>{{c.monto | currency}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        
+        </div>
+    </div>
+</div>
