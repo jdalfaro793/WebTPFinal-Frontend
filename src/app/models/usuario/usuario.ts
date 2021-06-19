@@ -1,13 +1,14 @@
 export class Usuario {
-  _id:string;
-  username: string;
-  password: string;
-  rol: string;
+    _id: string;
+    username: string;
+    password: string;
+    state: Boolean;
+    rol: string;
 
-  Usuario(id?:string, username?:string, password?:string, rol?:string){
-     this._id = id;
-     this.username = username;
-     this.password = password;
-     this.rol = rol;
-  }
+    Usuario(username?: string, password?: string, state?: Boolean, rol?: string) {
+        this.state = state;
+        this.username = username;
+        this.password = password;
+        this.rol = rol;
+    }
 }

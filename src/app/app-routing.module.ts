@@ -12,7 +12,7 @@ const routes: Routes = [
   { path: 'rutinapersonal/:id',component: RutinaComponent },
   { path: 'login',component: LoginComponent },
   { path: 'gestion-cuota', component: GestionCuotaComponent},
-  { path: 'alumno/form-alumno', component: FormAlumnoComponent},
+  { path: 'gestionAlumno/form-alumno', component: FormAlumnoComponent},
   { path: 'gestionAlumno',component: GestionAlumnosComponent },
 ];
 

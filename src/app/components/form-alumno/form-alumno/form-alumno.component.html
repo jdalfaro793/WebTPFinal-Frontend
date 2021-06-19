@@ -1,19 +1,23 @@
-<div class="container rounded my-5 font-container">
-    <div class="row  justify-content-center  p-3 ">
-        <div class=" d-sm-none d-md-block col-4 bg-panel-left p-0">
+<div class="container rounded my-5 ">
+    <div class="row  justify-content-center  p-2 ">
+        <div class=" d-sm-none d-md-block col-5 bg-panel-left p-0">
             <div class="w-100 h-100 bg-container">
 
             </div>
         </div>
-        <div class="col-12 col-md-8 bg-form">
+        <div class="col-12 col-md-7 bg-form">
             <div class="col-12 mb-4  border-bottom border-4">
                 <h1 class="text-center fs-1 text-white fw-bold my-5">Registrar Alumno</h1>
             </div>
+            <!-- **************************************************************** -->
+            <!-- ********************** FORMULARIO ****************************** -->
+            <!-- **************************************************************** -->
+
             <div class=" col-12 p-3 "> 
-                <div class="bg-alta-prod p-2 rounded">
-                    <form action="">
-                        <div class="form-floating mb-3">
-                            <input type="text" class="form-control" id="apellido" placeholder=""> 
+                <div class=" p-2 rounded">
+                    <form class="">
+                        <div class="form-floating mb-3 ">
+                            <input type="text" class="form-control " id="apellido" placeholder=""> 
                             <label for="nombre">Apellido</label>
                         </div>
                         <div class="form-floating mb-3">
@@ -47,11 +51,9 @@
                         </div>
     
                         <div class="form-floating mb-3">
-                            <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
-                                <option selected>Seleccione un Plan</option>
-                                <option value="1">Pase Libre</option>
-                                <option value="2">Full(5 dias x semana)</option>
-                                <option value="3">Basico (3 dias x semana)</option>
+                            <select class="form-select" id="floatingSelect" aria-label="Floating label select example"
+                            name="plan" [(ngModel)]="alumno.plan">
+                                <option *ngFor="let plan of planes" [ngValue]="plan">{{plan.nombre}},  ${{plan.precio}}</option>
                             </select>
                             <label for="floatingSelect">Plan</label>
                         </div>
@@ -59,7 +61,7 @@
                     <div class="row p-2">
                         <div class=" col-12 col-md-6 text-center mb-3 ">
                             <button class="w-100 btn btn-dark p-3 fs-6  fw-bold">GUARDAR
-                                PRODUCTO</button>
+                                ALUMNO</button>
                         </div>
                         <div class=" col-12 col-md-6 text-center mb-3">
                             <button class=" w-100 btn btn-danger p-3 fs-6 fw-bold">CANCELAR</button>

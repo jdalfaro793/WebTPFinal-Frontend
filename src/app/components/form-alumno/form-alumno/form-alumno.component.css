@@ -1,7 +1,4 @@
-.font-container{
-    font-family: 'Roboto';
-   
-}
+
 .bg-container{
     background: linear-gradient(black 100%, rgb(80, 77, 77) 15%,black 100%);
     opacity:0.5;
@@ -13,6 +10,6 @@
     background-size: cover;
 }
 .bg-form{
-    background: rgba(0, 0, 0, 0.8);
+    background: rgba(1, 17, 37, 0.7);
     
 }
