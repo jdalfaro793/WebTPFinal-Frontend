@@ -1,0 +1,112 @@
+<div class="row my-5 min-vh-100 m-0 ">
+    <div class="col-12 col-sm-9 mx-auto bg-body">
+        <div class="row text-uppercase bg-dark py-3 py-sm-5 text-center align-items-center">
+            <div class="col-12">
+                <p class=" fs-2 fw-bold text-white m-0">MIS RUTINAS</p>
+            </div>
+        </div>
+
+        <div class="row py-5 px-2 px-sm-5 bg-light">
+            <div class="col-12 p-0">
+                <div class="table-responsive">
+                    <div class="table-responsive">
+
+                        <table class="table table-hover align-middle m-0 bg-white" [mfData]="listaRutina"
+                            #mf="mfDataTable" [mfRowsOnPage]="5">
+                            <thead>
+                                <tr class="text-center ">
+
+                                    <th style="width: 10%;background-color: cornsilk;">
+                                        MES
+                                        <select (change)="cargarRutinaMes()" class="form-select" id="mes" name="mes"
+                                            [(ngModel)]="mes">
+                                            <option *ngFor="let mesIn of Meses" [ngValue]="mesIn">{{mesIn}} </option>
+                                        </select>
+
+                                    </th>
+                                    <th style="width: 10%">
+                                        Ejercicio
+                                    </th>
+
+                                    <th style="width: 10%">
+                                        Peso
+                                    </th>
+                                    <th style="width: 10%">
+                                        Serie
+                                    </th>
+                                    <th style="width: 10%">
+                                        Repeticiones
+                                    </th>
+
+
+                                    <th style="width: 10%">
+                                        Ejemplo
+                                    </th>
+                                </tr>
+                            </thead>
+
+                            <tbody class="text-center">
+                                <tr *ngFor="let rutina of listaRutina">
+                                    <td>{{rutina.dia}}</td>
+                                    <td>
+                                        <p *ngFor="let ejercicio of rutina.ejercicio">
+                                            {{ejercicio.nombre}}
+                                        </p>
+                                    </td>
+
+
+                                    <td>
+                                        <p *ngFor="let peso of rutina.peso">
+                                            {{peso}} kgs.
+                                        </p>
+                                    </td>
+                                    <td>
+                                        <p *ngFor="let serie of rutina.serie">
+                                            {{serie}}
+                                        </p>
+                                    </td>
+                                    <td>
+                                        <p *ngFor="let repeticion of rutina.repeticion">
+                                            {{repeticion}}
+                                        </p>
+                                    </td>
+
+                                    <td>
+                                        <div *ngFor="let ejercicio of rutina.ejercicio">
+
+
+                                            <button type="button" class="btn btn-secondary" data-bs-toggle="modal"
+                                                data-bs-target="#imagenModal" (click)="verFoto(ejercicio)">Ver</button>
+
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="imagenModal" tabindex="-1"
+                                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header bg-dark text-white">
+                                                            <h5>{{nombre}}</h5>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <img src="{{foto}}" class="img-fluid" alt="">
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            {{descrip}}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+
+                                    </td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

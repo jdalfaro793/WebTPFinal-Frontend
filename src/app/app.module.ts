@@ -7,9 +7,7 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/layout/header/header.component';
 import { FooterComponent } from './components/layout/footer/footer.component';
 import { HomeComponent } from './components/home/home.component';
-import { AsistenciaComponent } from './components/asistencia/asistencia.component';
 import { NgxDataTableModule} from "angular-9-datatable";
-import { RutinaComponent } from './components/rutina/rutina.component';
 import { LoginComponent } from './components/login/login.component';
 import { GestionCuotaComponent } from './components/cuota/gestion-cuota/gestion-cuota.component';
 import { FormsModule } from '@angular/forms';
@@ -18,7 +16,13 @@ import { GestionAlumnosComponent } from './components/entrenador/gestion-alumnos
 import { CuotaComponent } from './components/cuota/cuota/cuota.component';
 import { MisCuotasComponent } from './components/cuota/mis-cuotas/mis-cuotas.component';
 import { MiPlanComponent } from './components/plan/mi-plan/mi-plan.component';
+import { CommonModule } from '@angular/common';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { ToastrModule } from 'ngx-toastr';
+import { GestionRutinaComponent } from './components/rutina/gestion-rutina/gestion-rutina.component';
+import { MisRutinasComponent } from './components/rutina/mis-rutinas/mis-rutinas.component';
+import { MisAsistenciasComponent } from './components/asistencia/mis-asistencias/mis-asistencias.component';
 
 @NgModule({
   declarations: [
@@ -26,22 +30,26 @@ import { MiPlanComponent } from './components/plan/mi-plan/mi-plan.component';
     HeaderComponent,
     FooterComponent,
     HomeComponent,
-    AsistenciaComponent,
-    RutinaComponent,
     LoginComponent,
     GestionCuotaComponent,
     FormAlumnoComponent,
     GestionAlumnosComponent,
     CuotaComponent,
     MisCuotasComponent,
-    MiPlanComponent
+    MiPlanComponent,
+    GestionRutinaComponent,
+    MisRutinasComponent,
+    MisAsistenciasComponent,
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     NgxDataTableModule,
-    FormsModule
+    FormsModule,CommonModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]

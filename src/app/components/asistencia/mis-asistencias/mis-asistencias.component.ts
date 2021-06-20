@@ -4,11 +4,11 @@ import { Asistencia } from 'src/app/models/asistencia/asistencia';
 import { AsistenciaService } from 'src/app/services/asistencia/asistencia.service';
 
 @Component({
-  selector: 'app-asistencia',
-  templateUrl: './asistencia.component.html',
-  styleUrls: ['./asistencia.component.css'],
+  selector: 'app-mis-asistencias',
+  templateUrl: './mis-asistencias.component.html',
+  styleUrls: ['./mis-asistencias.component.css']
 })
-export class AsistenciaComponent implements OnInit {
+export class MisAsistenciasComponent implements OnInit {
   listaAsistencias: Array<Asistencia>;
   constructor(
     private activatedRoute: ActivatedRoute,

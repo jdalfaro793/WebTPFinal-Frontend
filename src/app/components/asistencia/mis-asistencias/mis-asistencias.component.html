@@ -1,0 +1,46 @@
+<div class="row my-5 min-vh-100 m-0 ">
+    <div class="col-12 col-sm-9 mx-auto bg-body">
+        <div class="row text-uppercase bg-dark py-3 py-sm-5 text-center align-items-center">
+            <div class="col-12">
+                <p class=" fs-2 fw-bold text-white m-0">MIS ASISTENCIAS</p>
+            </div>
+        </div>
+
+        <div class="row py-5 px-2 px-sm-5 bg-light">
+            <div class="col-12 p-0">
+                <div class="table-responsive">
+                    <div class="table-responsive">
+
+                        <table class="table table-hover align-middle m-0 bg-white" [mfData]="listaAsistencias"
+                            #mf="mfDataTable" [mfRowsOnPage]="5">
+                            <thead>
+                                <tr class="text-center ">
+                                    <th style="width: 10%">
+                                        Fecha
+                                    </th>
+
+                                    <th style="width: 10%">
+                                        Plan
+                                    </th>
+                                    <th style="width: 10%">
+                                        Rutina
+                                    </th>
+                           
+                                </tr>
+                            </thead>
+
+                            <tbody class="text-center">
+                                <tr *ngFor="let asistencia of mf.data">
+                                    <td>{{asistencia.fecha | date:"MM/dd/yy"  }}</td>
+                                    <td>{{asistencia.alumno.apellido}} , {{asistencia.alumno.nombre}}  </td>
+                                    <td>{{asistencia.alumno.dni}}</td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
