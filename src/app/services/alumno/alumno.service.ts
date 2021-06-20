@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Alumno } from 'src/app/models/alumno/alumno';
 
 @Injectable({
   providedIn: 'root'
@@ -30,6 +31,14 @@ export class AlumnoService {
       }
     }
     return this.http.get(this.urlbase, httpOptions)
+  }
+  addAlumno(alumno : Alumno):Observable<any>{
+    let options = {
+      headers:new HttpHeaders({ "Content-Type": "application/json" }),
+      params: new HttpParams({})
+    }
+    let body = JSON.stringify(alumno);
+    return this.http.post(this.urlbase,body,options);
   }
 }
 

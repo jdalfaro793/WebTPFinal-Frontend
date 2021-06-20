@@ -15,56 +15,106 @@
 
             <div class=" col-12 p-3 "> 
                 <div class=" p-2 rounded">
-                    <form class="">
+                    <form class="" #formAlumno = "ngForm">
                         <div class="form-floating mb-3 ">
-                            <input type="text" class="form-control " id="apellido" placeholder=""> 
-                            <label for="nombre">Apellido</label>
+                            <input required type="text" name="apellido" [(ngModel)]="alumno.apellido" #apellido="ngModel" class="form-control " id="apellido" placeholder=""> 
+                            <label for="apellido">Apellido</label>
+                            <div *ngIf="apellido.invalid && (apellido.touched || apellido.dirty)" class=" m-0 p-0 alert alert-danger align-items-center">
+                                <p  class="mx-4" *ngIf="apellido.errors.required"> Campo requerido</p>
+                            </div>
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" id="nombre" placeholder="">
-                            <label for="prodCodigo">Nombre</label>
+                            <input required type="text" name="nombre" [(ngModel)]="alumno.nombre" #nombre="ngModel" class="form-control" id="nombre" placeholder="">
+                            <label for="nombre">Nombre</label>
+                            <div *ngIf="nombre.invalid && (nombre.touched || nombre.dirty)" class=" m-0 p-0 alert alert-danger align-items-center">
+                                <p  class="mx-4" *ngIf="nombre.errors.required"> Campo requerido</p>
+                            </div>
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" id="dni" placeholder="">
-                            <label for="prodCodigo">DNI</label>
+                            <input required type="text" name="dni" [(ngModel)]="alumno.dni" #dni="ngModel" class="form-control" id="dni" placeholder="">
+                            <label for="dni">DNI</label>
+                            <div *ngIf="dni.invalid && (dni.touched || dni.dirty)" class=" m-0 p-0 alert alert-danger align-items-center">
+                                <p  class="mx-4" *ngIf="dni.errors.required"> Campo requerido</p>
+                            </div>
                         </div>
                         <div class="row row-cols-1 row-cols-md-2">
                             <div class=" col form-floating mb-3">
-                                <input type="date" class="form-control" id="fechaNacimiento" placeholder=""
+                                <input required type="date" name="fecha_nacimiento" [(ngModel)]="alumno.fecha_nacimiento" #nacimiento = "ngModel" class="form-control" id="fechaNac" placeholder=""
                                     style="height: 80px">
-                                <label for="prodRecepcion">Fecha De Nacimiento</label>
+                                <label for="fechaNac">Fecha De Nacimiento</label>
+                                <div *ngIf="nacimiento.invalid && (nacimiento.touched || nacimiento.dirty)" class=" m-0 p-0 alert alert-danger align-items-center">
+                                    <p  class="mx-4" *ngIf="nacimiento.errors.required">Campo requerido</p>
+                                </div>
                             </div>
                             <div class="col form-floating mb-3">
-                                <input type="text" class="form-control" id="celular" placeholder="">
-                                <label for="prodPrecio">Celular</label>
+                                <input required type="text" name="celular" [(ngModel)]="alumno.celular" #celular = "ngModel" class="form-control" id="celular" placeholder="">
+                                <label for="celular">Celular</label>
+                                <div *ngIf="celular.invalid && (celular.touched || celular.dirty)" class=" m-0 p-0 alert alert-danger align-items-center">
+                                    <p  class="mx-4" *ngIf="celular.errors.required"> Campo requerido</p>
+                                </div>
                             </div>
                             
                         </div>
     
                         <div class=" col form-floating mb-3">
-                            <input type="text" class="form-control" id="prodVenta" placeholder="">
-                            <label for="prodVenta">Domicilio</label>
+                            <input required type="text" name="domicilio" [(ngModel)]="alumno.domicilio" #domicilio = "ngModel" class="form-control" id="domicilio" placeholder="">
+                            <label for="domicilio">Domicilio</label>
+                            <div *ngIf="domicilio.invalid && (domicilio.touched || domicilio.dirty)" class=" m-0 p-0 alert alert-danger align-items-center">
+                                <p  class="mx-4" *ngIf="domicilio.errors.required"> Campo requerido</p>
+                            </div>
                         </div>
                         <div class=" col form-floating mb-3">
-                            <input type="text" class="form-control" id="prodVenta" placeholder="">
-                            <label for="prodVenta">Email</label>
+                            <input required type="text" name="email" [(ngModel)]="alumno.email" #email= "ngModel" class="form-control" id="email" placeholder="">
+                            <label for="email">Email</label>
+                            <div *ngIf="email.invalid && (email.touched || email.dirty)" class=" m-0 p-0 alert alert-danger align-items-center">
+                                <p  class="mx-4" *ngIf="email.errors.required"> Campo requerido</p>
+                            </div>
                         </div>
     
                         <div class="form-floating mb-3">
-                            <select class="form-select" id="floatingSelect" aria-label="Floating label select example"
-                            name="plan" [(ngModel)]="alumno.plan">
+                            <select required class="form-select" id="floatingSelect" aria-label="Floating label select example"
+                            name="plan" [(ngModel)]="alumno.plan" #plan="ngModel">
                                 <option *ngFor="let plan of planes" [ngValue]="plan">{{plan.nombre}},  ${{plan.precio}}</option>
                             </select>
                             <label for="floatingSelect">Plan</label>
+                            <div *ngIf="plan.invalid && (plan.touched || plan.dirty)" class=" m-0 p-0 alert alert-danger align-items-center">
+                                <p  class="mx-4" *ngIf="plan.errors.required"> Campo requerido</p>
+                            </div>
+                        </div>
+                        <div class="col-12 mb-3 pb-0 border-bottom border-4">
+                            <h3 class="text-center  text-white fw-bold my-3">Seccion Usuario</h3>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input required type="text" name="username" [(ngModel)]="usuario.username" (ngModelChange)="validarUserName()" #username = "ngModel" class="form-control" id="usuario" placeholder="">
+                            <label for="usuario">Nombre de Usuario</label>
+                            <div *ngIf="username.invalid && (username.touched || username.dirty)" class=" m-0 p-0 alert alert-danger align-items-center">
+                                <p  class="mx-4" *ngIf="username.errors.required"> Campo requerido</p>
+                            </div>
+                            <div *ngIf="usuarioValido == false" class=" m-0 p-0 alert alert-danger align-items-center">
+                                <p  class="mx-4" >El nombre de usuario ya existe</p>
+                            </div>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input required  type="text"  name="password" [(ngModel)]="usuario.password" #passwd = "ngModel" class="form-control" id="password" placeholder="">
+                            <label for="password">Password</label>
+                            <div *ngIf="passwd.invalid && (passwd.touched || passwd.dirty)" class=" m-0 p-0 alert alert-danger align-items-center">
+                                <p  class="mx-4" *ngIf="passwd.errors.required"> Campo requerido</p>
+                            </div>
                         </div>
                     </form>
                     <div class="row p-2">
                         <div class=" col-12 col-md-6 text-center mb-3 ">
-                            <button class="w-100 btn btn-dark p-3 fs-6  fw-bold">GUARDAR
+                            <button [disabled]="formAlumno.invalid" class="w-100 btn btn-dark p-3 fs-6  fw-bold" (click)="guardarAlumno(formAlumno)">GUARDAR
                                 ALUMNO</button>
                         </div>
                         <div class=" col-12 col-md-6 text-center mb-3">
                             <button class=" w-100 btn btn-danger p-3 fs-6 fw-bold">CANCELAR</button>
+                        </div>
+                        <div class="text-white">
+                            <p>estate Form : {{formAlumno.status | json}}</p>
+                            <p>Value Form : {{formAlumno.value | json}}</p>
+                            <p>Estado del variable #apellido: {{apellido.errors | json }}</p>
+                            {{usuario.username}} {{usuario.password}}
                         </div>
                     </div>        
                 </div>               
