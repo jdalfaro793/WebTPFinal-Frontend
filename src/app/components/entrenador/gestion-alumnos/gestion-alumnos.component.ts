@@ -10,15 +10,47 @@ import { AlumnoService } from 'src/app/services/alumno/alumno.service';
 export class GestionAlumnosComponent implements OnInit {
 
   alumnos: Array<Alumno>;
+  findByApellido: string;
+  findByDni: string;
+  alumnoBuscado: string;
 
   constructor(private alumnoService: AlumnoService,
               private activatedRoute: ActivatedRoute,
               private router: Router) { }
 
   ngOnInit(): void {
+    this.findByApellido = "";
+    this.findByDni = "";
+    this.alumnoBuscado= "";
     this.cargarAlumnos();
   }
 
+  verificarApellidoOrDni(){
+   const valoresAceptados = /^[0-9]*$/;
+       if (this.alumnoBuscado.match(valoresAceptados)){
+         this.findByDni = this.alumnoBuscado;
+       }else{
+         this.findByApellido = this.alumnoBuscado;
+       }
+  }
+
+  cargarAlumnos():void{
+    this.verificarApellidoOrDni();
+    this.alumnos = new Array<Alumno>();
+    this.alumnoService.get(this.findByApellido, this.findByDni).subscribe(
+      result=>{
+        result.forEach(element => {
+          let alumno = new Alumno();
+          Object.assign(alumno, element);
+          this.alumnos.push(alumno);
+        });
+      },
+      error=>{
+        console.log(error);
+      }
+    )
+  }
+/*
   cargarAlumnos() {
     this.alumnos = new Array<Alumno>();
     this.alumnoService.getAlumnos().subscribe(
@@ -35,6 +67,14 @@ export class GestionAlumnosComponent implements OnInit {
       }
     )
   }
+*/
+
+limpiarFiltro(){
+  this.findByApellido= "";
+  this.findByDni= "";
+  this.alumnoBuscado = "";
+  this.cargarAlumnos();
+}
 
 agregarCuota(alumno: Alumno){
   this.router.navigate(["cuota/", alumno._id ]);

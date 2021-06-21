@@ -50,7 +50,18 @@ export class AlumnoService {
       })
      }
      return this.http.get(this.urlbase+id,httpOption)
- 
  }
+
+ get(apellidoAlumno: string, dniAlumno: string):Observable<any>{
+  const httpOptions = {
+    headers: new HttpHeaders(),
+    params : {
+      apellido : apellidoAlumno,
+      dni : dniAlumno
+    }
+  }
+  return this.http.get(this.urlbase, httpOptions)
+}
+
 }
 
