@@ -23,6 +23,8 @@ import { ToastrModule } from 'ngx-toastr';
 import { GestionRutinaComponent } from './components/rutina/gestion-rutina/gestion-rutina.component';
 import { MisRutinasComponent } from './components/rutina/mis-rutinas/mis-rutinas.component';
 import { MisAsistenciasComponent } from './components/asistencia/mis-asistencias/mis-asistencias.component';
+import { GestionarAsistenciaComponent } from './components/entrenador/gestionar-asistencia/gestionar-asistencia.component';
+import { GestionarCuotaComponent } from './components/entrenador/gestionar-cuota/gestionar-cuota.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +42,8 @@ import { MisAsistenciasComponent } from './components/asistencia/mis-asistencias
     GestionRutinaComponent,
     MisRutinasComponent,
     MisAsistenciasComponent,
+    GestionarAsistenciaComponent,
+    GestionarCuotaComponent,
 
   ],
   imports: [

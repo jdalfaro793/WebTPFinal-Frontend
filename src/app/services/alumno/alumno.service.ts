@@ -32,6 +32,7 @@ export class AlumnoService {
     }
     return this.http.get(this.urlbase, httpOptions)
   }
+
   addAlumno(alumno : Alumno):Observable<any>{
     let options = {
       headers:new HttpHeaders({ "Content-Type": "application/json" }),
@@ -40,5 +41,16 @@ export class AlumnoService {
     let body = JSON.stringify(alumno);
     return this.http.post(this.urlbase,body,options);
   }
+
+  getAlumno(id:string):Observable<any>{
+    const httpOption={
+      headers:new HttpHeaders({
+      }),
+      params: new HttpParams({
+      })
+     }
+     return this.http.get(this.urlbase+id,httpOption)
+ 
+ }
 }
 

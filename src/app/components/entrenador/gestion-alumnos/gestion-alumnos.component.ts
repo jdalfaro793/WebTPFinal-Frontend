@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Alumno } from 'src/app/models/alumno/alumno';
 import { AlumnoService } from 'src/app/services/alumno/alumno.service';
 @Component({
@@ -10,7 +11,9 @@ export class GestionAlumnosComponent implements OnInit {
 
   alumnos: Array<Alumno>;
 
-  constructor(private alumnoService: AlumnoService) { }
+  constructor(private alumnoService: AlumnoService,
+              private activatedRoute: ActivatedRoute,
+              private router: Router) { }
 
   ngOnInit(): void {
     this.cargarAlumnos();
@@ -32,6 +35,14 @@ export class GestionAlumnosComponent implements OnInit {
       }
     )
   }
+
+agregarCuota(alumno: Alumno){
+  this.router.navigate(["cuota/", alumno._id ]);
+}
+
+agregarAsistencia(alumno: Alumno){
+  this.router.navigate(["asistencia/", alumno._id ]);
+}
 
 }
 

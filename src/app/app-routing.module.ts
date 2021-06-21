@@ -10,6 +10,9 @@ import { MiPlanComponent } from './components/plan/mi-plan/mi-plan.component';
 import { MisRutinasComponent } from './components/rutina/mis-rutinas/mis-rutinas.component';
 import { MisAsistenciasComponent } from './components/asistencia/mis-asistencias/mis-asistencias.component';
 import { GestionRutinaComponent } from './components/rutina/gestion-rutina/gestion-rutina.component';
+import { GestionarAsistenciaComponent } from './components/entrenador/gestionar-asistencia/gestionar-asistencia.component';
+import { GestionarCuotaComponent } from './components/entrenador/gestionar-cuota/gestionar-cuota.component';
+
 
 const routes: Routes = [
   { path: 'login',component: LoginComponent },
@@ -17,14 +20,18 @@ const routes: Routes = [
   { path: 'gestion-rutina/:id', component: GestionRutinaComponent},
 
   { path: 'gestionAlumno/form-alumno', component: FormAlumnoComponent},
-  { path: 'gestionAlumno',component: GestionAlumnosComponent },
+  
   { path: 'cuota', component: CuotaComponent},
 
   { path: 'mis-asistencias/:id',component: MisAsistenciasComponent },
   { path: 'mis-cuotas/:id', component: MisCuotasComponent},
   { path: 'mis-rutinas/:id', component: MisRutinasComponent},
-  { path: 'mi-plan/:id', component: MiPlanComponent}
+  { path: 'mi-plan/:id', component: MiPlanComponent},
+
+  { path: 'asistencia/:id', component: GestionarAsistenciaComponent},
+  { path: 'cuota/:id', component: GestionarCuotaComponent},
   
+  { path: 'gestionAlumno',component: GestionAlumnosComponent },
 
 ];
 
