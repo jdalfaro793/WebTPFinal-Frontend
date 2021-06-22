@@ -85,7 +85,7 @@
                             <h3 class="text-center  text-white fw-bold my-3">Seccion Usuario</h3>
                         </div>
                         <div class="form-floating mb-3">
-                            <input required type="text" name="username" [(ngModel)]="usuario.username" (ngModelChange)="validarUserName()" #username = "ngModel" class="form-control" id="usuario" placeholder="">
+                            <input required type="text" name="username" [(ngModel)]="usuario.username" (ngModelChange)="validarUserName(username)" #username = "ngModel" class="form-control" id="usuario" placeholder="">
                             <label for="usuario">Nombre de Usuario</label>
                             <div *ngIf="username.invalid && (username.touched || username.dirty)" class=" m-0 p-0 alert alert-danger align-items-center">
                                 <p  class="mx-4" *ngIf="username.errors.required"> Campo requerido</p>
@@ -110,12 +110,7 @@
                         <div class=" col-12 col-md-6 text-center mb-3">
                             <button class=" w-100 btn btn-danger p-3 fs-6 fw-bold">CANCELAR</button>
                         </div>
-                        <div class="text-white">
-                            <p>estate Form : {{formAlumno.status | json}}</p>
-                            <p>Value Form : {{formAlumno.value | json}}</p>
-                            <p>Estado del variable #apellido: {{apellido.errors | json }}</p>
-                            {{usuario.username}} {{usuario.password}}
-                        </div>
+                      
                     </div>        
                 </div>               
             </div>

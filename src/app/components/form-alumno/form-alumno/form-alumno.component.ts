@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { NgForm, NgModel } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 import { Alumno } from 'src/app/models/alumno/alumno';
 import { Plan } from 'src/app/models/plan/plan';
 import { Usuario } from 'src/app/models/usuario/usuario';
@@ -22,7 +23,8 @@ export class FormAlumnoComponent implements OnInit {
   constructor(
     private planService: PlanService,
     private usuarioService: UsuarioService,
-    private alumnoService: AlumnoService
+    private alumnoService: AlumnoService,
+    private toastr: ToastrService
   ) { }
 
   ngOnInit(): void {
@@ -63,30 +65,50 @@ export class FormAlumnoComponent implements OnInit {
             this.alumno.usuario = this.usuario;
             this.alumnoService.addAlumno(this.alumno).subscribe(
               result => {
-                console.log(result);
-                console.log("usuario agregado con exito");
+                this.toastr.success("El alumno fue dado de alta con exito !!")
                 this.alumno = new Alumno();
                 this.usuario = new Usuario();
                 formAlumno.resetForm();
               },
               error =>{
                 console.log(error);
+                this.toastr.error("Error en la operacion alta")
               }
             )
           },
           error =>{
             console.log(error);
+            
           }
         )
       },
       error=>{
         console.log(error);
+        this.toastr.error("Error al intentar generar Usuario")
       }
     )
 
   }
-  validarUserName():void{
-  
+  validarUserName(input:NgModel):void{
+    if(this.usuario.username!=""){
+      this.usuarioService.validarUsername(this.usuario.username).subscribe(
+        result=>{
+          if(result.username != null)
+            this.usuarioValido=false;
+            this.toastr.warning("El nombre de usuario ya existe");
+            this.usuario.username = "";
+            input.reset();
+        },
+        error=>{
+          console.error();
+        }
+        
+      )
+    }
+    else{
+      this.usuarioValido = true;
+    }
+    
   }
 }
 

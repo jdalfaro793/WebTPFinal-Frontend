@@ -52,9 +52,13 @@
                 </li>
 
             </ul>
-            <form class="col-12 col-sm-3 row p-0 m-0 d-flex justify-content-evenly">
-                <button class="btn btn-light btn-sm col-12 col-sm-5 mt-2 mt-sm-0" type="button" [routerLink]="['login']">Ingresar</button>
-            </form>
+          
+        </div>
+        <div class="p-2">
+            <a *ngIf="!usuarioService.userLoggedIn()" [routerLink]="['login']"><button class="btn btn-dark">Log in</button></a>
+            <a style="text-decoration: none;" *ngIf="usuarioService.userLoggedIn()" [routerLink]="['login']" (click)="logout()">
+               <i class="bi bi-person-check-fill" style="padding-right: 2rem; font-size: 2vw;">{{usuarioService.userLogged()}}</i>  <button class="btn btn-warning">Cerrar Sesion</button>
+            </a>
         </div>
     </div>
 </nav>

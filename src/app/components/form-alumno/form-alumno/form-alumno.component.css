@@ -1,7 +1,7 @@
 
 .bg-container{
     background: linear-gradient(black 100%, rgb(80, 77, 77) 15%,black 100%);
-    opacity:0.5;
+    opacity:0.6;
 }
 .bg-panel-left{
     background: url("../../../../assets/alumno/form-alumno.jpg");
@@ -10,6 +10,6 @@
     background-size: cover;
 }
 .bg-form{
-    background: rgba(1, 17, 37, 0.7);
+    background: rgba(1, 17, 37, 0.8);
     
 }

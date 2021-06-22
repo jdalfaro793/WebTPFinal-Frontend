@@ -30,6 +30,7 @@ import { GestionPlanAlimenticionComponent } from './components/dieta/gestion-pla
 import { FormPlanAlimentacionComponent } from './components/dieta/form-plan-alimentacion/form-plan-alimentacion.component';
 import { GestionEjercicioComponent } from './components/entrenador/gestion-ejercicio/gestion-ejercicio.component';
 import { AlifeFileToBase64Module } from 'alife-file-to-base64';
+import { UsuarioService } from './services/usuario/usuario.service';
 
 @NgModule({
   declarations: [
@@ -63,7 +64,7 @@ import { AlifeFileToBase64Module } from 'alife-file-to-base64';
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
   ],
-  providers: [DatePipe],
+  providers: [DatePipe, UsuarioService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
