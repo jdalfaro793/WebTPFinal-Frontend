@@ -12,9 +12,12 @@ import { MisAsistenciasComponent } from './components/asistencia/mis-asistencias
 import { GestionRutinaComponent } from './components/rutina/gestion-rutina/gestion-rutina.component';
 import { GestionarAsistenciaComponent } from './components/entrenador/gestionar-asistencia/gestionar-asistencia.component';
 import { GestionarCuotaComponent } from './components/entrenador/gestionar-cuota/gestionar-cuota.component';
+import { HomeComponent } from './components/home/home.component';
 
 
 const routes: Routes = [
+  { path: '', redirectTo:'home', pathMatch:'full'},
+  { path: 'home', component: HomeComponent},
   { path: 'login',component: LoginComponent },
   { path: 'gestion-cuota', component: GestionCuotaComponent},
   { path: 'gestion-rutina/:id', component: GestionRutinaComponent},
