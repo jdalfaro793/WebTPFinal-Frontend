@@ -29,4 +29,16 @@ export class UsuarioService {
     }
     return this.http.get(this.urlBase+userName+"/"+password, options);
   }
+
+  updateUsuario(usuario: Usuario):Observable<any>{
+    let option = {
+      headers: new HttpHeaders({
+        "Content-Type": "application/json"
+      }),
+      params: new HttpParams({
+      })
+    }
+    let body = JSON.stringify(usuario);
+    return this.http.put(this.urlBase+usuario._id, body, option);
+  }
 }

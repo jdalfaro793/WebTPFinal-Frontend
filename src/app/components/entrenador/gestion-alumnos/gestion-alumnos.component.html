@@ -89,9 +89,12 @@
                                     </button>       
                                 </td>
                                 <td>
-                                    <button class="btn btn-success" data-bs-toggle="tooltip" data-bs-placement="bottom"
-                                        title="">Activo
-                                    </button>       
+                                    <button *ngIf="alumno.usuario.state == true" class="btn btn-success" data-bs-toggle="tooltip" data-bs-placement="bottom"
+                                       (click)="activarAlumno(alumno)" title="">Activo
+                                    </button>
+                                    <button *ngIf="alumno.usuario.state == false" class="btn btn-danger" data-bs-toggle="tooltip" data-bs-placement="bottom"
+                                       (click)="activarAlumno(alumno)" title="">Inactivo
+                                    </button>      
                                 </td>
                             </tr>
                         </tbody>

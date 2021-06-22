@@ -25,6 +25,8 @@ import { MisRutinasComponent } from './components/rutina/mis-rutinas/mis-rutinas
 import { MisAsistenciasComponent } from './components/asistencia/mis-asistencias/mis-asistencias.component';
 import { GestionarAsistenciaComponent } from './components/entrenador/gestionar-asistencia/gestionar-asistencia.component';
 import { GestionarCuotaComponent } from './components/entrenador/gestionar-cuota/gestionar-cuota.component';
+import { DiaPipe } from './pipes/dia.pipe';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -44,6 +46,7 @@ import { GestionarCuotaComponent } from './components/entrenador/gestionar-cuota
     MisAsistenciasComponent,
     GestionarAsistenciaComponent,
     GestionarCuotaComponent,
+    DiaPipe,
 
   ],
   imports: [
@@ -55,7 +58,7 @@ import { GestionarCuotaComponent } from './components/entrenador/gestionar-cuota
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

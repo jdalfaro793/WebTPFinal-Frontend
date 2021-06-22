@@ -1,8 +1,10 @@
 import { Route } from '@angular/compiler/src/core';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Alumno } from 'src/app/models/alumno/alumno';
 import { Asistencia } from 'src/app/models/asistencia/asistencia';
+import { Plan } from 'src/app/models/plan/plan';
 import { AlumnoService } from 'src/app/services/alumno/alumno.service';
 import { AsistenciaService } from 'src/app/services/asistencia/asistencia.service';
 
@@ -21,19 +23,22 @@ export class GestionarAsistenciaComponent implements OnInit {
   constructor(private router: Router,
               private asistenciaService: AsistenciaService,
               private alumnoService: AlumnoService,
-              private activatedRoute: ActivatedRoute) { }
+              private activatedRoute: ActivatedRoute,
+              private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(
       params => {
-          this.cargarAlumno(params.id);
           this.iniciarAsistencia();
+          this.cargarAlumno(params.id);
           this.cargarAsistencias(params.id);
     });
   }
 
   iniciarAsistencia(){
-    this.asistencia = new Asistencia;
+    this.asistencia = new Asistencia();
+    this.asistencia.alumno = new Alumno();
+    this.asistencia.alumno.plan = new Plan();
     this.fecha = new Date();
   }
 
@@ -73,10 +78,12 @@ export class GestionarAsistenciaComponent implements OnInit {
     this.asistenciaService.addAsistencia(this.asistencia).subscribe(
       result=>{
         if(result.status=="1"){
-          alert("La asistencia se agrego correctamente");
-          this.cargarAsistencias(this.asistencia.alumno._id);
-          this.fecha = new Date();
-        }
+            this.toastr.success("La asistencia fue guardada correctamente", "OPERACION EXITOSA");
+            this.cargarAsistencias(this.asistencia.alumno._id);
+            this.fecha = new Date();
+          }else{
+            this.toastr.error("Error al guardar la asistencia", "OPERACION FALLIDA");
+          }
       },
       error=>{
         console.log(error);

@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Alumno } from 'src/app/models/alumno/alumno';
 import { AlumnoService } from 'src/app/services/alumno/alumno.service';
+import { UsuarioService } from 'src/app/services/usuario/usuario.service';
 @Component({
   selector: 'app-gestion-alumnos',
   templateUrl: './gestion-alumnos.component.html',
@@ -15,8 +17,10 @@ export class GestionAlumnosComponent implements OnInit {
   alumnoBuscado: string;
 
   constructor(private alumnoService: AlumnoService,
+              private usuarioService: UsuarioService,
               private activatedRoute: ActivatedRoute,
-              private router: Router) { }
+              private router: Router,
+              private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.findByApellido = "";
@@ -82,6 +86,25 @@ agregarCuota(alumno: Alumno){
 
 agregarAsistencia(alumno: Alumno){
   this.router.navigate(["asistencia/", alumno._id ]);
+}
+
+activarAlumno(alumno: Alumno){
+  if (confirm("Esta seguro que desea cambiar el estado del usuario?")){
+    alumno.usuario.state = !(alumno.usuario.state);
+    this.usuarioService.updateUsuario(alumno.usuario).subscribe(
+      result=>{
+        if(result.status=="1"){
+          this.toastr.success("El usuario fue modificado correctamente", "OPERACION EXITOSA");
+        }else{
+          this.toastr.error("Error al modificar el usuario", "OPERACION FALLIDA");
+        }
+      },
+      error=>{
+        console.log(error);
+        alert("Error al modificar el usuario");
+      }
+    )
+  }
 }
 
 }

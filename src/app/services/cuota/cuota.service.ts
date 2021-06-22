@@ -32,4 +32,15 @@ export class CuotaService {
     }
     return this._http.get(this.URL + '/alumno/' + id, httpOptions)
   }
+
+  addCuota(cuota : Cuota):Observable<any>{
+    let options = {
+      headers:new HttpHeaders({ 
+        "Content-Type": "application/json" 
+      }),
+      params: new HttpParams({})
+    }
+    let body = JSON.stringify(cuota);
+    return this._http.post(this.URL,body,options);
+  }
 }
