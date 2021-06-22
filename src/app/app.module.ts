@@ -27,6 +27,8 @@ import { GestionarAsistenciaComponent } from './components/entrenador/gestionar-
 import { GestionarCuotaComponent } from './components/entrenador/gestionar-cuota/gestionar-cuota.component';
 import { DiaPipe } from './pipes/dia.pipe';
 import { DatePipe } from '@angular/common';
+import { GestionPlanAlimenticionComponent } from './components/dieta/gestion-plan-alimenticion/gestion-plan-alimenticion.component';
+import { FormPlanAlimentacionComponent } from './components/dieta/form-plan-alimentacion/form-plan-alimentacion.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +49,8 @@ import { DatePipe } from '@angular/common';
     GestionarAsistenciaComponent,
     GestionarCuotaComponent,
     DiaPipe,
-
+    GestionPlanAlimenticionComponent,
+    FormPlanAlimentacionComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,121 @@
+<!-- Contenedor principal -->
+<div class="row my-5 min-vh-100 m-0 ">
+    <div class="col-12 col-sm-10 mx-auto bg-body">
+        <div class="row text-uppercase bg-dark py-3 py-sm-5 text-center align-items-center">
+            <div class="col-12">
+                <p class=" fs-2 fw-bold text-white m-0">Añadir plan alimenticio</p>
+            </div>
+        </div>
+
+        <div class="row p-2 p-sm-4 row-cols-1 row-cols-2 bg-light">
+            <div class="col-6 rounded cont-img d-none d-sm-block">
+                <!--
+                    {path: 'registrar-dieta', component: RegistroDietaComponent}
+                    RegistroDietaComponent,
+    GestionDietaComponent
+                -->
+            </div>
+            <form class="col-12 col-sm-6 ps-sm-3">
+                <div class="form-floating mb-3">
+                    <textarea class="form-control" id="objetivo" name="objetivo" style="height: 80px" [(ngModel)]="planAlimentacion.objetivo"></textarea>
+                    <label for="objetivo">Objetivo</label>
+                </div>
+                <div class="row mb-3 m-0 ">
+                    <label for="mes" class="col-sm-4 col-form-label">Mes</label>
+                    <div class="col-sm-8 d-flex align-items-center p-0">
+                        <select class="form-select form-select-sm" name="mes" id="mes" [(ngModel)]="planAlimentacion.mes">
+                            <option selected disabled>Eliga una opción</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Añadir dieta x día -->
+                <div class="pt-2">
+                    <p class="my-4 fs-5 fw-bold text-center text-decoration-underline">Añadir dieta por día</p>
+                </div>
+                <div class="row mb-3 m-0 ">
+                    <label for="dia" class="col-sm-4 col-form-label">Día</label>
+                    <div class="col-sm-8 d-flex align-items-center p-0">
+                        <select class="form-select form-select-sm" name="dia" id="dia" [(ngModel)]="dieta.dia">
+                            <option selected disabled>Eliga una opción</option>
+                            <option value="Lunes">Lunes</option>
+                            <option value="Martes">Martes</option>
+                            <option value="Miércoles">Miércoles</option>
+                            <option value="Jueves">Jueves</option>
+                            <option value="Viernes">Viernes</option>
+                            <option value="Sábado">Sábado</option>
+                            <option value="Domingo">Domingo</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-floating mb-3">
+                    <textarea class="form-control" id="desayuno" name="desayuno" style="height: 80px" [(ngModel)]="dieta.desayuno"></textarea>
+                    <label for="desayuno">Desayuno</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <textarea class="form-control" id="almuerzo" name="almuerzo" style="height: 80px" [(ngModel)]="dieta.almuerzo"></textarea>
+                    <label for="almuerzo">Almuerzo</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <textarea class="form-control" id="merienda" name="merienda" style="height: 80px" [(ngModel)]="dieta.merienda"></textarea>
+                    <label for="merienda">Merienda</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <textarea class="form-control" id="cena" name="cena" style="height: 80px" [(ngModel)]="dieta.cena"></textarea>
+                    <label for="cena">Cena</label>
+                </div>
+                <div class="row m-0 d-flex justify-content-center">
+                    <div class="col-12 col-sm-4">
+                        <button class="btn btn-primary w-100" (click)="addDieta()">Añadir en lista</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="row p-2 p-sm-4 bg-light" *ngIf="dietas.length != 0">
+            <div class="col-12 p-0">
+                <div class="table-responsive">
+                    <table class="table align-middle m-0 bg-white">
+                        <thead class="table-dark">
+                            <tr class="text-center ">
+                                <th scope="col" rowspan="1">Día</th>
+                                <th scope="col" rowspan="1">Desayuno</th>
+                                <th scope="col" rowspan="1">Almuerzo</th>
+                                <th scope="col" rowspan="1">Merienda</th>
+                                <th scope="col" rowspan="1">Cena</th>
+                                <th scope="col" rowspan="1">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-center">
+                            <tr *ngFor="let d of dietas">
+                                <td scope="col" > {{d.dia}} </td>
+                                <td scope="col" > {{d.desayuno}} </td>
+                                <td scope="col" > {{d.almuerzo}} </td>
+                                <td scope="col" > {{d.merienda}} </td>
+                                <td scope="col" > {{d.cena}} </td>
+                                <td scope="col" >  </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="row p-2 p-sm-4 bg-light d-flex justify-content-evenly">
+            <div class="col-4">
+                <button class="btn btn-danger btn-lg w-100">Cancelar</button>
+            </div>
+            <div class="col-4">
+                <button class="btn btn-success btn-lg w-100" (click)="savePlanAlimeticion()">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>

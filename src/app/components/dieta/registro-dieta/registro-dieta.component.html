@@ -1,0 +1,104 @@
+<!-- Contenedor principal -->
+<div class="row my-5 min-vh-100 m-0 ">
+    <div class="col-12 col-sm-10 mx-auto bg-body">
+        <div class="row text-uppercase bg-dark py-3 py-sm-5 text-center align-items-center">
+            <div class="col-12">
+                <p class=" fs-2 fw-bold text-white m-0">Registrar Dieta</p>
+            </div>
+        </div>
+
+        <div class="row p-2 p-sm-4 row-cols-1 row-cols-2 bg-light">
+            <div class="col-5 rounded cont-img d-none d-sm-block">
+                <!--
+                    {path: 'registrar-dieta', component: RegistroDietaComponent}
+                    RegistroDietaComponent,
+    GestionDietaComponent
+                -->
+            </div>
+            <form class="col-12 col-sm-7 ps-sm-2">
+                <div class="row mb-3 m-0 ">
+                    <label for="alumno" class="col-sm-3 col-form-label">Alumno</label>
+                    <div class="col-sm-5">
+                        <input type="text" class="form-control" id="alumno" name="alumno">
+                    </div>
+                    <div class="col-sm-4">
+                        <button class="btn btn-primary w-100">
+                            Elegir&nbsp;
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-plus-fill" viewBox="0 0 16 16">
+                                <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                                <path fill-rule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="row mb-3 m-0">
+                    <label for="objetivo" class="col-sm-3 col-form-label">Objetivo</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" id="objetivo" name="objetivo">
+                    </div>
+                </div>
+                <div class="row mb-3 m-0">
+                    <label for="peso" class="col-sm-3 col-form-label">Peso</label>
+                    <div class="col-sm-8">
+                        <input type="number" class="form-control" id="peso" name="peso">
+                    </div>
+                    <label for="peso" class="col-sm-1 col-form-label">Kg</label>
+                </div>
+                <div class="row mb-3 m-0">
+                    <label for="foto" class="col-sm-3 col-form-label">Foto</label>
+                    <div class="col-sm-9">
+                        <input class="form-control" type="file" id="foto">
+                    </div>
+                </div>
+                <div class="row m-0">
+                    <label for="planAlimentacion" class="col-sm-3 col-form-label">Alimentación</label>
+                    <div class="col-sm-5">
+                        <input type="number" class="form-control" id="planAlimentacion" name="planAlimentacion">
+                    </div>
+                    <div class="col-sm-4">
+                        <button class="btn btn-primary w-100">
+                            Elegir&nbsp;
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-plus-fill" viewBox="0 0 16 16">
+                                <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                                <path fill-rule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div class="row py-5 px-2 px-sm-5 bg-light">
+            <div class="col-12 p-0">
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle m-0 bg-white">
+                        <thead class="">
+                            <tr class="text-center ">
+                                <!--
+                                <th scope="col" >DNI</th>
+                                <th scope="col">Apellido</th>
+                                <th scope="col">Nombre</th> -->
+                                <th scope="col">Medio de pago</th>
+                                <th scope="col">Fecha</th>
+                                <th scope="col">Monto</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-center">
+                            <!--
+                            <tr *ngFor="let c of cuotas">
+                                <th> {{c.alumno.dni}} </th>
+                                <td> {{c.alumno.apellido}} </td>
+                                <td>{{c.modo_pago}}</td>
+                                <td>{{c.fecha_pago | date : 'fullDate'}}</td>
+                                <td>{{c.monto | currency}}</td>
+                            </tr>
+                        -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        
+        </div>
+    </div>
+</div>

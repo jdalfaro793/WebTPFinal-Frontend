@@ -1,0 +1,10 @@
+.cont-img {
+    background-image: url('../../../../assets/img/plan-dieta-background.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+* {
+    border: 1px solid #000;
+}

@@ -13,6 +13,8 @@ import { GestionRutinaComponent } from './components/rutina/gestion-rutina/gesti
 import { GestionarAsistenciaComponent } from './components/entrenador/gestionar-asistencia/gestionar-asistencia.component';
 import { GestionarCuotaComponent } from './components/entrenador/gestionar-cuota/gestionar-cuota.component';
 import { HomeComponent } from './components/home/home.component';
+import { GestionPlanAlimenticionComponent } from './components/dieta/gestion-plan-alimenticion/gestion-plan-alimenticion.component';
+import { FormPlanAlimentacionComponent } from './components/dieta/form-plan-alimentacion/form-plan-alimentacion.component';
 
 
 const routes: Routes = [
@@ -35,6 +37,9 @@ const routes: Routes = [
   { path: 'cuota/:id', component: GestionarCuotaComponent},
   
   { path: 'gestionAlumno',component: GestionAlumnosComponent },
+
+  {path: 'plan-alimentacion', component : GestionPlanAlimenticionComponent},
+  { path: 'form-plan-alimentacion', component: FormPlanAlimentacionComponent}
 
 ];
 
