@@ -22,7 +22,6 @@ export class GestionarCuotaComponent implements OnInit {
   fechaVencida: boolean;
   fechaNueva: Date;
   cuotaComprobante: Cuota;
-  comprobante: boolean = false;
 
   constructor(private router: Router,
               private cuotaService: CuotaService,

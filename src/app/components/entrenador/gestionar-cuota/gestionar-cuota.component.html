@@ -12,12 +12,7 @@
             
             <div class="col-12 p-0">
                 <form action="" #formCuota="ngForm">
-                    <div class="row col-12 col-md-8 m-auto mb-3">
-                        <div class="col-6 col-md-4 mb-3 bg-white m-auto" style="border: 1px solid rgb(175, 175, 175); border-radius: 10px;">
-                            <p class="m-0" style="color: gray;">Fecha</p>
-                            <label>{{fecha | date:"dd/MM/yyyy" }}</label>
-                        </div>
-                    </div>
+                    
                     <div class="row col-12 col-md-8 m-auto mb-1">
                         <div class="col-12 col-md-6 mb-3 bg-white" style="border: 1px solid rgb(175, 175, 175); border-radius: 10px;">
                             <p class="m-0" style="color: gray;">Alumno</p>
@@ -45,8 +40,14 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-6 col-md-5 text-center mb-3 m-auto">
-                        <button [disabled]="formCuota.invalid || fechaVencida" class="w-100 btn btn-primary p-3 fs-6 fw-bold" (click)="guardarCuota(formCuota)" >GUARDAR</button>
+                    <div class="row col-12 col-md-8 m-auto mb-1">
+                        <div class="col-12 col-md-6 mb-3 bg-white" style="border: 1px solid rgb(175, 175, 175); border-radius: 10px;">
+                            <p class="m-0" style="color: gray;">Fecha</p>
+                            <label>{{fecha | date:"dd/MM/yyyy" }}</label>
+                        </div>
+                        <div class="col-12 col-md-5 text-center mb-3  mx-md-2">
+                            <button [disabled]="formCuota.invalid || fechaVencida" class="w-100 btn btn-primary p-3 fw-bold" (click)="guardarCuota(formCuota)" >GUARDAR</button>
+                        </div>
                     </div>
                     
                 </form>

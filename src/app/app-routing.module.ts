@@ -4,7 +4,6 @@ import { LoginComponent } from './components/login/login.component';
 import { GestionCuotaComponent } from './components/cuota/gestion-cuota/gestion-cuota.component';
 import { FormAlumnoComponent } from './components/form-alumno/form-alumno/form-alumno.component';
 import { GestionAlumnosComponent } from './components/entrenador/gestion-alumnos/gestion-alumnos.component';
-import { CuotaComponent } from './components/cuota/cuota/cuota.component';
 import { MisCuotasComponent } from './components/cuota/mis-cuotas/mis-cuotas.component';
 import { MiPlanComponent } from './components/plan/mi-plan/mi-plan.component';
 import { MisRutinasComponent } from './components/rutina/mis-rutinas/mis-rutinas.component';
@@ -15,7 +14,7 @@ import { GestionarCuotaComponent } from './components/entrenador/gestionar-cuota
 import { HomeComponent } from './components/home/home.component';
 import { GestionPlanAlimenticionComponent } from './components/dieta/gestion-plan-alimenticion/gestion-plan-alimenticion.component';
 import { FormPlanAlimentacionComponent } from './components/dieta/form-plan-alimentacion/form-plan-alimentacion.component';
-
+import { GestionEjercicioComponent } from './components/entrenador/gestion-ejercicio/gestion-ejercicio.component';
 
 const routes: Routes = [
   { path: '', redirectTo:'home', pathMatch:'full'},
@@ -25,8 +24,6 @@ const routes: Routes = [
   { path: 'gestion-rutina/:id', component: GestionRutinaComponent},
 
   { path: 'gestionAlumno/form-alumno', component: FormAlumnoComponent},
-  
-  { path: 'cuota', component: CuotaComponent},
 
   { path: 'mis-asistencias/:id',component: MisAsistenciasComponent },
   { path: 'mis-cuotas/:id', component: MisCuotasComponent},
@@ -39,7 +36,8 @@ const routes: Routes = [
   { path: 'gestionAlumno',component: GestionAlumnosComponent },
 
   {path: 'plan-alimentacion', component : GestionPlanAlimenticionComponent},
-  { path: 'form-plan-alimentacion', component: FormPlanAlimentacionComponent}
+  { path: 'form-plan-alimentacion', component: FormPlanAlimentacionComponent},
+  { path: 'gestionEjercicio', component: GestionEjercicioComponent}
 
 ];
 

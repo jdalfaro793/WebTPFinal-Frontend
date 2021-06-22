@@ -1,0 +1,92 @@
+<div class="row my-5 min-vh-100 m-0 ">
+    <div class="col-12 col-sm-10 mx-auto bg-body">
+        <div class="row text-uppercase bg-dark py-3 py-sm-5 text-center align-items-center">
+            <div class="col-12">
+                <p class=" fs-2 fw-bold text-white m-0">Gestión de Ejercicios</p>
+            </div>
+        </div>
+
+        <div class="row p-2 p-sm-4 row-cols-1 row-cols-2 bg-light">
+            <div class="col-6 rounded cont-img d-none d-sm-block">
+                <!-- Imagen
+                -->
+            </div>
+            <form class="col-12 col-sm-6 ps-sm-3">
+                <div class="form-floating mb-3 ">
+                    <input required type="text" name="nombre" [(ngModel)]="ejercicio.nombre" class="form-control " id="nombre" placeholder=""> 
+                    <label for="nombre">Nombre</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <textarea class="form-control" id="descripcion" name="descripcion" style="height: 150px" [(ngModel)]="ejercicio.descripcion"></textarea>
+                    <label for="descripcion">Descripción</label>
+                </div>
+                
+                <div class="row mb-3">
+                    <div class="form-floating mb-3 ">
+                        <input id="imagen" name="imagen" type="file" alife-file-to-base64 multiple class="form-control mt-2" required 
+                        (onFileChanged)="onFileChanges($event)" accept="image/x-png,image/gif,image/jpeg">
+                        <label for="imagen">Imagen</label>
+                    </div>
+                    
+                </div>
+        
+                <div *ngIf="ejercicio.imagen != ''" class="row mb-3">
+                    <div class="col-sm-10">
+                        <img class="rounded m-auto" [src]="ejercicio.imagen" width="50%">
+                    </div>
+                </div>
+
+                <div class="col-4 m-auto">
+                    <button class="btn btn-success btn-lg w-100" (click)="guardarEjercicio()">Guardar</button>
+                </div>
+
+                
+            </form>
+            
+        </div>
+        <div class="table-responsive col-12 m-auto mt-5">
+            <table class="table table-hover align-middle m-0 bg-white" [mfData]="listaEjercicios"
+                #mf="mfDataTable" [mfRowsOnPage]="5">
+                <thead class="table-dark">
+                    <tr class="text-center ">
+                        <th style="width: 25%">Nombre</th>
+                        <th style="width: 65%">Descripción</th>
+                        <th style="width: 10%">Imagen</th>
+                    </tr>
+                </thead>
+                <tbody class="text-center">
+                    <tr *ngFor="let ejercicio of mf.data">
+                        <td>{{ejercicio.nombre}}</td>
+                        <td>{{ejercicio.descripcion}}</td>
+                        <td>
+                            <button type="button" class="btn btn-secondary" data-bs-toggle="modal"
+                                data-bs-target="#imagenModal" (click)="verFoto(ejercicio)">Ver</button>
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="imagenModal" tabindex="-1"
+                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header bg-dark text-white">
+                                            <h5 class="m-auto">{{nombre}}</h5>
+                                        </div>
+                                        <div class="modal-body">
+                                            <img src="{{foto}}" class="img-fluid" alt="">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="4">
+                            <mfBootstrapPaginator [rowsOnPageSet]="[5,10,15]"></mfBootstrapPaginator>
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</div>

@@ -13,7 +13,6 @@ import { GestionCuotaComponent } from './components/cuota/gestion-cuota/gestion-
 import { FormsModule } from '@angular/forms';
 import { FormAlumnoComponent } from './components/form-alumno/form-alumno/form-alumno.component';
 import { GestionAlumnosComponent } from './components/entrenador/gestion-alumnos/gestion-alumnos.component';
-import { CuotaComponent } from './components/cuota/cuota/cuota.component';
 import { MisCuotasComponent } from './components/cuota/mis-cuotas/mis-cuotas.component';
 import { MiPlanComponent } from './components/plan/mi-plan/mi-plan.component';
 import { CommonModule } from '@angular/common';
@@ -29,6 +28,8 @@ import { DiaPipe } from './pipes/dia.pipe';
 import { DatePipe } from '@angular/common';
 import { GestionPlanAlimenticionComponent } from './components/dieta/gestion-plan-alimenticion/gestion-plan-alimenticion.component';
 import { FormPlanAlimentacionComponent } from './components/dieta/form-plan-alimentacion/form-plan-alimentacion.component';
+import { GestionEjercicioComponent } from './components/entrenador/gestion-ejercicio/gestion-ejercicio.component';
+import { AlifeFileToBase64Module } from 'alife-file-to-base64';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,6 @@ import { FormPlanAlimentacionComponent } from './components/dieta/form-plan-alim
     GestionCuotaComponent,
     FormAlumnoComponent,
     GestionAlumnosComponent,
-    CuotaComponent,
     MisCuotasComponent,
     MiPlanComponent,
     GestionRutinaComponent,
@@ -50,11 +50,13 @@ import { FormPlanAlimentacionComponent } from './components/dieta/form-plan-alim
     GestionarCuotaComponent,
     DiaPipe,
     GestionPlanAlimenticionComponent,
-    FormPlanAlimentacionComponent
+    FormPlanAlimentacionComponent,
+    GestionEjercicioComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    AlifeFileToBase64Module,
     HttpClientModule,
     NgxDataTableModule,
     FormsModule,CommonModule,
