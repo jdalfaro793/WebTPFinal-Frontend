@@ -30,4 +30,14 @@ export class EjercicioService {
     let body = JSON.stringify(ejercicio);
     return this._http.post(this.url,body,options);
   }
+
+  get(ejercicioNombre: string):Observable<any>{
+    const httpOptions = {
+      headers: new HttpHeaders(),
+      params : {
+        nombre : ejercicioNombre,
+      }
+    }
+    return this._http.get(this.url, httpOptions)
+  }
 }

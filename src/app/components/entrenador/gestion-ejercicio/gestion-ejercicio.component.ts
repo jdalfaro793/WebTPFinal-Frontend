@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { Ejercicio } from 'src/app/models/ejercicio/ejercicio';
 import { EjercicioService } from 'src/app/services/ejercicio/ejercicio.service';
@@ -10,26 +11,31 @@ import { EjercicioService } from 'src/app/services/ejercicio/ejercicio.service';
 })
 export class GestionEjercicioComponent implements OnInit {
 
+  @ViewChild('imagen') miImagen: ElementRef;
   ejercicio: Ejercicio;
   listaEjercicios: Array<Ejercicio>;
   nombre:string;
   foto:string;
+  ejercicioBuscado: string;
+  fotoSubida: boolean = true;
 
   constructor(private ejercicioService: EjercicioService,
               private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.iniciarVariable();
-    this.cargarCuotas();
+    this.cargarEjercicios();
   }
 
   iniciarVariable(){
     this.ejercicio = new Ejercicio();
     this.ejercicio.imagen="";
+    this.ejercicioBuscado= "";
   }
 
   onFileChanges(files){
     this.ejercicio.imagen = files[0].base64;
+
   }
 
   verFoto(ejercicio:Ejercicio){
@@ -37,9 +43,9 @@ export class GestionEjercicioComponent implements OnInit {
     this.foto=ejercicio.imagen;
   }
 
-  cargarCuotas(){
+  cargarEjercicios(){
     this.listaEjercicios = new Array<Ejercicio>();
-    this.ejercicioService.getEjercicios().subscribe(
+    this.ejercicioService.get(this.ejercicioBuscado).subscribe(
       result=>{
         result.forEach(element => {
           let vEjercicio = new Ejercicio();
@@ -54,15 +60,18 @@ export class GestionEjercicioComponent implements OnInit {
     )
   }
 
-  guardarEjercicio(){
+  guardarEjercicio(formEjercicio: NgForm){
     this.ejercicioService.addEjercicio(this.ejercicio).subscribe(
       result=>{
         if(result.status=="1"){
             this.toastr.success("El ejercicio fue guardado correctamente", "OPERACION EXITOSA");
-            this.cargarCuotas();
+            this.cargarEjercicios();
             this.ejercicio = new Ejercicio();
+            formEjercicio.reset();
+            this.miImagen.nativeElement.value = '';
           }else{
-            this.toastr.error("Error al guardar el ejercicio", "OPERACION FALLIDA");
+            this.toastr.error("No pueden haber campos vacíos.", "OPERACION FALLIDA");
+            this.fotoSubida = false;
           }
       },
       error=>{
@@ -72,4 +81,8 @@ export class GestionEjercicioComponent implements OnInit {
     )
   }
 
+  limpiarFiltro(){
+    this.ejercicioBuscado = "";
+    this.cargarEjercicios();
+  }
 }

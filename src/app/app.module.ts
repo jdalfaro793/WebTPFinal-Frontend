@@ -31,6 +31,7 @@ import { FormPlanAlimentacionComponent } from './components/dieta/form-plan-alim
 import { GestionEjercicioComponent } from './components/entrenador/gestion-ejercicio/gestion-ejercicio.component';
 import { AlifeFileToBase64Module } from 'alife-file-to-base64';
 import { UsuarioService } from './services/usuario/usuario.service';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -63,6 +64,7 @@ import { UsuarioService } from './services/usuario/usuario.service';
     FormsModule,CommonModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
+    NgbModule,
   ],
   providers: [DatePipe, UsuarioService],
   bootstrap: [AppComponent]
