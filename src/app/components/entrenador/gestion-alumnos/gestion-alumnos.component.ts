@@ -88,6 +88,10 @@ agregarAsistencia(alumno: Alumno){
   this.router.navigate(["asistencia/", alumno._id ]);
 }
 
+agregarRutina(alumno: Alumno){
+  this.router.navigate(["rutina/", alumno._id ]);
+}
+
 activarAlumno(alumno: Alumno){
   if (confirm("Esta seguro que desea cambiar el estado del usuario?")){
     alumno.usuario.state = !(alumno.usuario.state);

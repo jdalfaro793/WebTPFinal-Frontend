@@ -31,6 +31,7 @@ import { FormPlanAlimentacionComponent } from './components/dieta/form-plan-alim
 import { GestionEjercicioComponent } from './components/entrenador/gestion-ejercicio/gestion-ejercicio.component';
 import { AlifeFileToBase64Module } from 'alife-file-to-base64';
 import { UsuarioService } from './services/usuario/usuario.service';
+import { GestionarRutinaComponent } from './components/entrenador/gestionar-rutina/gestionar-rutina.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { UsuarioService } from './services/usuario/usuario.service';
     DiaPipe,
     GestionPlanAlimenticionComponent,
     FormPlanAlimentacionComponent,
-    GestionEjercicioComponent
+    GestionEjercicioComponent,
+    GestionarRutinaComponent
   ],
   imports: [
     BrowserModule,

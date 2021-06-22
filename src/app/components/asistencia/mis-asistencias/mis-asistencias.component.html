@@ -18,23 +18,25 @@
                                     <th style="width: 10%">
                                         Fecha
                                     </th>
-
                                     <th style="width: 10%">
-                                        Plan
+                                        Hora
+                                    </th>
+                                    <th style="width: 20%">
+                                        Dia
                                     </th>
                                     <th style="width: 10%">
-                                        Rutina
+                                        Año
                                     </th>
-                           
+                                    
                                 </tr>
                             </thead>
 
                             <tbody class="text-center">
                                 <tr *ngFor="let asistencia of mf.data">
                                     <td>{{asistencia.fecha | date:"MM/dd/yy"  }}</td>
-                                    <td>{{asistencia.alumno.apellido}} , {{asistencia.alumno.nombre}}  </td>
-                                    <td>{{asistencia.alumno.dni}}</td>
-
+                                    <td>{{asistencia.fecha | date:"h:mm a"  }}</td>
+                                    <td>{{asistencia.fecha | dia  }}</td>
+                                    <td>{{asistencia.fecha | date:"yyyy"   }}</td>
                                 </tr>
                             </tbody>
                         </table>

@@ -1,0 +1,213 @@
+<div class="row my-5 min-vh-100 m-0 ">
+    <div class="col-12 col-sm-9 mx-auto bg-body">
+        <div class="row text-uppercase bg-dark py-3 py-sm-5 text-center align-items-center">
+            <div class="col-12">
+                <p class=" fs-2 fw-bold text-white m-0">RUTINA</p>
+            </div>
+        </div>
+        <div class="col-6 col-md-2 text-center mb-3 mt-3">
+            <button type="button" class=" w-100 btn btn-dark p-2 fs-6 fw-bold" (click)="volver()">VOLVER</button>
+        </div>
+        <div class="row py-5 px-2 px-sm-5 bg-light">
+
+            <div class="col-12 p-0">
+                <form action="">
+                    <div class="row col-12 col-md-8 m-auto mb-3">
+                        <div class="col-12 col-md-6 mb-3 bg-white "
+                            style="border: 1px solid rgb(175, 175, 175); border-radius: 10px;">
+                            <p class="m-0" style="color: gray;">Alumno</p>
+                            <label>{{alumno.apellido}}, {{alumno.nombre}}</label>
+                        </div>
+                        <div class="col-12 col-md-5 mb-3 bg-white mx-md-4 "
+                            style="border: 1px solid rgb(175, 175, 175); border-radius: 10px;">
+                            <p class="m-0" style="color: gray;">Plan</p>
+                            <label>{{alumno.plan.nombre}}: {{alumno.plan.dias}} dias</label>
+                        </div>
+                    </div>
+                    <section class="col-12 col-sm-10 mx-auto my-4">
+                        <form class="row m-0 p-0">
+                            <div class="col-5 row m-0">
+                                <label for="mes" class="form-label col-6 my-auto">MES</label>
+                                <div class="col-6 p-0 my-auto">
+                                    <input name="mes" (change)="cargarRutinaMes()" min="1" type="number"
+                                        class="form-control" [(ngModel)]="rutina.mes"
+                                        [disabled]="seleccionMesRutina==true">
+                                </div>
+                            </div>
+
+                            <div class="col-5 row m-0">
+                                <label for="nombreRutina" class="form-label col-6 my-auto">RUTINA</label>
+                                <div class="col-6 p-0 my-auto">
+                                    <select id="nombreRutina" name="nombreRutina" class="form-select"
+                                        [(ngModel)]="rutina.nombreRutina"
+                                        [disabled]="seleccionMesRutina==true || validarMes==false ">
+                                        <option value="Full Body">Full Body</option>
+                                        <option value="Definicion">Definicion</option>
+                                        <option value="Volumen">Volumen</option>
+                                        <option value="Fuerza">Fuerza</option>
+                                        <option value="Abs">Abs</option>
+                                        <option value="Crossfit">Crossfit</option>
+                                        <option value="Para Mujer">Para Mujer</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                        </form>
+                    </section>
+
+
+                    <section class="col-12 col-sm-10 mx-auto my-4">
+                        <form>
+                            <div class="form-group row">
+                                <div class="col-md-2  col-sm-12">
+                                    <label for="dia" class="col-form-label">DIA</label>
+                                    <select class="form-select" id="dia" name="dia" [(ngModel)]="rutina.dia"
+                                        [disabled]="seleccionDia==true|| validarMes==false ">
+                                        <option value="LUNES">LUNES</option>
+                                        <option value="MARTES">MARTES</option>
+                                        <option value="MIERCOLES">MIERCOLES</option>
+                                        <option value="JUEVES">JUEVES</option>
+                                        <option value="VIERNES">VIERNES</option>
+                                        <option value="VIERNES">SABADO</option>
+                                        <option value="VIERNES">DOMINGO</option>
+
+                                    </select>
+                                </div>
+
+                                <div class="form-group  col-md-2 col-sm-12">
+                                    <label for="dia" class="col-form-label">EJERCICIO</label>
+                                    <select class="form-select" id="ejercicio" name="ejercicio" [(ngModel)]="ejercicioR"
+                                        [disabled]=" validarMes==false">
+                                        <option *ngFor="let ejercicio of listaEjercicios" [ngValue]="ejercicio">
+                                            {{ejercicio.nombre}}
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="form-group  col-md-2 col-sm-12">
+                                    <label for="pesoR" class="col-form-label">PESO</label>
+                                    <input name="pesoR" type="number" min="1" class="form-control" id="pesoR"
+                                        [(ngModel)]="pesoR" [disabled]=" validarMes==false">
+                                </div>
+                                <div class="form-group  col-md-2 col-sm-12">
+                                    <label for="serieR" class="col-form-label">SERIES</label>
+                                    <input name="serieR" type="number" min="1" class="form-control" id="serieR"
+                                        [(ngModel)]="serieR" [disabled]=" validarMes==false">
+                                </div>
+                                <div class="form-group  col-md-2 col-sm-12">
+                                    <label for="repeticionR" class="col-form-label">REPETICIONES</label>
+                                    <input name="repeticionR" type="number" min="1" class="form-control"
+                                        id="repeticionR" [(ngModel)]="repeticionR" [disabled]=" validarMes==false">
+                                </div>
+                                <div class="form-group  col-md-2 col-sm-12">
+                                    <label class="col-form-label">Agregar</label>
+                                    <div class="">
+                                        <button class="btn btn-primary" data-bs-toggle="tooltip"
+                                            data-bs-placement="bottom" title="" (click)="agregarALista()"><i
+                                                class="bi bi-plus-lg"></i>
+                                        </button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </form>
+                    </section>
+                </form>
+            </div>
+        </div>
+
+
+        <div *ngIf="listaEjerciciosRutina.length != 0" class="table-responsive">
+            <H4>Rutina Asignada: {{rutina.nombreRutina}}</H4>
+            <table class="table table-striped">
+                <thead>
+                    <tr class="text-center ">
+                        <th style="width: 10%;background-color: cornsilk;">
+                            MES: {{rutina.mes}}
+                        </th>
+                        <th style="width: 10%">
+                            EJERCICIO
+                        </th>
+
+                        <th style="width: 10%">
+                            PESO
+                        </th>
+                        <th style="width: 10%">
+                            SERIES
+                        </th>
+                        <th style="width: 10%">
+                            REPETICIONES
+                        </th>
+
+                        <th style="width: 10%">
+                            EJEMPLO
+                        </th>
+
+                    </tr>
+                </thead>
+                <tbody class="text-center">
+                    <tr>
+                        <td>{{rutina.dia}}</td>
+                        <td>
+                            <p *ngFor="let ejercicio of listaEjerciciosRutina">
+                                {{ejercicio.nombre}}
+                            </p>
+                        </td>
+
+
+                        <td>
+                            <p *ngFor="let peso of listaPeso">
+                                {{peso}} kgs.
+                            </p>
+                        </td>
+                        <td>
+                            <p *ngFor="let serie of listaSerie">
+                                {{serie}}
+                            </p>
+                        </td>
+                        <td>
+                            <p *ngFor="let repeticion of listaRepeticion">
+                                {{repeticion}}
+                            </p>
+                        </td>
+                        <td>
+                            <div *ngFor="let ejercicio of listaEjerciciosRutina">
+                                <button type="button" class="btn btn-secondary" data-bs-toggle="modal"
+                                    data-bs-target="#imagenModal" (click)="verFoto(ejercicio)">Ver</button>
+                                <!-- Modal -->
+                                <div class="modal fade" id="imagenModal" tabindex="-1"
+                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5>{{nombre}}</h5>
+                                            </div>
+                                            <div class="modal-body">
+                                                <img src="{{foto}}" class="img-fluid" alt="">
+                                            </div>
+                                            <div class="modal-footer">
+                                                {{descrip}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+
+            <div class="text-center col-12 col-md-4 p-0 m-0">
+                <button [disabled]="agregarBtn==false" class="btn btn-primary btn-lg p-3 fs-5 fw-bold m-0"
+                    (click)="CrearRutina()">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="12" y1="5" x2="12" y2="19"></line>
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                    </svg>
+                    AGREGAR RUTINA PARA ESTE DIA Y MES
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

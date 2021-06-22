@@ -13,6 +13,8 @@ import { RutinaService } from 'src/app/services/rutina/rutina.service';
 export class MisRutinasComponent implements OnInit {
   listaRutina:Array<Rutina>=new Array<Rutina>();
   Meses:Array<number>= [1,2,3,4,5,6,7,8,9,10,11,12];
+  MesesRut: Array<number> = new Array<number>();
+
   listaEjercicios:Array<Ejercicio>=new Array<Ejercicio>();
   nombre:string;
   foto:string;
@@ -28,7 +30,7 @@ export class MisRutinasComponent implements OnInit {
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe((params) => {
-      //  this.cargarAluRutina(params.id);
+       this.cargarAluRutina(params.id);
       this.idAlum=params.id;
       });
   }
@@ -46,25 +48,36 @@ export class MisRutinasComponent implements OnInit {
     this.descrip=descrip;
   }
 
-  cargarAluRutina(id:string){
-    this.rutinaService.getRutinaAlumno(id).subscribe(
-      (result) => {
-        if ((result.status == "0")) {
-          alert('Error en la busqueda');
-        } else {
-          result.forEach((element) => {
-            let vRutina = new Rutina();
-            Object.assign(vRutina, element);
-          this.listaRutina.push(vRutina);
+ cargarAluRutina(id:string){
+
+  this.rutinaService.getRutinaAlumno(id).subscribe(
+    (result) => {
+      if (result.status == '0') {
+        this.toastr.error('Error en la busqueda', 'ERROR');
+      } else {
+        result.forEach((element) => {
+          this.MesesRut.push(element.mes);
+        });
+        this.rutinaService
+          .getRutinaAlumnoMes(id, Math.max.apply(null, this.MesesRut))
+          .subscribe((result) => {
+            result.forEach((element) => {
+              let vRutina = new Rutina();
+              Object.assign(vRutina, element);
+              this.listaRutina.push(vRutina);
+            });
+            this.mes = Math.max.apply(null, this.MesesRut)
+
           });
-        }
-      },
-      (error) => {
-        console.log(error);
-        alert('error en la peticion');
       }
-    );
-  }
+    },
+    (error) => {
+      console.log(error);
+      this.toastr.error('ERROR EN LA PETICION', 'ERROR');
+    }
+  );
+
+ }
 
 
   cargarRutinaMes(){

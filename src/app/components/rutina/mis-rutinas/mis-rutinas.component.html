@@ -18,10 +18,8 @@
 
                                     <th style="width: 10%;background-color: cornsilk;">
                                         MES
-                                        <select (change)="cargarRutinaMes()" class="form-select" id="mes" name="mes"
-                                            [(ngModel)]="mes">
-                                            <option *ngFor="let mesIn of Meses" [ngValue]="mesIn">{{mesIn}} </option>
-                                        </select>
+                                        <input name="mes" (change)="cargarRutinaMes()" min="1" type="number"
+                                        class="form-control" [(ngModel)]="mes" value="{{mes}}" >
 
                                     </th>
                                     <th style="width: 10%">
