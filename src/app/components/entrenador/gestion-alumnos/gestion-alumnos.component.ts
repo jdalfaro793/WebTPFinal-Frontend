@@ -15,6 +15,8 @@ export class GestionAlumnosComponent implements OnInit {
   findByApellido: string;
   findByDni: string;
   alumnoBuscado: string;
+  fechaNueva: Date;
+  fechaVencida: boolean = false;
 
   constructor(private alumnoService: AlumnoService,
               private usuarioService: UsuarioService,
@@ -54,24 +56,17 @@ export class GestionAlumnosComponent implements OnInit {
       }
     )
   }
-/*
-  cargarAlumnos() {
-    this.alumnos = new Array<Alumno>();
-    this.alumnoService.getAlumnos().subscribe(
-      result=>{
-        result.forEach(element => {
-          let vAlumno= new Alumno();
-          Object.assign(vAlumno, element);
-          this.alumnos.push(vAlumno);
-        });
-      },
-      error=>{
-        console.log(error);
-        alert("Error al cargar alumnos");
-      }
-    )
+
+  verificarFecha(alumno: Alumno): boolean{
+    this.fechaNueva = new Date();
+    this.fechaNueva.setMonth(this.fechaNueva.getMonth() - alumno.mes);
+    var fechaInicio = Date.parse(alumno.fecha_inicio.toString());
+    if(this.fechaNueva.valueOf() < fechaInicio.valueOf()){
+      return true;
+    }else{
+      return false;
+    }
   }
-*/
 
 limpiarFiltro(){
   this.findByApellido= "";

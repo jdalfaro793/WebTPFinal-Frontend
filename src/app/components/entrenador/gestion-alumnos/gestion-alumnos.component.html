@@ -74,9 +74,12 @@
                                     </button>       
                                 </td>
                                 <td>
-                                    <button class="btn btn-success" data-bs-toggle="tooltip" data-bs-placement="bottom"
+                                    <button  *ngIf="verificarFecha(alumno)==true" class="btn btn-success" data-bs-toggle="tooltip" data-bs-placement="bottom"
                                         title="" (click)="agregarCuota(alumno)">Al dia
-                                    </button>       
+                                    </button>
+                                    <button *ngIf="verificarFecha(alumno)==false" class="btn btn-danger" data-bs-toggle="tooltip" data-bs-placement="bottom"
+                                        title="" (click)="agregarCuota(alumno)">Pendiente
+                                    </button>         
                                 </td>
                                 <td>
                                     <button class="btn btn-success" data-bs-toggle="tooltip" data-bs-placement="bottom"
