@@ -16,7 +16,8 @@ export class EjercicioService {
     const httpOption={
       headers:new HttpHeaders({
       }),
-      params: new HttpParams({
+      params: ({
+        nombre: "",
       })
     }
     return this._http.get(this.url,httpOption);
