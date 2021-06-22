@@ -32,6 +32,7 @@ import { GestionEjercicioComponent } from './components/entrenador/gestion-ejerc
 import { AlifeFileToBase64Module } from 'alife-file-to-base64';
 import { UsuarioService } from './services/usuario/usuario.service';
 import { GestionarRutinaComponent } from './components/entrenador/gestionar-rutina/gestionar-rutina.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -65,6 +66,7 @@ import { GestionarRutinaComponent } from './components/entrenador/gestionar-ruti
     FormsModule,CommonModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
+    NgbModule
   ],
   providers: [DatePipe, UsuarioService],
   bootstrap: [AppComponent]

@@ -19,8 +19,6 @@ export class GestionarCuotaComponent implements OnInit {
   listaCuotas: Array<Cuota>;
   cuota: Cuota;
   fecha: Date;
-  fechaVencida: boolean;
-  fechaNueva: Date;
   cuotaComprobante: Cuota;
 
   constructor(private router: Router,
@@ -71,8 +69,6 @@ export class GestionarCuotaComponent implements OnInit {
         let vAlumno = new Alumno;
         Object.assign(vAlumno, result);
         this.cuota.alumno = vAlumno;
-        this.fechaNueva = vAlumno.fecha_inicio;
-        //this.verificarFecha();
       },
       (error) => {
         console.log(error);
@@ -81,26 +77,17 @@ export class GestionarCuotaComponent implements OnInit {
     );
   }
 
-  /*
-  verificarFecha(){
-    this.fechaNueva.setMonth(this.fechaNueva.getMonth() + 1)
-    if(this.cuota.alumno.fecha_inicio < this.fechaNueva ){
-      this.fechaVencida = false;
-    }else{
-      this.fechaVencida = true;
-    }
-  }*/
-
   guardarCuota(formCuota: NgForm){
     this.cuota.fecha_pago = this.fecha;
     this.cuota.monto = this.cuota.alumno.plan.precio;
-    console.log(this.cuota)
     this.cuotaService.addCuota(this.cuota).subscribe(
       result=>{
         if(result.status=="1"){
           this.toastr.success("La cuota fue guardada correctamente", "OPERACION EXITOSA");
           this.cargarCuotas(this.cuota.alumno._id);
           formCuota.reset();
+          this.cuota.alumno.mes = this.cuota.alumno.mes+1;
+          this.alumnoService.updateAlumno(this.cuota.alumno).subscribe();
         }else{
           this.toastr.error("Error al guardar la cuota", "OPERACION FALLIDA");
         }
@@ -108,7 +95,6 @@ export class GestionarCuotaComponent implements OnInit {
       error=>{
         console.log(error);
       }
-
     )
   }
 

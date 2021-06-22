@@ -46,7 +46,7 @@
                             <label>{{fecha | date:"dd/MM/yyyy" }}</label>
                         </div>
                         <div class="col-12 col-md-5 text-center mb-3  mx-md-2">
-                            <button [disabled]="formCuota.invalid || fechaVencida" class="w-100 btn btn-primary p-3 fw-bold" (click)="guardarCuota(formCuota)" >GUARDAR</button>
+                            <button [disabled]="formCuota.invalid" class="w-100 btn btn-primary p-3 fw-bold" (click)="guardarCuota(formCuota)" >GUARDAR</button>
                         </div>
                     </div>
                     

@@ -8,26 +8,34 @@
 
         <div class="row p-2 p-sm-4 row-cols-1 row-cols-2 bg-light">
             <div class="col-6 rounded cont-img d-none d-sm-block">
-                <!-- Imagen
-                -->
+                <!-- Imagen-->
             </div>
-            <form class="col-12 col-sm-6 ps-sm-3">
+            <form #formEjercicio = "ngForm" class="col-12 col-sm-6 ps-sm-3">
                 <div class="form-floating mb-3 ">
-                    <input required type="text" name="nombre" [(ngModel)]="ejercicio.nombre" class="form-control " id="nombre" placeholder=""> 
+                    <input #nombre="ngModel" required type="text" name="nombre" [(ngModel)]="ejercicio.nombre" class="form-control " id="nombre" placeholder=""> 
                     <label for="nombre">Nombre</label>
+                    <div *ngIf="nombre.invalid && (nombre.touched || nombre.dirty)" class=" m-0 p-0 alert alert-danger align-items-center">
+                        <p class="mx-4 mt-2" *ngIf="nombre.errors.required">* Campo requerido</p>
+                    </div>
                 </div>
+                
                 <div class="form-floating mb-3">
-                    <textarea class="form-control" id="descripcion" name="descripcion" style="height: 150px" [(ngModel)]="ejercicio.descripcion"></textarea>
+                    <textarea #descripcion="ngModel" required class="form-control" id="descripcion" name="descripcion" style="height: 150px" [(ngModel)]="ejercicio.descripcion"></textarea>
                     <label for="descripcion">Descripción</label>
+                    <div *ngIf="descripcion.invalid && (descripcion.touched || descripcion.dirty)" class=" m-0 p-0 alert alert-danger align-items-center">
+                        <p class="mx-4 mt-2" *ngIf="descripcion.errors.required">* Campo requerido</p>
+                    </div>
                 </div>
                 
                 <div class="row mb-3">
                     <div class="form-floating mb-3 ">
-                        <input id="imagen" name="imagen" type="file" alife-file-to-base64 multiple class="form-control mt-2" required 
+                        <input #imagen id="imagen" name="imagen" type="file" alife-file-to-base64 multiple class="form-control mt-2" required 
                         (onFileChanged)="onFileChanges($event)" accept="image/x-png,image/gif,image/jpeg">
                         <label for="imagen">Imagen</label>
+                        <div *ngIf="fotoSubida == false && ejercicio.imagen == ''" class=" m-0 p-0 alert alert-danger align-items-center">
+                            <p class="mx-4 mt-2">* Campo requerido</p>
+                        </div>
                     </div>
-                    
                 </div>
         
                 <div *ngIf="ejercicio.imagen != ''" class="row mb-3">
@@ -37,14 +45,34 @@
                 </div>
 
                 <div class="col-4 m-auto">
-                    <button class="btn btn-success btn-lg w-100" (click)="guardarEjercicio()">Guardar</button>
+                    <button [disabled]="formEjercicio.invalid" class="btn btn-success btn-lg w-100" (click)="guardarEjercicio(formEjercicio)">Guardar</button>
                 </div>
 
                 
             </form>
             
         </div>
-        <div class="table-responsive col-12 m-auto mt-5">
+        <div class="col-8 mb-2 m-auto mt-5">
+            <form class="row p-0 d-flex justify-content-center g-2 ">
+                <div class=" col-12 col-md-6">
+                    <div class="input-group">
+                        <input [(ngModel)]="ejercicioBuscado" name="buscarEjercicio" type="text" class="form-control p-2" placeholder="Ingrese nombre del ejercicio.." aria-describedby="button-addon2">
+                        <button title="Limpiar filtro" (click)="limpiarFiltro()" class="btn btn-outline-secondary" type="button" id="button-addon2"><i class="bi bi-x-lg"></i></button>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-4">
+                    <button (click)="cargarEjercicios()" type="button" class="btn btn-primary w-100 m-auto">
+                        Buscar
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" fill="currentColor" class="bi bi-search"
+                            viewBox="0 0 16 16">
+                            <path
+                                d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                        </svg>
+                    </button>
+                </div>
+            </form>
+        </div>
+        <div class="table-responsive col-12 m-auto mt-3">
             <table class="table table-hover align-middle m-0 bg-white" [mfData]="listaEjercicios"
                 #mf="mfDataTable" [mfRowsOnPage]="5">
                 <thead class="table-dark">

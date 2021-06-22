@@ -13,6 +13,7 @@ export class Alumno {
     fecha_inicio: Date;     
     plan: Plan;            
     usuario: Usuario;
+    mes: number;
     
      
     constructor() {}

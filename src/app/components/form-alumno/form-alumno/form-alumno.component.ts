@@ -50,9 +50,11 @@ export class FormAlumnoComponent implements OnInit {
       }
     )
   }
+  
   guardarAlumno(formAlumno: NgForm){
     this.alumno.fecha_inicio = new Date();
     console.log(this.alumno.fecha_inicio);
+    this.alumno.mes = 0;
     this.usuario.state = true;
     this.usuario.rol= "alumno";
     this.usuarioService.addUsuario(this.usuario).subscribe(
