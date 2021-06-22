@@ -1,0 +1,27 @@
+.bg-one{
+    background: url("../../../assets/home/img8.jpg");
+    background-position: center;
+    background-size: cover;
+    background-repeat:  no-repeat;
+}
+.bg-two{
+    background: url("../../../assets/home/img6.jpg");
+    background-position: center;
+    background-size: cover;
+    background-repeat:  no-repeat;
+}
+.bg-three{
+    background: url("../../../assets/home/img9.jpg");
+    background-position: center;
+    background-size: cover;
+    background-repeat:  no-repeat;
+}
+.bg-four{
+    background: url("../../../assets/home/img4.jpg");
+    background-position: center;
+    background-size: cover;
+    background-repeat:  no-repeat;
+}
+.titulo{
+    font-size: 5vw;
+}
