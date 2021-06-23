@@ -113,8 +113,7 @@ export class GestionarCuotaComponent implements OnInit {
     printJS({
       printable: 'ComprobantePago',
       targetStyles: ['*'],
-      header: '<h2>Comprobante de pago</h2>',
-      documentTitle: 'Sistema GymGrupo10',
+      documentTitle: 'Sistema Gym G-X',
       type: 'html'
     })
   }
