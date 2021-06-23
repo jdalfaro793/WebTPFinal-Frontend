@@ -30,13 +30,13 @@ export class UsuarioService {
     return this.http.get(this.urlBase + userName + "/" + password, options);
   }
 
-  validarUsername(username:string):Observable<any>{
+  validarUsername(username: string): Observable<any> {
     let options = {
       headers: new HttpHeaders({}),
       params: {
       }
     }
-    return this.http.get(this.urlBase +"/validar/"+ username, options);
+    return this.http.get(this.urlBase + "/validar/" + username, options);
   }
 
   public login(username: string, password: string): Observable<any> {
@@ -50,12 +50,20 @@ export class UsuarioService {
     return this.http.post(this.urlBase + 'login', body, httpOption);
   }
 
+  getToken(): string {
+    if (sessionStorage.getItem("token") != null) {
+      return sessionStorage.getItem("token");
+    } else {
+      return "";
+    }
+  }
+
   public logout() {
     //borro el vble almacenado mediante el storage
     //variable cookie definidas como sessionStorage
     sessionStorage.removeItem("user");
     sessionStorage.removeItem("perfil");
-    sessionStorage.removeItem("userid");
+    sessionStorage.removeItem("id");
   }
 
   //determina si un usuario esta logeado
@@ -79,7 +87,7 @@ export class UsuarioService {
     return id;
   }
 
-  updateUsuario(usuario: Usuario):Observable<any>{
+  updateUsuario(usuario: Usuario): Observable<any> {
     let option = {
       headers: new HttpHeaders({
         "Content-Type": "application/json"
@@ -88,6 +96,6 @@ export class UsuarioService {
       })
     }
     let body = JSON.stringify(usuario);
-    return this.http.put(this.urlBase+usuario._id, body, option);
+    return this.http.put(this.urlBase + usuario._id, body, option);
   }
 }

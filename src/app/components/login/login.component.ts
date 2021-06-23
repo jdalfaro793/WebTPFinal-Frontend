@@ -34,10 +34,12 @@ export class LoginComponent implements OnInit {
           
           if (result.status == 1) {
             this.datosCorrectos = true;
+            sessionStorage.setItem("token", result.token);
             //guardamos el user en cookies en el cliente
             sessionStorage.setItem("user", result.username);
-            sessionStorage.setItem("userid", result._id);
-            sessionStorage.setItem("perfil", result.rol);
+            sessionStorage.setItem("id", result.id);
+            sessionStorage.setItem("rol", result.rol);
+            sessionStorage.setItem("state", result.state);
             //redirigimos a home o a pagina que llamo
             this.router.navigateByUrl(this.returnUrl);
           } else {
