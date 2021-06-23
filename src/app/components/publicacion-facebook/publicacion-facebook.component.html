@@ -1,0 +1,93 @@
+<div class="row my-5 min-vh-100 m-0 ">
+    <div class="col-12 col-sm-9 mx-auto bg-body">
+        <div class="row text-uppercase bg-dark py-3 py-sm-5 text-center align-items-center">
+            <div class="col-12">
+                <p class=" fs-2 fw-bold text-white m-0">PUBLICAR EN FACEBOOK</p>
+            </div>
+        </div>
+
+        <div class="row py-5 px-2 px-sm-5 bg-light">
+            <div class="col-12 p-0">
+                <form>
+                    <div class="col-md-6 offset-md-3">
+            
+                        <div class="form-group  mb-3">
+                            <label for="fecha" class="mb-2">Fecha</label>
+                            <input type="date" class="form-control" id="fecha" name="fecha"
+                                placeholder="Ingrese titulo de la Noticia" [(ngModel)]="publicacionFacebook.fecha">
+                        </div>
+                        <div class="form-group  mb-3">
+                            <label for="titulo" class="mb-2">Titulo</label>
+                            <input type="text" class="form-control" id="titulo" name="titulo"
+                                placeholder="Ingrese titulo de la Noticia" [(ngModel)]="publicacionFacebook.titulo">
+                        </div>
+            
+                        <div class="form-group  mb-3">
+                            <label for="noticia" class="mb-2">Noticia</label>
+                            <textarea class="form-control" id="noticia" name="noticia" rows="3"
+                                [(ngModel)]="publicacionFacebook.noticia"></textarea>
+                        </div>
+            
+            
+    
+                        <div class="form-check  mb-3">
+                            <input class="form-check-input mt-1" name="vigente" type="checkbox" id="vigente"
+                                [(ngModel)]="publicacionFacebook.vigente" checked>
+                            <label class="form-check-label" for="vigente">
+                                Vigente?
+                            </label>
+                        </div>
+                        <div class="text-center mb-3">
+                            <button type="button" class="btn btn-primary" (click)=agregarNoticia()>Agregar</button>
+                            <button type="button" class="btn btn-danger" (click)=cancelar()>Cancelar</button>
+                        </div>
+                    </div>
+            
+            
+                </form>
+            </div>
+
+            
+            <div *ngIf="listaPublicaciones.length != 0" class="table-responsive mt-5">
+
+                <table class="table table-hover align-middle m-0 bg-white" [mfData]="listaPublicaciones"
+                    #mf="mfDataTable" [mfRowsOnPage]="5">
+                    <thead>
+                        <tr class="text-center ">
+                            <th style="width: 20%">
+                                Fecha
+                            </th>
+                            <th style="width: 10%">
+                                Titulo
+                            </th>
+                            <th style="width: 20%">
+                                Noticia
+                            </th>
+                            <th style="width: 10%">
+                                Estado
+                            </th>
+                            <th style="width: 40%">
+                                Acciones
+                            </th>
+                            
+                        </tr>
+                    </thead>
+
+                    <tbody class="text-center">
+                        <tr *ngFor="let publicacion of mf.data">
+                            <td>{{publicacion.fecha | date:"MM/dd/yy"  }}</td>
+                            <td>{{publicacion.titulo  }}</td>
+                            <td>{{publicacion.noticia  }}</td>
+                            <td>{{publicacion.vigente | estadonoticia }}</td>
+                            <td>
+                                <button class="btn btn-success" (click)="cambiarEstadoNoticia(publicacion)">Estado</button>
+                                <button class="btn btn-danger" (click)="borrarNoticia(publicacion)">Borrar</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+

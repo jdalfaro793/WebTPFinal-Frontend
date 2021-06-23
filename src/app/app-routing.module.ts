@@ -16,6 +16,7 @@ import { GestionPlanAlimenticionComponent } from './components/dieta/gestion-pla
 import { FormPlanAlimentacionComponent } from './components/dieta/form-plan-alimentacion/form-plan-alimentacion.component';
 import { GestionEjercicioComponent } from './components/entrenador/gestion-ejercicio/gestion-ejercicio.component';
 import { GestionarRutinaComponent } from './components/entrenador/gestionar-rutina/gestionar-rutina.component';
+import { PublicacionFacebookComponent } from './components/publicacion-facebook/publicacion-facebook.component';
 
 const routes: Routes = [
   { path: '', redirectTo:'home', pathMatch:'full'},
@@ -39,7 +40,8 @@ const routes: Routes = [
 
   {path: 'plan-alimentacion', component : GestionPlanAlimenticionComponent},
   { path: 'form-plan-alimentacion', component: FormPlanAlimentacionComponent},
-  { path: 'gestionEjercicio', component: GestionEjercicioComponent}
+  { path: 'gestionEjercicio', component: GestionEjercicioComponent},
+  { path: 'publicacion-facebook', component: PublicacionFacebookComponent}
 
 ];
 

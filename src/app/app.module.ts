@@ -33,6 +33,10 @@ import { AlifeFileToBase64Module } from 'alife-file-to-base64';
 import { UsuarioService } from './services/usuario/usuario.service';
 import { GestionarRutinaComponent } from './components/entrenador/gestionar-rutina/gestionar-rutina.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FacebookModule } from 'ngx-fb';
+import { PublicacionFacebookComponent } from './components/publicacion-facebook/publicacion-facebook.component';
+import { EstadonoticiaPipe } from './pipes/estadonoticia.pipe';
+
 
 @NgModule({
   declarations: [
@@ -55,7 +59,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     GestionPlanAlimenticionComponent,
     FormPlanAlimentacionComponent,
     GestionEjercicioComponent,
-    GestionarRutinaComponent
+    GestionarRutinaComponent,
+    PublicacionFacebookComponent,
+    EstadonoticiaPipe
   ],
   imports: [
     BrowserModule,
@@ -66,7 +72,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     FormsModule,CommonModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
-    NgbModule
+    NgbModule,
+    FacebookModule.forRoot(),
+
   ],
   providers: [DatePipe, UsuarioService],
   bootstrap: [AppComponent]
