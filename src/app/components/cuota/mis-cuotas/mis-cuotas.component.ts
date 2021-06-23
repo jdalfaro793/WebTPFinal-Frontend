@@ -89,8 +89,8 @@ export class MisCuotasComponent implements OnInit {
     printJS({
       printable: 'ComprobantePago',
       targetStyles: ['*'],
-      header: 'Comprobante de pago',
-      documentTitle: 'Imprimir',
+      header: '<h2>Comprobante de pago</h2>',
+      documentTitle: 'Sistema GymGrupo10',
       type: 'html'
     })
   }
