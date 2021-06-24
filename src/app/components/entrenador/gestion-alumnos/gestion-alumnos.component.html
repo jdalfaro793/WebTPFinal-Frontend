@@ -6,7 +6,7 @@
                 <p class=" fs-2 fw-bold text-white m-0"> gestión de alumnos</p>
             </div>
             <div class="text-center col-12 col-md-4 p-0 m-0">
-                <a class="btn btn-primary btn-lg p-3 fs-5 fw-bold m-0" [routerLink]="['form-alumno']">
+                <a class="btn btn-primary btn-lg p-3 fs-5 fw-bold m-0" (click)="registrarAlumno()">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
                         NUEVO ALUMNO      
                 </a>
@@ -61,8 +61,8 @@
                         <tbody class="text-center">
                             <tr *ngFor="let alumno of mf.data">
                                 <td>
-                                    <button class="btn btn-success" data-bs-toggle="tooltip" data-bs-placement="bottom"
-                                        title="Editar Alumno"><i class="bi bi-pencil"></i>
+                                    <button type="button" (click)="modificarAlumno(alumno)" class="btn btn-success" data-bs-toggle="tooltip" data-bs-placement="bottom"
+                                        title="Editar"><i class="bi bi-pencil"></i>
                                     </button>       
                                 </td>
                                 <td>{{alumno.fecha_inicio | date: 'dd/MM/yyyy'}}</td>

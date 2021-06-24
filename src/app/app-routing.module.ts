@@ -26,6 +26,7 @@ const routes: Routes = [
   { path: 'gestion-cuota', component: GestionCuotaComponent},
   { path: 'gestion-rutina/:id', component: GestionRutinaComponent},
 
+
   { path: 'gestionAlumno/form-alumno', component: FormAlumnoComponent},
 
   { path: 'mis-asistencias/:id',component: MisAsistenciasComponent },
@@ -39,7 +40,8 @@ const routes: Routes = [
   
   { path: 'gestionAlumno',component: GestionAlumnosComponent },
 
-  {path: 'plan-alimentacion', component : GestionPlanAlimenticionComponent},
+  { path: 'form-alumno/:id', component: FormAlumnoComponent},
+  { path: 'plan-alimentacion', component : GestionPlanAlimenticionComponent},
   { path: 'gestionEjercicio', component: GestionEjercicioComponent},
   { path: 'publicacion-facebook', component: PublicacionFacebookComponent},
   { path: 'form-plan-alimentacion/:id', component: FormPlanAlimentacionComponent},
