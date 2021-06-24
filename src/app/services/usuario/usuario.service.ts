@@ -13,8 +13,8 @@ import { EntrenadorService } from '../entrenador/entrenador.service';
 })
 export class UsuarioService {
 
-  public alumnoLogeado:Alumno;
-  public entrenadorLogeado:Entrenador;
+  private alumnoLogeado:Alumno;
+  private entrenadorLogeado:Entrenador;
   urlBase: string = "http://localhost:3000/api/usuario/"
   constructor(
     private http: HttpClient,
@@ -97,6 +97,13 @@ export class UsuarioService {
   public idLogged() {
     var id = sessionStorage.getItem("id");
     return id;
+  }
+
+  //determina si el usuario logeado es un alumno
+  public isLoggedAlumno():boolean{
+      if(sessionStorage.getItem("rol")=="alumno")
+        return true;
+    return false;
   }
 
   updateUsuario(usuario: Usuario): Observable<any> {

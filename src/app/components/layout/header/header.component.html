@@ -23,29 +23,29 @@
                 </li>
 
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle active" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Alumno</a>
+                    <a (click)="verificarPermiso()" class="nav-link dropdown-toggle active" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Alumno</a>
                     <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
-                        <li><a class="dropdown-item" [routerLink]="['mi-plan/0']">Mi plan</a></li>
-                        <li><a class="dropdown-item" [routerLink]="['mis-rutinas/0']">Rutinas</a></li>
-                        <li><a class="dropdown-item" [routerLink]="['mis-cuotas/0']">Cuotas</a></li>
-                        <li><a class="dropdown-item" [routerLink]="['mis-asistencias/0']">Asistencias</a></li>
+                        <li><a [class]="habilitarMenuAlumno" class="dropdown-item" [routerLink]="['mi-plan/0']">Mi plan</a></li>
+                        <li><a [class]="habilitarMenuAlumno" class="dropdown-item" [routerLink]="['mis-rutinas/0']">Rutinas</a></li>
+                        <li><a [class]="habilitarMenuAlumno" class="dropdown-item" [routerLink]="['mis-cuotas/0']">Cuotas</a></li>
+                        <li><a [class]="habilitarMenuAlumno" class="dropdown-item" [routerLink]="['mis-asistencias/0']">Asistencias</a></li>
                     </ul>
                 </li>
 
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle active" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Entrenador</a>
+                    <a (click)="verificarPermiso()" class="nav-link dropdown-toggle active" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Entrenador</a>
                     <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
-                        <li><a class="dropdown-item" [routerLink]="['gestionAlumno']">Gestion Alumnos</a></li>
-                        <li><a class="dropdown-item" [routerLink]="['gestionEjercicio']">Gestion Ejercicios</a></li>
-                        <li><a class="dropdown-item" [routerLink]="['plan-alimentacion']">Gestion Planes Alimenticios</a></li>
-                        <li><a class="dropdown-item" [routerLink]="['gestion-cuota']">Gestion Cuotas</a></li>
-                        <li><a class="dropdown-item" [routerLink]="['publicacion-facebook']">Publicar Noticia en Facebook/Home</a></li>
+                        <li><a [class]="habilitarMenuEntrenador" class="dropdown-item" [routerLink]="['gestionAlumno']">Gestion Alumnos</a></li>
+                        <li><a [class]="habilitarMenuEntrenador" class="dropdown-item" [routerLink]="['gestionEjercicio']">Gestion Ejercicios</a></li>
+                        <li><a [class]="habilitarMenuEntrenador" class="dropdown-item" [routerLink]="['plan-alimentacion']">Gestion Planes Alimenticios</a></li>
+                        <li><a [class]="habilitarMenuEntrenador" class="dropdown-item" [routerLink]="['gestion-cuota']">Gestion Cuotas</a></li>
+                        <li><a [class]="habilitarMenuEntrenador" class="dropdown-item" [routerLink]="['publicacion-facebook']">Publicar Noticia en Facebook/Home</a></li>
                      
                     </ul>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link active" [routerLink]="['']">Estadisticas</a>
+                    <a   (click)="verificarPermiso()" [class]="habilitarMenuEntrenador" class="nav-link active" [routerLink]="['']">Estadisticas</a>
                 </li>
 
             </ul>
