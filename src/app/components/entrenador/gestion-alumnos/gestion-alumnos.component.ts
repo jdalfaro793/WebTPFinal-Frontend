@@ -83,8 +83,8 @@ agregarAsistencia(alumno: Alumno){
   this.router.navigate(["asistencia/", alumno._id ]);
 }
 
-agregarRutina(alumno: Alumno){
-  this.router.navigate(["rutina/", alumno._id ]);
+agregarRutina(alumno: Alumno) {
+  this.router.navigate(['rutina/', alumno._id,alumno.mes]);
 }
 
 activarAlumno(alumno: Alumno){

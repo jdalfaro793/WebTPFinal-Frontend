@@ -36,7 +36,7 @@ const routes: Routes = [
 
   { path: 'asistencia/:id', component: GestionarAsistenciaComponent},
   { path: 'cuota/:id', component: GestionarCuotaComponent},
-  { path: 'rutina/:id', component: GestionarRutinaComponent},
+  { path: 'rutina/:id/:mes', component: GestionarRutinaComponent},
   
   { path: 'gestionAlumno',component: GestionAlumnosComponent },
 

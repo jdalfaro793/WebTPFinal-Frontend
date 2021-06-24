@@ -29,9 +29,9 @@
                             <div class="col-5 row m-0">
                                 <label for="mes" class="form-label col-6 my-auto">MES</label>
                                 <div class="col-6 p-0 my-auto">
-                                    <input name="mes" (change)="cargarRutinaMes()" min="1" type="number"
+                                    <input name="mes"  type="number"
                                         class="form-control" [(ngModel)]="rutina.mes"
-                                        [disabled]="seleccionMesRutina==true">
+                                        disabled>
                                 </div>
                             </div>
 
@@ -40,7 +40,7 @@
                                 <div class="col-6 p-0 my-auto">
                                     <select id="nombreRutina" name="nombreRutina" class="form-select"
                                         [(ngModel)]="rutina.nombreRutina"
-                                        [disabled]="seleccionMesRutina==true || validarMes==false ">
+                                        [disabled]=" validarMes==false ">
                                         <option value="Full Body">Full Body</option>
                                         <option value="Definicion">Definicion</option>
                                         <option value="Volumen">Volumen</option>
@@ -144,6 +144,7 @@
 
                     </tr>
                 </thead>
+
                 <tbody class="text-center">
                     <tr>
                         <td>{{rutina.dia}}</td>
@@ -152,8 +153,6 @@
                                 {{ejercicio.nombre}}
                             </p>
                         </td>
-
-
                         <td>
                             <p *ngFor="let peso of listaPeso">
                                 {{peso}} kgs.
@@ -195,10 +194,8 @@
                     </tr>
                 </tbody>
             </table>
-
-
             <div class="text-center col-12 col-md-4 p-0 m-0">
-                <button [disabled]="agregarBtn==false" class="btn btn-primary btn-lg p-3 fs-5 fw-bold m-0"
+                <button [disabled]="agregarBtn==false" class="btn btn-primary btn-lg p-3 fs-5 fw-bold mb-3 m-0"
                     (click)="CrearRutina()">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                         stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
@@ -209,5 +206,101 @@
                 </button>
             </div>
         </div>
+
+
+
+        <div *ngIf="rutinaExistente==true" class="table-responsive">
+            <H4>Rutina Asignada: {{listaRutina[0].nombreRutina}}</H4>
+            <table class="table table-striped align-middle m-0 bg-white" [mfData]="listaRutina"
+                            #mf="mfDataTable" [mfRowsOnPage]="5">
+                <thead>
+                    <tr class="text-center ">
+                        <th style="width: 10%;background-color: cornsilk;">
+                            MES: {{listaRutina[0].mes}}
+                        </th>
+                        <th style="width: 10%">
+                            EJERCICIO
+                        </th>
+
+                        <th style="width: 10%">
+                            PESO
+                        </th>
+                        <th style="width: 10%">
+                            SERIES
+                        </th>
+                        <th style="width: 10%">
+                            REPETICIONES
+                        </th>
+
+                        <th style="width: 10%">
+                            EJEMPLO
+                        </th>
+
+                    </tr>
+                </thead>
+
+                <tbody class="text-center">
+                    <tr *ngFor="let rutina of listaRutina">
+                        <td>{{rutina.dia}}</td>
+                        <td>
+                            <p *ngFor="let ejercicio of rutina.ejercicio">
+                                {{ejercicio.nombre}}
+                            </p>
+                        </td>
+
+
+                        <td>
+                            <p *ngFor="let peso of rutina.peso">
+                                {{peso}} kgs.
+                            </p>
+                        </td>
+                        <td>
+                            <p *ngFor="let serie of rutina.serie">
+                                {{serie}}
+                            </p>
+                        </td>
+                        <td>
+                            <p *ngFor="let repeticion of rutina.repeticion">
+                                {{repeticion}}
+                            </p>
+                        </td>
+
+                        <td>
+                            <div *ngFor="let ejercicio of rutina.ejercicio">
+
+
+                                <button type="button" class="btn btn-secondary" data-bs-toggle="modal"
+                                    data-bs-target="#imagenModal" (click)="verFoto(ejercicio)">Ver</button>
+
+                                <!-- Modal -->
+                                <div class="modal fade" id="imagenModal" tabindex="-1"
+                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header bg-dark text-white">
+                                                <h5>{{nombre}}</h5>
+                                            </div>
+                                            <div class="modal-body">
+                                                <img src="{{foto}}" class="img-fluid" alt="">
+                                            </div>
+                                            <div class="modal-footer">
+                                                {{descrip}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+                        </td>
+
+                    </tr>
+                </tbody>
+            </table>
+       
+        </div>
+
+
     </div>
 </div>
