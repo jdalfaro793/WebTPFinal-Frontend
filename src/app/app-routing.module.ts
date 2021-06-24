@@ -28,10 +28,10 @@ const routes: Routes = [
 
   { path: 'gestionAlumno/form-alumno', component: FormAlumnoComponent},
 
-  { path: 'mis-asistencias',component: MisAsistenciasComponent },
-  { path: 'mis-cuotas', component: MisCuotasComponent},
-  { path: 'mis-rutinas', component: MisRutinasComponent},
-  { path: 'mi-plan', component: MiPlanComponent},
+  { path: 'mis-asistencias/:id',component: MisAsistenciasComponent },
+  { path: 'mis-cuotas/:id', component: MisCuotasComponent},
+  { path: 'mis-rutinas/:id', component: MisRutinasComponent},
+  { path: 'mi-plan/:id', component: MiPlanComponent},
 
   { path: 'asistencia/:id', component: GestionarAsistenciaComponent},
   { path: 'cuota/:id', component: GestionarCuotaComponent},
