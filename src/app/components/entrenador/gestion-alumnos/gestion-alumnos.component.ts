@@ -68,6 +68,16 @@ export class GestionAlumnosComponent implements OnInit {
     }
   }
 
+  verificarRutina(alumno: Alumno): boolean{
+
+    if(alumno.mes == alumno.ultimaRutinaMes){
+      return true;
+    }else{
+      return false;
+    }
+
+  }
+
 limpiarFiltro(){
   this.findByApellido= "";
   this.findByDni= "";

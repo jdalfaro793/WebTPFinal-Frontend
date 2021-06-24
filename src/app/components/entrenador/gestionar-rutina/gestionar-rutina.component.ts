@@ -4,6 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Alumno } from 'src/app/models/alumno/alumno';
 import { Ejercicio } from 'src/app/models/ejercicio/ejercicio';
 import { Rutina } from 'src/app/models/rutina/rutina';
+import { AlumnoService } from 'src/app/services/alumno/alumno.service';
 import { EjercicioService } from 'src/app/services/ejercicio/ejercicio.service';
 import { RutinaService } from 'src/app/services/rutina/rutina.service';
 
@@ -42,7 +43,8 @@ export class GestionarRutinaComponent implements OnInit {
     private router: Router,
     private ejercicioService: EjercicioService,
     private rutinaService: RutinaService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private alumnoService:AlumnoService
   ) {
     this.getEjercicios();
   }
@@ -131,9 +133,10 @@ export class GestionarRutinaComponent implements OnInit {
     this.rutinaService.guardarRutina(rutina).subscribe(
       (result) => {
         console.log(result);
-
+        this.actualizarMesUltimaRutina(this.idAlum,this.rutina.mes);
           this.toastr.success("Rutina guardada exitosamente","Rutina Guardada");
           this.reiniciarCampos();
+        
       },
       (error) => {
         console.log(error);
@@ -188,6 +191,27 @@ export class GestionarRutinaComponent implements OnInit {
     );
   }
 
+
+ actualizarMesUltimaRutina(idAlum:string,ultimoMes:number){
+  this.alumnoService.getAlumno(idAlum).subscribe(
+    (result) => {
+      let vAlumno = new Alumno;
+      Object.assign(vAlumno, result);
+      vAlumno.ultimaRutinaMes=ultimoMes;
+      this.alumnoService.updateAlumno(vAlumno).subscribe(
+        (result)=>{
+          console.log(result)
+          
+        },
+        (error)=>{console.log(error);
+        }
+      )
+    },
+    (error) => {
+      console.log(error);
+      alert('error en la peticion');
+    });
+  }
 
  
 }

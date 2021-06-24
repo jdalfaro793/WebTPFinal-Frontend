@@ -14,6 +14,7 @@ export class Alumno {
     plan: Plan;            
     usuario: Usuario;
     mes: number;
+    ultimaRutinaMes:number;
     
      
     constructor() {}

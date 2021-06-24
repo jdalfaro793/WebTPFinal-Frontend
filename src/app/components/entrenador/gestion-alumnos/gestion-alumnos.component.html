@@ -82,13 +82,22 @@
                                     </button>         
                                 </td>
                                 <td>
-                                    <button *ngIf="verificarFecha(alumno)==true" class="btn btn-success" data-bs-toggle="tooltip" data-bs-placement="bottom"
-                                    title="" (click)="agregarRutina(alumno)">Asignar Rutina
-                                    </button>
+                                  
 
                                     <button *ngIf="verificarFecha(alumno)==false" [disabled]="verificarFecha(alumno)==false" class="btn btn-danger" data-bs-toggle="tooltip" data-bs-placement="bottom"
                                     title="" (click)="agregarRutina(alumno)">Cuota Pendiente
-                                    </button>   
+                                    </button> 
+                                    
+                                    <button *ngIf="verificarFecha(alumno)==true && verificarRutina(alumno)==true" class="btn btn-success" data-bs-toggle="tooltip" data-bs-placement="bottom"
+                                    title="" (click)="agregarRutina(alumno)">Al dia
+                                    </button>
+                                    
+                                    <button *ngIf="verificarFecha(alumno)==true && verificarRutina(alumno)==false" class="btn btn-danger" data-bs-toggle="tooltip" data-bs-placement="bottom"
+                                    title="" (click)="agregarRutina(alumno)">Actualizar
+                                    </button>
+                                    
+
+
                                 </td>
                                 <td>
                                     <button class="btn btn-success" data-bs-toggle="tooltip" data-bs-placement="bottom"
