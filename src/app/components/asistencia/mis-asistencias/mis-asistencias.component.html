@@ -9,23 +9,20 @@
         <div class="row py-5 px-2 px-sm-5 bg-light">
             <div class="col-12 p-0">
                 <div class="table-responsive">
-                    <div class="table-responsive">
+                    <div class="col-12 col-md-8 table-responsive m-auto">
 
                         <table class="table table-hover align-middle m-0 bg-white" [mfData]="listaAsistencias"
                             #mf="mfDataTable" [mfRowsOnPage]="5">
                             <thead>
                                 <tr class="text-center ">
+                                    <th style="width: 20%">
+                                        Dia
+                                    </th>
                                     <th style="width: 10%">
                                         Fecha
                                     </th>
                                     <th style="width: 10%">
                                         Hora
-                                    </th>
-                                    <th style="width: 20%">
-                                        Dia
-                                    </th>
-                                    <th style="width: 10%">
-                                        Año
                                     </th>
                                     
                                 </tr>
@@ -33,12 +30,18 @@
 
                             <tbody class="text-center">
                                 <tr *ngFor="let asistencia of mf.data">
-                                    <td>{{asistencia.fecha | date:"MM/dd/yy"  }}</td>
-                                    <td>{{asistencia.fecha | date:"h:mm a"  }}</td>
                                     <td>{{asistencia.fecha | dia  }}</td>
-                                    <td>{{asistencia.fecha | date:"yyyy"   }}</td>
+                                    <td>{{asistencia.fecha | date:"dd/MM/yy"  }}</td>
+                                    <td>{{asistencia.fecha | date:"h:mm a"  }}</td>
                                 </tr>
                             </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="4">
+                                        <mfBootstrapPaginator [rowsOnPageSet]="[5,10,15]"></mfBootstrapPaginator>
+                                    </td>
+                                </tr>
+                            </tfoot>
                         </table>
                     </div>
                 </div>
