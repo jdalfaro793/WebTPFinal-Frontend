@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { fakeAsync } from '@angular/core/testing';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import * as printJS from 'print-js';
 import { Ejercicio } from 'src/app/models/ejercicio/ejercicio';
 import { Rutina } from 'src/app/models/rutina/rutina';
 import { RutinaService } from 'src/app/services/rutina/rutina.service';
@@ -13,15 +15,20 @@ import { UsuarioService } from 'src/app/services/usuario/usuario.service';
 })
 export class MisRutinasComponent implements OnInit {
   listaRutina:Array<Rutina>=new Array<Rutina>();
+  listaRutinaComprobante:Array<Rutina>=new Array<Rutina>();
+
   Meses:Array<number>= [1,2,3,4,5,6,7,8,9,10,11,12];
   MesesRut: Array<number> = new Array<number>();
 
   listaEjercicios:Array<Ejercicio>=new Array<Ejercicio>();
   nombre:string;
+  nombreAlumno:string;
+
   foto:string;
   descrip:string;
   idAlum:string;
   mes:number;
+  btnPDF:boolean=false;
 
   constructor(
     private usuarioService: UsuarioService,
@@ -35,8 +42,17 @@ export class MisRutinasComponent implements OnInit {
   }
 
 
-
-  
+  verComprobante(lista:Array<Rutina>){
+    this.listaRutinaComprobante=lista;
+  }
+  imprimir(){
+    printJS({
+      printable: 'ComprobantePago',
+      targetStyles: ['*'],
+      documentTitle: 'Sistema Gym G-X',
+      type: 'html'
+    })
+  }
   verFoto(ejercicio:Ejercicio){
     this.nombre=ejercicio.nombre;
     this.foto=ejercicio.imagen;
@@ -66,6 +82,10 @@ export class MisRutinasComponent implements OnInit {
               this.listaRutina.push(vRutina);
             });
             this.mes = Math.max.apply(null, this.MesesRut)
+            this.nombreAlumno=this.usuarioService.alumnoLogeado.apellido+", "+this.usuarioService.alumnoLogeado.nombre;
+            if(this.mes>=1){
+              this.btnPDF=true;       
+            }
 
           });
       }
@@ -90,12 +110,14 @@ export class MisRutinasComponent implements OnInit {
          
           if(result[0]==undefined){
             this.toastr.error("No posee rutina para este mes","ERROR")
+            this.btnPDF=false;
           }else{
             result.forEach((element) => {
               console.log(result);
               let vRutina = new Rutina();
               Object.assign(vRutina, element);
               this.listaRutina.push(vRutina);
+              this.btnPDF=true;
             });
           }
         }

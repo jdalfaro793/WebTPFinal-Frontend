@@ -19,7 +19,7 @@
                                     <th style="width: 10%;background-color: cornsilk;">
                                         MES
                                         <input name="mes" (change)="cargarRutinaMes()" min="1" type="number"
-                                        class="form-control" [(ngModel)]="mes" value="{{mes}}" >
+                                            class="form-control" [(ngModel)]="mes" value="{{mes}}">
 
                                     </th>
                                     <th style="width: 10%">
@@ -102,9 +102,99 @@
                                 </tr>
                             </tbody>
                         </table>
+
+
+
+
+
+                     <div class="text-center mt-2">
+                        <button *ngIf="btnPDF==true" type="button" class="btn btn-success" data-bs-toggle="modal"
+                        data-bs-target="#im" (click)="verComprobante(listaRutina)">Generar PDF</button>
+                     </div>
+
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="im" tabindex="-1" aria-labelledby="exampleModalLabel"
+                            aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header bg-dark text-white">
+                                        <h5 class="m-auto">Lista de Rutinas</h5>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div id="ComprobantePago" class="row col-12 m-auto">
+                                            <img src="./../../../../assets/img/tituloComprobante.png" alt="">
+                                            <p style="font-weight: bold;">Rutina del mes: {{mes}}</p>
+                                            <p style="font-weight: bold;">Alumno: {{nombreAlumno}} </p>
+
+                                            <img src="./../../../../assets/img/linea.png" alt="">
+
+                                            
+                                            <table class="table table-hover align-middle m-0 bg-white"
+                                                [mfData]="listaRutinaComprobante" #mf="mfDataTable">
+                                                <thead>
+                                                    <tr class="text-center ">
+                                                        <th style="background-color: cornsilk;">
+                                                            MES: {{mes}}
+                                                        </th>
+                                                        <th >
+                                                            Ejercicio
+                                                        </th>
+
+                                                        <th >
+                                                            Peso (kgs)
+                                                        </th>
+                                                        <th >
+                                                            Serie
+                                                        </th>
+                                                        <th >
+                                                            Repeticiones
+                                                        </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody class="text-center">
+                                                    <tr *ngFor="let rutina of mf.data">
+                                                        <td>{{rutina.dia}}</td>
+                                                        <td>
+                                                            <p *ngFor="let ejercicio of rutina.ejercicio">
+                                                                {{ejercicio.nombre}}
+                                                            </p>
+                                                        </td>
+
+
+                                                        <td>
+                                                            <p *ngFor="let peso of rutina.peso">
+                                                                {{peso}}
+                                                            </p>
+                                                        </td>
+                                                        <td>
+                                                            <p *ngFor="let serie of rutina.serie">
+                                                                {{serie}}
+                                                            </p>
+                                                        </td>
+                                                        <td>
+                                                            <p *ngFor="let repeticion of rutina.repeticion">
+                                                                {{repeticion}}
+                                                            </p>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <img src="./../../../../assets/img/linea.png" alt="">
+
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button class="btn btn-success m-auto" data-bs-toggle="tooltip"
+                                        data-bs-placement="bottom" title="" (click)="imprimir()">Descargar
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 </div>
