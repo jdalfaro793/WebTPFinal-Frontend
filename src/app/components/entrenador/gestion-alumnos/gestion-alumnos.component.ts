@@ -128,5 +128,8 @@ activarAlumno(alumno: Alumno){
     this.router.navigate(['form-alumno/', alumno._id]);
   }
 
+  verRegistrosPlanAlimentacion(id : string): void {
+    this.router.navigate(['verRegistrosDieta/', id]);
+  }
 }
 

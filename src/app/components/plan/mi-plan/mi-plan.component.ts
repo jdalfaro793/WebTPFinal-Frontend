@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { Plan } from 'src/app/models/plan/plan';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UsuarioService } from 'src/app/services/usuario/usuario.service';
+import { Alumno } from 'src/app/models/alumno/alumno';
+import { AlumnoService } from 'src/app/services/alumno/alumno.service';
 
 @Component({
   selector: 'app-mi-plan',
@@ -12,23 +14,33 @@ import { UsuarioService } from 'src/app/services/usuario/usuario.service';
 export class MiPlanComponent implements OnInit {
 
   plan: Plan;
+  _idPlan: string;
 
   constructor(
     private planService: PlanService, 
     private activatedRoute: ActivatedRoute, 
     private usuarioService:UsuarioService,
-    private router: Router
+    private router: Router,
+    private alumnoService: AlumnoService
     ) { }
 
   ngOnInit(): void {
     this.plan = new Plan();
-    this.getPlanbyID();
-   
+    this.getAlumnoPlan();
+  }
+
+  getAlumnoPlan(): void {
+    this.alumnoService.getByIdUsuario(this.usuarioService.idLogged()).subscribe(
+      (result) => {
+        this._idPlan = result.plan;
+        this.getPlanbyID();
+      }
+    )
   }
 
   getPlanbyID(): void {
-    this.planService.getPlanByID(this.usuarioService.alumnoLogeado._id).subscribe((result) => {
-      
+    console.log(this.usuarioService.idLogged());
+    this.planService.getPlanByID(this._idPlan).subscribe((result) => {
       Object.assign(this.plan, result);
     })
   }

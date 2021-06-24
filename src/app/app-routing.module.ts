@@ -18,6 +18,7 @@ import { GestionEjercicioComponent } from './components/entrenador/gestion-ejerc
 import { GestionarRutinaComponent } from './components/entrenador/gestionar-rutina/gestionar-rutina.component';
 import { PublicacionFacebookComponent } from './components/publicacion-facebook/publicacion-facebook.component';
 import { RegistroDietaComponent } from './components/dieta/registro-dieta/registro-dieta.component';
+import { ViewRegistrosAlumnoComponent } from './components/dieta/view-registros-alumno/view-registros-alumno.component';
 
 const routes: Routes = [
   { path: '', redirectTo:'home', pathMatch:'full'},
@@ -48,6 +49,7 @@ const routes: Routes = [
   { path : 'registrar-dieta/:id', component: RegistroDietaComponent},
   { path: 'form-plan-alimentacion/:id', component: FormPlanAlimentacionComponent},
   { path : 'registrar-dieta/:id', component: RegistroDietaComponent},
+  { path: 'verRegistrosDieta/:id' , component: ViewRegistrosAlumnoComponent}
 ];
 
 @NgModule({

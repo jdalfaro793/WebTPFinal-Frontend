@@ -1,0 +1,149 @@
+<!-- Contenedor principal -->
+<div class="row my-5 min-vh-100 m-0 ">
+    <div class="col-12 col-sm-10 mx-auto bg-body">
+        <div class="row text-uppercase bg-dark py-3 py-sm-5 text-center align-items-center">
+            <div class="col-12">
+                <p class=" fs-2 fw-bold text-white m-0">
+                    Registros de <span class="text-primary">{{alumno.apellido}}, {{alumno.nombre}}</span>
+                </p>
+            </div>
+        </div>
+        <!--
+        <div class="row p-2 p-sm-4 row-cols-1 row-cols-2 bg-light">
+            <div class="col-12 mb-4">
+                <p class=" fs-4 fw-bold text-center text-decoration-underline">Seleccionar plan de alimentación</p>
+            </div>
+
+            <form class="col-12 p-0">
+                <div class="row mb-3 m-0 ">
+                    
+                    <div class="col-sm-6">
+                        <input type="text" name="nombreAlu" class="form-control form-select-sm" placeholder="Buscar por objetivo...">
+                    </div>
+                    <div class="col-sm-2">
+                        <button class="btn btn-primary w-100 btn-sm"  title="Buscar planes de alimentación">
+                            Buscar&nbsp;
+                            <svg xmlns="http://www.w3.org/2000/svg" width="12" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="col-sm-2 d-flex align-items-center">
+                        <select class="form-select form-select-sm" name="mes" id="mes" >
+                            <option selected disabled value="">Eliga un mes</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-2">
+                        <button class="btn btn-warning w-100 btn-sm"  title="Limpiar filtros">
+                            Limpiar&nbsp;
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-funnel" viewBox="0 0 16 16">
+                                <path d="M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.128.334L10 8.692V13.5a.5.5 0 0 1-.342.474l-3 1A.5.5 0 0 1 6 14.5V8.692L1.628 3.834A.5.5 0 0 1 1.5 3.5v-2zm1 .5v1.308l4.372 4.858A.5.5 0 0 1 7 8.5v5.306l2-.666V8.5a.5.5 0 0 1 .128-.334L13.5 3.308V2h-11z"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div> -->
+
+        <div class="row p-2 p-sm-4 bg-light">
+            <div class="col-12 p-0" *ngIf="registros.length == 0">
+                <div class="py-5 alert alert-danger fs-2 fw-bold fst-italic text-uppercase text-center" role="alert">
+                    El alumno no tiene registros para visualizar
+                </div>
+            </div>
+            <div class="col-12 p-0" *ngIf="registros.length > 0">
+                <div class="table-responsive">
+
+                    <table class="table align-middle table-hover m-0 bg-white text-center">
+                        <thead class="table-dark">
+                            <tr>
+                                <th scope="col" rowspan="1">Fecha</th>
+                                <th scope="col" rowspan="1">Objetivo</th>
+                                <th scope="col" rowspan="1">Peso</th>
+                                <th scope="col" rowspan="1">Dieta</th>
+                                <th scope="col" rowspan="1">Foto</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let r of registros">
+                                <td scope="col" rowspan="1">
+                                    {{r.fecha | date}}
+                                </td>
+                                <td scope="col" rowspan="1"> {{r.objetivo}} </td>
+                                <td scope="col" rowspan="1"> <p class="m-0"><span>{{r.peso}}</span> Kgrs.</p> </td>
+                                <td scope="col" rowspan="1">
+                                    <button class="btn btn-outline-dark" title="Mostrar más info" type="button" data-bs-toggle="modal"
+                                    data-bs-target="#mostrarDieta">
+                                            <i class="bi bi-eye"></i>
+                                    </button>
+
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="mostrarDieta" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-title py-3">
+                                                    <h2 class="text-center fs-3 fw-light">Mes: <span class="fw-bold">{{r.plan_dieta.mes}}</span></h2>
+                                                </div>
+                                                <div class="modal-body table-responsive">
+                                                    <table class="table align-middle table-hover m-0 bg-white text-center">
+                                                        <thead class="table-dark">
+                                                            <tr>
+                                                                <th scope="col" rowspan="1">Día</th>
+                                                                <th scope="col" rowspan="1">Desayuno</th>
+                                                                <th scope="col" rowspan="1">Almuerzo</th>
+                                                                <th scope="col" rowspan="1">Merienda</th>
+                                                                <th scope="col" rowspan="1">Cena</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr *ngFor="let p of r.plan_dieta.planSemanal">
+                                                                <td> {{p.dia}} </td>
+                                                                <td> {{p.desayuno}} </td>
+                                                                <td> {{p.almuerzo}} </td>
+                                                                <td> {{p.merienda}} </td>
+                                                                <td> {{p.cena}} </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td scope="col" rowspan="1">
+                                    <button class="btn btn-outline-success" title="Ver foto" type="button" data-bs-toggle="modal"
+                                    data-bs-target="#imagenModal" >
+                                        <i class="bi bi-image"></i>
+                                    </button>
+
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="imagenModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-body">
+                                                    <img src="{{r.foto}}" class="img-fluid" alt="">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                      </table>
+                </div>
+            </div>
+
+        
+        </div>
+    </div>
+</div>

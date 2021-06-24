@@ -34,8 +34,12 @@ export class RegistroDietaService {
     return this._http.post(this.URL, body, httpOptions);
   }
 
-  convertJsonBody(registro: RegistroDieta) {
-
+  getRegistrosByIDAlumno(id: string): Observable<any> {
+    const httpOptions = {
+      headers : new HttpHeaders(),
+      params : new HttpParams()
+    }
+    return this._http.get(this.URL + 'alumno/' + id, httpOptions);
   }
 
 }
