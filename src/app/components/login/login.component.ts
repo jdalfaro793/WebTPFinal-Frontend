@@ -47,12 +47,14 @@ export class LoginComponent implements OnInit {
             this.datosCorrectos=false;
             this.toastr.warning("usuario y/o password incorrecto");
           }
+          this.usuarioService.determinarUsuario();
         },
         error => {
           alert("Error de conexion");
           console.log("error en conexion");
           console.log(error);
         });
+        
   }
 
 

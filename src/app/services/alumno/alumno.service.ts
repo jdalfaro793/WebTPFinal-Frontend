@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Alumno } from 'src/app/models/alumno/alumno';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -73,6 +74,14 @@ updateAlumno(alumno: Alumno):Observable<any>{
   }
   let body = JSON.stringify(alumno);
   return this.http.put(this.urlbase+alumno._id, body, option);
+}
+
+getByIdUsuario( userId:string):Observable<any>{
+    let options= {
+      headers: new HttpHeaders({}),
+      params: new HttpParams({})
+    }
+    return this.http.get(this.urlbase+"usuario/"+userId, options);
 }
 
 }
