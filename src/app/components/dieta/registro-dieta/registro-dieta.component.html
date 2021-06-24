@@ -8,59 +8,109 @@
         </div>
 
         <div class="row p-2 p-sm-4 row-cols-1 row-cols-2 bg-light">
-            <div class="col-5 rounded cont-img d-none d-sm-block">
+            <div class="col-4 rounded cont-img d-none d-sm-block">
                 <!--
                     {path: 'registrar-dieta', component: RegistroDietaComponent}
                     RegistroDietaComponent,
     GestionDietaComponent
                 -->
             </div>
-            <form class="col-12 col-sm-7 ps-sm-2">
-                <div class="row mb-3 m-0 ">
-                    <label for="alumno" class="col-sm-3 col-form-label">Alumno</label>
-                    <div class="col-sm-5">
-                        <input type="text" class="form-control" id="alumno" name="alumno">
+            <form class="col-12 col-sm-8 ps-sm-2" #registroForm="ngForm">
+                <div class="row mb-5 m-0 fs-5">
+                    <h3 class="fs-4 fw-bold text-center text-decoration-underline">Datos del alumno</h3>
+                </div>
+                <div class="row mb-5 m-0 ">
+                    <label for="alumno" class="col-sm-1 col-form-label">DNI</label>
+                    <div class="col-sm-3">
+                        <p class="form-control m-0 fw-bold"> {{alumno.dni}} </p>
                     </div>
-                    <div class="col-sm-4">
-                        <button class="btn btn-primary w-100">
-                            Elegir&nbsp;
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-plus-fill" viewBox="0 0 16 16">
-                                <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
-                                <path fill-rule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z"/>
+                    <label for="alumno" class="col-sm-3 col-form-label">Nombre completo</label>
+                    <div class="col-sm-5">
+                        <p class="form-control m-0 fw-bold"> {{alumno.apellido}} {{alumno.nombre}} </p>
+                    </div>
+                </div>
+                <div class="row mb-3 m-0">
+                    <label for="peso" class="col-sm-2 col-form-label">Peso</label>
+                    <div class="col-sm-8">
+                        <input type="number" class="form-control" id="peso" name="peso" required #pesoValid="ngModel" [(ngModel)]="registroDieta.peso">
+                    </div>
+                    <label for="peso" class="col-sm-2 col-form-label">Kgrs.</label>
+                </div>
+                <div class="row mb-3 m-0">
+                    <label for="foto" class="col-sm-2 col-form-label">Foto</label>
+                    <div class="col-sm-8">
+                        <input id="imagen" name="imagen" type="file" alife-file-to-base64 multiple required class="form-control" (onFileChanged)="onFileChanges($event)">
+                    </div>
+                    <div class="col-sm-2">
+                        <button class="btn btn-dark w-100" title="Ver foto" type="button" data-bs-toggle="modal"
+                        data-bs-target="#imagenModal" (click)="verFoto()">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
+                                <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z"/>
+                                <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"/>
+                            </svg>
+                        </button>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="imagenModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-body">
+                                        <img src="{{registroDieta.foto}}" class="img-fluid" alt="">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <!--
+            SELECCION DE PLAN DE ALIMENTACION
+        -->
+
+        <div class="row p-2 p-sm-4 row-cols-1 row-cols-2 bg-light">
+            <div class="col-12 mb-5">
+                <p class=" fs-4 fw-bold text-center text-decoration-underline">Seleccionar plan de alimentación</p>
+            </div>
+
+            <form class="col-12 p-0">
+                <div class="row mb-3 m-0 ">
+                    
+                    <div class="col-sm-6">
+                        <input type="text" name="nombreAlu" class="form-control form-select-sm" placeholder="Buscar por objetivo..." [(ngModel)]="filtersObjetivo">
+                    </div>
+                    <div class="col-sm-2">
+                        <button class="btn btn-primary w-100 btn-sm" (click)="searchPlanAlimentacion()">
+                            Buscar&nbsp;
+                            <svg xmlns="http://www.w3.org/2000/svg" width="12" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
                             </svg>
                         </button>
                     </div>
-                </div>
-                <div class="row mb-3 m-0">
-                    <label for="objetivo" class="col-sm-3 col-form-label">Objetivo</label>
-                    <div class="col-sm-9">
-                        <input type="text" class="form-control" id="objetivo" name="objetivo">
+                    <!--
+                    <label for="mes" class="col-sm-1 col-form-label">Mes</label>
+                    -->
+                    <div class="col-sm-2 d-flex align-items-center">
+                        <select class="form-select form-select-sm" name="mes" id="mes" [(ngModel)]="filtersMes" (ngModelChange)="onMesChange($event)">
+                            <option selected disabled value="">Eliga un mes</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                        </select>
                     </div>
-                </div>
-                <div class="row mb-3 m-0">
-                    <label for="peso" class="col-sm-3 col-form-label">Peso</label>
-                    <div class="col-sm-8">
-                        <input type="number" class="form-control" id="peso" name="peso">
-                    </div>
-                    <label for="peso" class="col-sm-1 col-form-label">Kg</label>
-                </div>
-                <div class="row mb-3 m-0">
-                    <label for="foto" class="col-sm-3 col-form-label">Foto</label>
-                    <div class="col-sm-9">
-                        <input class="form-control" type="file" id="foto">
-                    </div>
-                </div>
-                <div class="row m-0">
-                    <label for="planAlimentacion" class="col-sm-3 col-form-label">Alimentación</label>
-                    <div class="col-sm-5">
-                        <input type="number" class="form-control" id="planAlimentacion" name="planAlimentacion">
-                    </div>
-                    <div class="col-sm-4">
-                        <button class="btn btn-primary w-100">
-                            Elegir&nbsp;
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-plus-fill" viewBox="0 0 16 16">
-                                <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
-                                <path fill-rule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z"/>
+                    <div class="col-sm-2">
+                        <button class="btn btn-warning w-100 btn-sm" (click)="cleanFiltersPlanALimenticio()">
+                            Limpiar&nbsp;
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-funnel" viewBox="0 0 16 16">
+                                <path d="M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.128.334L10 8.692V13.5a.5.5 0 0 1-.342.474l-3 1A.5.5 0 0 1 6 14.5V8.692L1.628 3.834A.5.5 0 0 1 1.5 3.5v-2zm1 .5v1.308l4.372 4.858A.5.5 0 0 1 7 8.5v5.306l2-.666V8.5a.5.5 0 0 1 .128-.334L13.5 3.308V2h-11z"/>
                             </svg>
                         </button>
                     </div>
@@ -68,37 +118,68 @@
             </form>
         </div>
 
-        <div class="row py-5 px-2 px-sm-5 bg-light">
-            <div class="col-12 p-0">
+        <div class="row p-2 p-sm-4 bg-light">
+            <div class="col-12 p-0" *ngIf="planesAlimenticios.length == 0">
+                <div class="py-5 alert alert-danger fs-2 fw-bold fst-italic text-uppercase text-center" role="alert">
+                    No se encontraron coincidencias
+                </div>
+            </div>
+            <div class="col-12 p-0" *ngIf="planesAlimenticios.length > 0">
                 <div class="table-responsive">
-                    <table class="table table-hover align-middle m-0 bg-white">
-                        <thead class="">
-                            <tr class="text-center ">
-                                <!--
-                                <th scope="col" >DNI</th>
-                                <th scope="col">Apellido</th>
-                                <th scope="col">Nombre</th> -->
-                                <th scope="col">Medio de pago</th>
-                                <th scope="col">Fecha</th>
-                                <th scope="col">Monto</th>
+
+                    <table class="table align-middle table-hover m-0 bg-white text-center">
+                        <thead class="table-dark">
+                            <tr>
+                                <th scope="col" rowspan="1">Selección</th>
+                                <th scope="col" rowspan="1">Objetivo</th>
+                                <th scope="col" rowspan="1">Mes</th>
+                                <th scope="col" rowspan="1">Acciones</th>
                             </tr>
                         </thead>
-                        <tbody class="text-center">
-                            <!--
-                            <tr *ngFor="let c of cuotas">
-                                <th> {{c.alumno.dni}} </th>
-                                <td> {{c.alumno.apellido}} </td>
-                                <td>{{c.modo_pago}}</td>
-                                <td>{{c.fecha_pago | date : 'fullDate'}}</td>
-                                <td>{{c.monto | currency}}</td>
+                        <tbody>
+                            <tr *ngFor="let p of planesAlimenticios">
+                                <td scope="col" rowspan="1"> 
+                                    <div *ngIf="registroDieta.plan_dieta != undefined && registroDieta.plan_dieta._id == p._id">
+                                        <p class="text-center text-success m-0">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="40" fill="currentColor" class="bi bi-check2-circle" viewBox="0 0 16 16">
+                                                <path d="M2.5 8a5.5 5.5 0 0 1 8.25-4.764.5.5 0 0 0 .5-.866A6.5 6.5 0 1 0 14.5 8a.5.5 0 0 0-1 0 5.5 5.5 0 1 1-11 0z"/>
+                                                <path d="M15.354 3.354a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l7-7z"/>
+                                            </svg>
+                                        </p>
+                                    </div>
+                                </td>
+                                <td scope="col" rowspan="1"> {{p.objetivo}} </td>
+                                <td scope="col" rowspan="1"> {{p.mes}} </td>
+                                <td class="d-flex justify-content-evenly">
+                                        <button class="btn btn-outline-dark">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
+                                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                                <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+                                              </svg>
+                                        </button>
+                                        <button class="btn btn-outline-primary" (click)="selectPlanAlimenticio(p)">
+                                            
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" fill="currentColor" class="bi bi-check2" viewBox="0 0 16 16">
+                                                <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+                                            </svg>                                            
+                                        </button>
+                                </td>
                             </tr>
-                        -->
                         </tbody>
-                    </table>
+                      </table>
                 </div>
             </div>
 
         
+        </div>
+
+        <div class="row p-2 p-sm-4 mt-5 bg-light d-flex justify-content-evenly">
+            <div class="col-4">
+                <button class="btn btn-danger btn-lg w-100" (click)="cancelar()">Cancelar</button>
+            </div>
+            <div class="col-4">
+                <button class="btn btn-success btn-lg w-100" (click)="saveRegistroDieta()" [disabled]="registroForm.invalid">Guardar</button>
+            </div>
         </div>
     </div>
 </div>

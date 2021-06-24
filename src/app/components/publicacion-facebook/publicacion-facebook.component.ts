@@ -39,7 +39,7 @@ export class PublicacionFacebookComponent implements OnInit {
         ': ' +
         publicacion.noticia,
       access_token:
-        'EAAIH4Jj8kKoBABwzbLLxpvoDP8FwXXxZBHcvbd4hVEaa1ic9dceaAzMJTf419aWR0HC3thVVc0DPV31AEhbkrZBbw9lV6qttqHt3oqb2VLrZBngpuOpXCexkemiiBVV9FAMYxZCXsxeFfdbgoZBahtOCipqFhO3YjNBcF7lcXKNZA15oim2Njvz6ZAehhc3JIzakodBMYLHgkeXJ4agz3U5',
+        'EAAIH4Jj8kKoBAA8IKzijLgMruSzTzHWIBvT8WjHpPZAsoOtwouCH89qFNuvfSwuRenzLPZBVswp4Mh1W65VBLvZBZCEQpg1NbR0R5YMClTETcxZCpEZCqG1Qwvmh3VtrJyA411ZClmfcQMWRpS7UL9l7F8Cex9sKNzAQZCH30X81oIMWjcOPoEqnML8WMAVRSvVVInEhHrIfyUFKwyLVz9qZB',
     });
   }
   iniciarFb() {

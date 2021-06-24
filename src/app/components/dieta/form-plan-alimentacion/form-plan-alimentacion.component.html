@@ -15,72 +15,125 @@
     GestionDietaComponent
                 -->
             </div>
-            <form class="col-12 col-sm-6 ps-sm-3">
-                <div class="form-floating mb-3">
-                    <textarea class="form-control" id="objetivo" name="objetivo" style="height: 80px" [(ngModel)]="planAlimentacion.objetivo"></textarea>
-                    <label for="objetivo">Objetivo</label>
-                </div>
-                <div class="row mb-3 m-0 ">
-                    <label for="mes" class="col-sm-4 col-form-label">Mes</label>
-                    <div class="col-sm-8 d-flex align-items-center p-0">
-                        <select class="form-select form-select-sm" name="mes" id="mes" [(ngModel)]="planAlimentacion.mes">
-                            <option selected disabled>Eliga una opción</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                            <option value="6">6</option>
-                            <option value="7">7</option>
-                            <option value="8">8</option>
-                            <option value="9">9</option>
-                            <option value="10">10</option>
-                        </select>
+            <div class="col-12 col-sm-6 ps-sm-3">
+                <form #mesDietaForm="ngForm">
+                    <div class="form-floating mb-3">
+                        <textarea class="form-control" id="objetivo" name="objetivo" style="height: 80px" [(ngModel)]="planAlimentacion.objetivo" required="true" #objetivo="ngModel"></textarea>
+                        <label for="objetivo">Objetivo</label>
                     </div>
-                </div>
 
-                <!-- Añadir dieta x día -->
-                <div class="pt-2">
-                    <p class="my-4 fs-5 fw-bold text-center text-decoration-underline">Añadir dieta por día</p>
-                </div>
-                <div class="row mb-3 m-0 ">
-                    <label for="dia" class="col-sm-4 col-form-label">Día</label>
-                    <div class="col-sm-8 d-flex align-items-center p-0">
-                        <select class="form-select form-select-sm" name="dia" id="dia" [(ngModel)]="dieta.dia">
-                            <option selected disabled>Eliga una opción</option>
-                            <option value="Lunes">Lunes</option>
-                            <option value="Martes">Martes</option>
-                            <option value="Miércoles">Miércoles</option>
-                            <option value="Jueves">Jueves</option>
-                            <option value="Viernes">Viernes</option>
-                            <option value="Sábado">Sábado</option>
-                            <option value="Domingo">Domingo</option>
-                        </select>
+                    <div *ngIf="objetivo.invalid && objetivo.touched" class="alert alert-danger text-center p-2 fst-italic text-uppercase">
+                        <div *ngIf="objetivo.errors.required">
+                            Debe escribir el objetivo del plan alimenticio
+                        </div>
                     </div>
-                </div>
-                <div class="form-floating mb-3">
-                    <textarea class="form-control" id="desayuno" name="desayuno" style="height: 80px" [(ngModel)]="dieta.desayuno"></textarea>
-                    <label for="desayuno">Desayuno</label>
-                </div>
-                <div class="form-floating mb-3">
-                    <textarea class="form-control" id="almuerzo" name="almuerzo" style="height: 80px" [(ngModel)]="dieta.almuerzo"></textarea>
-                    <label for="almuerzo">Almuerzo</label>
-                </div>
-                <div class="form-floating mb-3">
-                    <textarea class="form-control" id="merienda" name="merienda" style="height: 80px" [(ngModel)]="dieta.merienda"></textarea>
-                    <label for="merienda">Merienda</label>
-                </div>
-                <div class="form-floating mb-3">
-                    <textarea class="form-control" id="cena" name="cena" style="height: 80px" [(ngModel)]="dieta.cena"></textarea>
-                    <label for="cena">Cena</label>
-                </div>
-                <div class="row m-0 d-flex justify-content-center">
-                    <div class="col-12 col-sm-4">
-                        <button class="btn btn-primary w-100" (click)="addDieta()">Añadir en lista</button>
+
+                    <div class="row mb-3 m-0 ">
+                        <label for="mes" class="col-sm-4 col-form-label">Mes</label>
+                        <div class="col-sm-8 d-flex align-items-center p-0">
+                            <select class="form-select form-select-sm" name="mes" id="mes" [(ngModel)]="planAlimentacion.mes" required="true" #mes="ngModel">
+                                <option selected disabled>Eliga una opción</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                            </select>
+                        </div>
                     </div>
-                </div>
-            </form>
+
+                    <div *ngIf="mes.invalid && mes.touched" class="alert alert-danger text-center p-2 fst-italic text-uppercase">
+                        <div *ngIf="mes.errors.required">
+                            Debe seleccionar un mes
+                        </div>
+                    </div>
+                </form>
+                
+                <form #dietaForm="ngForm" novalidate>
+                    <!-- Añadir dieta x día -->
+                    <div class="pt-2">
+                        <p class="my-4 fs-5 fw-bold text-center text-decoration-underline">Añadir dieta por día</p>
+                    </div>
+                    <div class="row mb-3 m-0 ">
+                        <label for="dia" class="col-sm-4 col-form-label">Día</label>
+                        <div class="col-sm-8 d-flex align-items-center p-0">
+                            <select class="form-select form-select-sm" name="dia" id="dia" [(ngModel)]="dieta.dia" required="true" #dia="ngModel">
+                                <option selected disabled>Eliga una opción</option>
+                                <option value="Lunes">Lunes</option>
+                                <option value="Martes">Martes</option>
+                                <option value="Miércoles">Miércoles</option>
+                                <option value="Jueves">Jueves</option>
+                                <option value="Viernes">Viernes</option>
+                                <option value="Sábado">Sábado</option>
+                                <option value="Domingo">Domingo</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div *ngIf="dia.invalid && dia.touched" class="alert alert-danger text-center p-2 fst-italic text-uppercase">
+                        <div *ngIf="dia.errors.required">
+                            Debe seleccionar un día de la dieta
+                        </div>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <textarea class="form-control" id="desayuno" name="desayuno" style="height: 80px" required="true" [(ngModel)]="dieta.desayuno" #desayuno="ngModel"></textarea>
+                        <label for="desayuno">Desayuno</label>
+                    </div>
+
+                    <div *ngIf="desayuno.invalid && desayuno.touched" class="alert alert-danger text-center p-2 fst-italic text-uppercase">
+                        <div *ngIf="desayuno.errors.required">
+                            Debe ingresar el <span class="fw-bold">desayuno</span> de la dieta
+                        </div>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <textarea class="form-control" id="almuerzo" name="almuerzo" style="height: 80px" required="true" [(ngModel)]="dieta.almuerzo" #almuerzo="ngModel"></textarea>
+                        <label for="almuerzo">Almuerzo</label>
+                    </div>
+
+                    <div *ngIf="almuerzo.invalid && almuerzo.touched" class="alert alert-danger text-center p-2 fst-italic text-uppercase">
+                        <div *ngIf="almuerzo.errors.required">
+                            Debe ingresar el <span class="fw-bold">almuerzo</span> de la dieta
+                        </div>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <textarea class="form-control" id="merienda" name="merienda" style="height: 80px" required="true" [(ngModel)]="dieta.merienda" #merienda="ngModel"></textarea>
+                        <label for="merienda">Merienda</label>
+                    </div>
+
+                    <div *ngIf="merienda.invalid && merienda.touched" class="alert alert-danger text-center p-2 fst-italic text-uppercase">
+                        <div *ngIf="merienda.errors.required">
+                            Debe ingresar la <span class="fw-bold">merienda</span> de la dieta
+                        </div>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <textarea class="form-control" id="cena" name="cena" style="height: 80px" required="true" [(ngModel)]="dieta.cena" #cena="ngModel"></textarea>
+                        <label for="cena">Cena</label>
+                    </div>
+
+                    <div *ngIf="cena.invalid && cena.touched" class="alert alert-danger text-center p-2 fst-italic text-uppercase">
+                        <div *ngIf="cena.errors.required">
+                            Debe ingresar la <span class="fw-bold">cena</span> de la dieta
+                        </div>
+                    </div>
+
+                    <div class="row m-0 d-flex justify-content-center">
+                        <div class="col-12 col-sm-4">
+                            <button class="btn btn-primary w-100" type="submit" (click)="addDieta(); dietaForm.resetForm()" [disabled]="dietaForm.invalid">Añadir en lista</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
+
         <div class="row p-2 p-sm-4 bg-light" *ngIf="dietas.length != 0">
             <div class="col-12 p-0">
                 <div class="table-responsive">
@@ -102,19 +155,34 @@
                                 <td scope="col" > {{d.almuerzo}} </td>
                                 <td scope="col" > {{d.merienda}} </td>
                                 <td scope="col" > {{d.cena}} </td>
-                                <td scope="col" >  </td>
+                                <td scope="col" > 
+                                    <div class="d-flex justify-content-evenly">
+                                        <button class="btn btn-warning btn-sm" (click)="editDieta(d)">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="15" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                                                <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                                                <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+                                            </svg>
+                                        </button>
+                                        <button class="btn btn-danger btn-sm" (click)="deleteDieta(d)">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="15" fill="currentColor" class="bi bi-x-square" viewBox="0 0 16 16">
+                                                <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+                                                <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                                              </svg>
+                                        </button>
+                                    </div>    
+                                </td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
-        <div class="row p-2 p-sm-4 bg-light d-flex justify-content-evenly">
+        <div class="row p-2 p-sm-4 mt-5 bg-light d-flex justify-content-evenly">
             <div class="col-4">
-                <button class="btn btn-danger btn-lg w-100">Cancelar</button>
+                <button class="btn btn-danger btn-lg w-100" (click)="cancel()">Cancelar</button>
             </div>
             <div class="col-4">
-                <button class="btn btn-success btn-lg w-100" (click)="savePlanAlimeticion()">Guardar</button>
+                <button class="btn btn-success btn-lg w-100" (click)="savePlanAlimeticion()"  [disabled]="mesDietaForm.invalid">Guardar</button>
             </div>
         </div>
     </div>

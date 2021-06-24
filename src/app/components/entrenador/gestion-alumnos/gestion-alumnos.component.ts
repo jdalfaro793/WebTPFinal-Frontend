@@ -106,5 +106,9 @@ activarAlumno(alumno: Alumno){
   }
 }
 
+  registrarPlanAlimentacionAlumno(id: string): void {
+    this.router.navigate(['registrar-dieta/', id]);
+  }
+
 }
 
