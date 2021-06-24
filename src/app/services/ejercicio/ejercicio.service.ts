@@ -41,4 +41,26 @@ export class EjercicioService {
     }
     return this._http.get(this.url, httpOptions)
   }
+
+  updateEjercicio(ejercicio: Ejercicio):Observable<any>{
+    let option = {
+      headers: new HttpHeaders({
+        "Content-Type": "application/json"
+      }),
+      params: new HttpParams({
+      })
+    }
+    let body = JSON.stringify(ejercicio);
+    return this._http.put(this.url+ejercicio._id, body, option);
+  }
+
+  deleteEjercicio(ejercicio: Ejercicio):Observable<any>{
+    let option = {
+      headers: new HttpHeaders({
+      }),
+      params: new HttpParams({
+      })
+    }
+    return this._http.delete(this.url+ejercicio._id, option);
+  }
 }

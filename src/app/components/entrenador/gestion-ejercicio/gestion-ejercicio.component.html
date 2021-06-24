@@ -44,11 +44,17 @@
                     </div>
                 </div>
 
-                <div class="col-4 m-auto">
+                <div *ngIf="accion=='new'" class="col-5 m-auto">
                     <button [disabled]="formEjercicio.invalid" class="btn btn-success btn-lg w-100" (click)="guardarEjercicio(formEjercicio)">Guardar</button>
                 </div>
-
-                
+                <div class="row justify-content-center">
+                    <div *ngIf="accion=='update'" class="col-5 col-sm-6 col-md-5">
+                        <button [disabled]="formEjercicio.invalid" class="btn btn-success btn-lg w-100" (click)="updateEjercicio(formEjercicio)">Modificar</button>
+                    </div>
+                    <div *ngIf="accion=='update'" class="col-5 col-sm-6 col-md-5">
+                        <button class="btn btn-danger btn-lg w-100" (click)="cancelarEdicion(formEjercicio)">Cancelar</button>
+                    </div>
+                </div>
             </form>
             
         </div>
@@ -78,8 +84,9 @@
                 <thead class="table-dark">
                     <tr class="text-center ">
                         <th style="width: 25%">Nombre</th>
-                        <th style="width: 65%">Descripción</th>
+                        <th style="width: 50%">Descripción</th>
                         <th style="width: 10%">Imagen</th>
+                        <th style="width: 15%">Acción</th>
                     </tr>
                 </thead>
                 <tbody class="text-center">
@@ -104,6 +111,14 @@
                                     </div>
                                 </div>
                             </div>
+                        </td>
+                        <td>
+                            <button (click)="modificarEjercicio(ejercicio)" type="button" class="btn btn-success" data-bs-toggle="tooltip" data-bs-placement="bottom"
+                                    title="Editar"><i class="bi bi-pencil"></i>
+                            </button>  
+                            <button (click)="eliminarEjercicio(ejercicio)" type="button" class="btn btn-danger" data-bs-toggle="tooltip" data-bs-placement="bottom"
+                                    title="Eliminar"><i class="bi bi-trash"></i>
+                            </button>  
                         </td>
                     </tr>
                 </tbody>

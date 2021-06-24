@@ -2,7 +2,9 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { Ejercicio } from 'src/app/models/ejercicio/ejercicio';
+import { Rutina } from 'src/app/models/rutina/rutina';
 import { EjercicioService } from 'src/app/services/ejercicio/ejercicio.service';
+import { RutinaService } from 'src/app/services/rutina/rutina.service';
 
 @Component({
   selector: 'app-gestion-ejercicio',
@@ -18,8 +20,10 @@ export class GestionEjercicioComponent implements OnInit {
   foto:string;
   ejercicioBuscado: string;
   fotoSubida: boolean = true;
+  accion: string = 'new';
 
   constructor(private ejercicioService: EjercicioService,
+              private rutinaService: RutinaService,
               private toastr: ToastrService) { }
 
   ngOnInit(): void {
@@ -84,5 +88,66 @@ export class GestionEjercicioComponent implements OnInit {
   limpiarFiltro(){
     this.ejercicioBuscado = "";
     this.cargarEjercicios();
+  }
+
+  modificarEjercicio(ejercicio: Ejercicio){
+    this.ejercicio = ejercicio;
+    this.accion = "update";
+  }
+
+  eliminarEjercicio(ejercicio2: Ejercicio){
+    var encontrado = false;
+    this.rutinaService.getRutinas().subscribe(
+      result=>{
+          result.forEach(element => {
+          let vRutina = new Rutina();
+          Object.assign(vRutina, element);
+          for (var i=0; i < vRutina.ejercicio.length && encontrado == false; i++){
+            if(vRutina.ejercicio[i]._id==ejercicio2._id){
+              encontrado = true;}}})
+        if (encontrado == false){
+          if (confirm("Esta seguro que desea eliminar este ejercicio?")){
+            this.ejercicioService.deleteEjercicio(ejercicio2).subscribe(
+              result=>{
+                if (result.status == '1' ){
+                  this.toastr.success("El ejercicio fue eliminado correctamente", "OPERACION EXITOSA");
+                  this.cargarEjercicios();
+                }
+                else{
+                  this.toastr.error("Error al eliminar el ejercicio", "OPERACION FALLIDA");
+                }
+              },
+              error=>{
+                console.log(error);
+              })}
+        }else{
+          this.toastr.error("El ejercicio se encuentra siendo usado, no se puede eliminar", "OPERACION FALLIDA");
+        }},
+      error=>{
+        console.log(error);
+      })
+  }
+
+  updateEjercicio(formEjercicio: NgForm){
+    this.ejercicioService.updateEjercicio(this.ejercicio).subscribe(
+      result=>{
+        if(result.status=="1"){
+          this.toastr.success("El ejercicio fue modificado correctamente", "OPERACION EXITOSA");
+          this.cancelarEdicion(formEjercicio);
+        }else{
+          this.toastr.error("Error al modificar el ejercicio", "OPERACION FALLIDA");
+        }
+      },
+      error=>{
+        console.log(error);
+      }
+    )
+  }
+
+  cancelarEdicion(formEjercicio: NgForm){
+    this.accion = "new";
+    this.ejercicio = new Ejercicio();
+    formEjercicio.reset();
+    this.miImagen.nativeElement.value = '';
   }
 }
