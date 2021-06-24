@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { Asistencia } from 'src/app/models/asistencia/asistencia';
 import { AsistenciaService } from 'src/app/services/asistencia/asistencia.service';
+import { UsuarioService } from 'src/app/services/usuario/usuario.service';
 
 @Component({
   selector: 'app-mis-asistencias',
@@ -11,43 +11,20 @@ import { AsistenciaService } from 'src/app/services/asistencia/asistencia.servic
 export class MisAsistenciasComponent implements OnInit {
   listaAsistencias: Array<Asistencia>;
   constructor(
-    private activatedRoute: ActivatedRoute,
-    private asistenciaService: AsistenciaService
+    private asistenciaService: AsistenciaService,
+    private usuarioService:UsuarioService
   ) {}
 
   ngOnInit(): void {
-    this.activatedRoute.params.subscribe((params) => {
-      if (params.id == '0') {
-        this.cargarAllAsistencias();
-      } else {
-        this.cargarAluAsistencia(params.id);
-      }
-    });
+  
+    this.cargarAluAsistencia()
   }
   iniciarLista() {
     this.listaAsistencias = new Array<Asistencia>();
   }
 
-  cargarAllAsistencias() {
-    this.asistenciaService.getAsistencias().subscribe(
-      (result) => {
-        this.iniciarLista();
-        result.forEach((element) => {
-          let vAsistencia = new Asistencia();
-          Object.assign(vAsistencia, element);
-          this.listaAsistencias.push(vAsistencia);
-        });
-        console.log(this.listaAsistencias);
-      },
-      (error) => {
-        console.log(error);
-        alert('error en la peticion');
-      }
-    );
-  }
-
-  cargarAluAsistencia(id: string) {
-    this.asistenciaService.getAsistenciaByAlumno(id).subscribe(
+  cargarAluAsistencia() {
+    this.asistenciaService.getAsistenciaByAlumno(this.usuarioService.alumnoLogeado._id).subscribe(
       (result) => {
         
         this.iniciarLista();

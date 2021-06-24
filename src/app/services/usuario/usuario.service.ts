@@ -13,8 +13,8 @@ import { EntrenadorService } from '../entrenador/entrenador.service';
 })
 export class UsuarioService {
 
-  private alumnoLogeado:Alumno;
-  private entrenadorLogeado:Entrenador;
+  public alumnoLogeado:Alumno;
+  public entrenadorLogeado:Entrenador;
   urlBase: string = "http://localhost:3000/api/usuario/"
   constructor(
     private http: HttpClient,
@@ -76,6 +76,7 @@ export class UsuarioService {
     sessionStorage.removeItem("user");
     sessionStorage.removeItem("perfil");
     sessionStorage.removeItem("id");
+    
   }
 
   //determina si un usuario esta logeado

@@ -25,7 +25,9 @@
                             </div>
                             <div *ngIf="passwd.invalid && (passwd.touched || passwd.dirty)" class=" m-0 p-0 alert alert-danger align-items-center">
                                 <p  class="mx-4" *ngIf="passwd.errors.required"> Campo requerido</p>
+                                
                             </div>
+                            <p *ngIf="datosCorrectos == false" class="alert-danger">El usuario y/o password no son correctos..</p>
                         </div>
                     </div>
                     <div class="form-row">
@@ -34,7 +36,7 @@
                         </div>
                     </div>
                     <a href="#">Olvido su usuario o contraseña?</a>
-                    <!--<div *ngIf="datosCorrectos == false" class="alert-danger"><p>El usuario y/o password no son correctos..</p> </div>-->
+                    
 
 
                 </form>

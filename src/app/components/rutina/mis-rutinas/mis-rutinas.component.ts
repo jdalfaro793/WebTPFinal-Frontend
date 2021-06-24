@@ -4,6 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Ejercicio } from 'src/app/models/ejercicio/ejercicio';
 import { Rutina } from 'src/app/models/rutina/rutina';
 import { RutinaService } from 'src/app/services/rutina/rutina.service';
+import { UsuarioService } from 'src/app/services/usuario/usuario.service';
 
 @Component({
   selector: 'app-mis-rutinas',
@@ -23,16 +24,14 @@ export class MisRutinasComponent implements OnInit {
   mes:number;
 
   constructor(
-    private activatedRoute: ActivatedRoute,
+    private usuarioService: UsuarioService,
     private rutinaService: RutinaService,
     private toastr:ToastrService
   ) {}
 
   ngOnInit(): void {
-    this.activatedRoute.params.subscribe((params) => {
-       this.cargarAluRutina(params.id);
-      this.idAlum=params.id;
-      });
+      this.cargarAluRutina();
+     
   }
 
 
@@ -48,9 +47,9 @@ export class MisRutinasComponent implements OnInit {
     this.descrip=descrip;
   }
 
- cargarAluRutina(id:string){
+ cargarAluRutina(){
 
-  this.rutinaService.getRutinaAlumno(id).subscribe(
+  this.rutinaService.getRutinaAlumno(this.usuarioService.alumnoLogeado._id).subscribe(
     (result) => {
       if (result.status == '0') {
         this.toastr.error('Error en la busqueda', 'ERROR');
@@ -59,7 +58,7 @@ export class MisRutinasComponent implements OnInit {
           this.MesesRut.push(element.mes);
         });
         this.rutinaService
-          .getRutinaAlumnoMes(id, Math.max.apply(null, this.MesesRut))
+          .getRutinaAlumnoMes(this.usuarioService.alumnoLogeado._id, Math.max.apply(null, this.MesesRut))
           .subscribe((result) => {
             result.forEach((element) => {
               let vRutina = new Rutina();
@@ -83,7 +82,7 @@ export class MisRutinasComponent implements OnInit {
   cargarRutinaMes(){
     this.listaRutina=new Array<Rutina>();
 
-    this.rutinaService.getRutinaAlumnoMes(this.idAlum,this.mes).subscribe(
+    this.rutinaService.getRutinaAlumnoMes(this.usuarioService.alumnoLogeado._id,this.mes).subscribe(
       (result) => {
         if ((result.status == "0")) {
           alert('Error en la busqueda');

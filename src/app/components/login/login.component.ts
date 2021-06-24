@@ -33,19 +33,25 @@ export class LoginComponent implements OnInit {
         (result) => {
           
           if (result.status == 1) {
-            this.datosCorrectos = true;
-            sessionStorage.setItem("token", result.token);
-            //guardamos el user en cookies en el cliente
-            sessionStorage.setItem("user", result.username);
-            sessionStorage.setItem("id", result.id);
-            sessionStorage.setItem("rol", result.rol);
-            sessionStorage.setItem("state", result.state);
-            //redirigimos a home o a pagina que llamo
-            this.router.navigateByUrl(this.returnUrl);
+            if(result.state){
+              this.datosCorrectos = true;
+              sessionStorage.setItem("token", result.token);
+              //guardamos el user en cookies en el cliente
+              sessionStorage.setItem("user", result.username);
+              sessionStorage.setItem("id", result.id);
+              sessionStorage.setItem("rol", result.rol);
+              sessionStorage.setItem("state", result.state);
+              //redirigimos a home o a pagina que llamo
+              this.router.navigateByUrl(this.returnUrl);
+            }else{
+              this.datosCorrectos = false;
+              this.toastr.info("Contacte con su entrenador, cuenta bloqueada", "Iniciar Sesion");
+            }
+           
           } else {
             //usuario no encontrado muestro mensaje en la vista
             this.datosCorrectos=false;
-            this.toastr.warning("usuario y/o password incorrecto");
+            this.toastr.warning("usuario y/o password incorrecto","Iniciar Sesion");
           }
           this.usuarioService.determinarUsuario();
         },

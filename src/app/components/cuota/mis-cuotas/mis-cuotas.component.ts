@@ -6,6 +6,7 @@ import { CuotaService } from 'src/app/services/cuota/cuota.service';
 import * as printJS from 'print-js';
 import { AlumnoService } from 'src/app/services/alumno/alumno.service';
 import { Plan } from 'src/app/models/plan/plan';
+import { UsuarioService } from 'src/app/services/usuario/usuario.service';
 
 @Component({
   selector: 'app-mis-cuotas',
@@ -20,19 +21,15 @@ export class MisCuotasComponent implements OnInit {
 
   constructor(private cuotaService: CuotaService, 
               private activatedRoute: ActivatedRoute,
-              private alumnoService: AlumnoService) { }
+              private alumnoService: AlumnoService,
+              private usuarioService:UsuarioService
+              ) { }
 
   ngOnInit(): void {
     this.initFilters();
     this.cuotas = new Array<Cuota>();
-    this.activatedRoute.params.subscribe((params) => {
-      if (params.id == '0') {
-        this.cargarCuotas();
-        this.iniciarCuota();
-      } else {
-        this.cargarMisCuotas(params.id);
-      }
-    });
+    this.iniciarCuota();
+    this.cargarMisCuotas();
   }
 
   iniciarCuota(){
@@ -56,9 +53,9 @@ export class MisCuotasComponent implements OnInit {
       }
     );
   }
-
-  cargarMisCuotas(id: string): void {
-    this.cuotaService.getByAlumno(id).subscribe(
+ //metodo en desuso
+  cargarMisCuotas(): void {
+    this.cuotaService.getByAlumno(this.usuarioService.alumnoLogeado._id).subscribe(
       (result) => {
         console.log(result)
         this.cuotas = new Array<Cuota>();

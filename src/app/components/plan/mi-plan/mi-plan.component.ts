@@ -2,6 +2,7 @@ import { PlanService } from './../../../services/plan/plan.service';
 import { Component, OnInit } from '@angular/core';
 import { Plan } from 'src/app/models/plan/plan';
 import { ActivatedRoute, Router } from '@angular/router';
+import { UsuarioService } from 'src/app/services/usuario/usuario.service';
 
 @Component({
   selector: 'app-mi-plan',
@@ -12,27 +13,28 @@ export class MiPlanComponent implements OnInit {
 
   plan: Plan;
 
-  constructor(private planService: PlanService, private activatedRoute: ActivatedRoute, private router: Router) { }
+  constructor(
+    private planService: PlanService, 
+    private activatedRoute: ActivatedRoute, 
+    private usuarioService:UsuarioService,
+    private router: Router
+    ) { }
 
   ngOnInit(): void {
-    this.activatedRoute.params.subscribe((params) => {
-      if (params.id == '0') {
-        
-      } else {
-        this.getPlanbyID(params.id);
-      }
-    });
+    this.plan = new Plan();
+    this.getPlanbyID();
+   
   }
 
-  getPlanbyID(id: string): void {
-    this.planService.getPlanByID(id).subscribe((result) => {
-      this.plan = new Plan();
+  getPlanbyID(): void {
+    this.planService.getPlanByID(this.usuarioService.alumnoLogeado._id).subscribe((result) => {
+      
       Object.assign(this.plan, result);
     })
   }
 
   viewMisRutinas(): void {
-    this.router.navigate(['rutinapersonal/0'])
+    this.router.navigate(['rutinapersonal'])
   }
 
 }
