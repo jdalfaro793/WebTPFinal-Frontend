@@ -39,6 +39,8 @@ import { EstadonoticiaPipe } from './pipes/estadonoticia.pipe';
 import { TokenInterceptorService } from './services/token-interceptor/token-interceptor.service';
 import { RegistroDietaComponent } from './components/dieta/registro-dieta/registro-dieta.component';
 import { ViewRegistrosAlumnoComponent } from './components/dieta/view-registros-alumno/view-registros-alumno.component';
+import { SoloNumeros } from './directivas/validacion.directive';
+import { SoloLetras } from './directivas/validacion.directive';
 
 
 @NgModule({
@@ -66,7 +68,9 @@ import { ViewRegistrosAlumnoComponent } from './components/dieta/view-registros-
     PublicacionFacebookComponent,
     EstadonoticiaPipe,
     RegistroDietaComponent,
-    ViewRegistrosAlumnoComponent
+    ViewRegistrosAlumnoComponent,
+    SoloNumeros,
+    SoloLetras
   ],
   imports: [
     BrowserModule,
