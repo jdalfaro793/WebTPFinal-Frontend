@@ -25,6 +25,8 @@ export class RegistroDietaComponent implements OnInit {
   filtersObjetivo: string;
   filtersMes: any;
 
+  planSelect: MesDieta;
+
   constructor(
     private activatedRoute: ActivatedRoute,
     private mesDietaService: MesDietaService,
@@ -153,6 +155,7 @@ export class RegistroDietaComponent implements OnInit {
   selectPlanAlimenticio(plan: MesDieta): void {
     this.registroDieta.plan_dieta = plan;
     this.registroDieta.objetivo = plan.objetivo;
+    this.planSelect = plan;
     this.toastr.info('', 'Plan Seleccionado');
   }
 }

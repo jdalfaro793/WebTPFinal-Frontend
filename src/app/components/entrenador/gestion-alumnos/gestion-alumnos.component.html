@@ -90,10 +90,13 @@
                                     title="" (click)="agregarRutina(alumno)">Cuota Pendiente
                                     </button>   
                                 </td>
-                                <td>
-                                    <button class="btn btn-success" data-bs-toggle="tooltip" data-bs-placement="bottom"
-                                        title="" (click)="registrarPlanAlimentacionAlumno(alumno._id)">Actualizada
-                                    </button>       
+                                <td class="d-flex justify-content-evenly">
+                                    <button class="btn btn-success fs-5 rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Registrar plan de alimentación" (click)="registrarPlanAlimentacionAlumno(alumno._id)">
+                                        <i class="bi bi-check-all m-0"></i>
+                                    </button>
+                                    <button class="btn btn-dark fs-5 rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Ver registros de planes" (click)="verRegistrosPlanAlimentacion(alumno._id)">
+                                        <i class="bi bi-eye"></i>
+                                    </button>     
                                 </td>
                                 <td>
                                     <button *ngIf="alumno.usuario.state == true" class="btn btn-success" data-bs-toggle="tooltip" data-bs-placement="bottom"
