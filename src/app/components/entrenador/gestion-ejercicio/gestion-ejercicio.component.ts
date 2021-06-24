@@ -16,7 +16,7 @@ export class GestionEjercicioComponent implements OnInit {
   @ViewChild('imagen') miImagen: ElementRef;
   ejercicio: Ejercicio;
   listaEjercicios: Array<Ejercicio>;
-  nombre:string;
+  nombreEjercicio:string="";
   foto:string;
   ejercicioBuscado: string;
   fotoSubida: boolean = true;
@@ -43,7 +43,7 @@ export class GestionEjercicioComponent implements OnInit {
   }
 
   verFoto(ejercicio:Ejercicio){
-    this.nombre=ejercicio.nombre;
+    this.nombreEjercicio=ejercicio.nombre.toString();
     this.foto=ejercicio.imagen;
   }
 
