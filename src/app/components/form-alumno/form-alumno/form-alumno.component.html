@@ -37,7 +37,8 @@
                                 <p  class="mx-4" *ngIf="dni.errors.required"> Campo requerido</p>
                             </div>
                         </div>
-                        <div class="row row-cols-1 row-cols-md-2">
+                        
+                        <div *ngIf="accion == 'new'" class="row row-cols-1 row-cols-md-2">
                             <div class=" col form-floating mb-3">
                                 <input required type="date" name="fecha_nacimiento" [(ngModel)]="alumno.fecha_nacimiento" #nacimiento = "ngModel" class="form-control" id="fechaNac" placeholder=""
                                     style="height: 80px">
@@ -53,8 +54,17 @@
                                     <p  class="mx-4" *ngIf="celular.errors.required"> Campo requerido</p>
                                 </div>
                             </div>
-                            
                         </div>
+
+                        
+                        <div *ngIf="accion == 'update'" class="col form-floating mb-3">
+                            <input required type="text" name="celular" [(ngModel)]="alumno.celular" #celular = "ngModel" class="form-control" id="celular" placeholder="">
+                            <label for="celular">Celular</label>
+                            <div *ngIf="celular.invalid && (celular.touched || celular.dirty)" class=" m-0 p-0 alert alert-danger align-items-center">
+                                <p  class="mx-4" *ngIf="celular.errors.required"> Campo requerido</p>
+                            </div>
+                        </div>
+                        
     
                         <div class=" col form-floating mb-3">
                             <input required type="text" name="domicilio" [(ngModel)]="alumno.domicilio" #domicilio = "ngModel" class="form-control" id="domicilio" placeholder="">
@@ -82,7 +92,7 @@
                             </div>
                         </div>
                         <div class="col-12 mb-3 pb-0 border-bottom border-4">
-                            <h3 class="text-center  text-white fw-bold my-3">Seccion Usuario</h3>
+                            <h3 class="text-center  text-white fw-bold my-3">Sección Usuario</h3>
                         </div>
                         <div class="form-floating mb-3">
                             <input required type="text" name="username" [(ngModel)]="usuario.username" (ngModelChange)="validarUserName(username)" #username = "ngModel" class="form-control" id="usuario" placeholder="">
@@ -103,12 +113,16 @@
                         </div>
                     </form>
                     <div class="row p-2">
-                        <div class=" col-12 col-md-6 text-center mb-3 ">
-                            <button [disabled]="formAlumno.invalid" class="w-100 btn btn-dark p-3 fs-6  fw-bold" (click)="guardarAlumno(formAlumno)">GUARDAR
-                                ALUMNO</button>
+                        <div *ngIf="accion == 'new'" class=" col-12 col-md-6 text-center mb-3 ">
+                            <button [disabled]="formAlumno.invalid" class="w-100 btn btn-dark p-3 fs-6  fw-bold" 
+                            (click)="guardarAlumno(formAlumno)">GUARDAR</button>
+                        </div>
+                        <div *ngIf="accion == 'update'" class=" col-12 col-md-6 text-center mb-3 ">
+                            <button [disabled]="formAlumno.invalid" class="w-100 btn btn-dark p-3 fs-6  fw-bold" 
+                            (click)="modificarAlumno(formAlumno)">MODIFICAR</button>
                         </div>
                         <div class=" col-12 col-md-6 text-center mb-3">
-                            <button class=" w-100 btn btn-danger p-3 fs-6 fw-bold">CANCELAR</button>
+                            <button (click)="cancelar()" type="button" class=" w-100 btn btn-danger p-3 fs-6 fw-bold">CANCELAR</button>
                         </div>
                       
                     </div>        

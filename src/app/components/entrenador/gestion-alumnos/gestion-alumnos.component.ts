@@ -110,5 +110,13 @@ activarAlumno(alumno: Alumno){
     this.router.navigate(['registrar-dieta/', id]);
   }
 
+  registrarAlumno(){
+    this.router.navigate(['form-alumno/', 0]);
+  }
+
+  modificarAlumno(alumno : Alumno){
+    this.router.navigate(['form-alumno/', alumno._id]);
+  }
+
 }
 
