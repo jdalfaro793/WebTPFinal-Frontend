@@ -81,27 +81,28 @@
                                         title="" (click)="agregarCuota(alumno)">Pendiente
                                     </button>         
                                 </td>
+                                
                                 <td>
-                                  
-
-                                    <button *ngIf="verificarFecha(alumno)==false" [disabled]="verificarFecha(alumno)==false" class="btn btn-danger" data-bs-toggle="tooltip" data-bs-placement="bottom"
-                                    title="" (click)="agregarRutina(alumno)">Cuota Pendiente
-                                    </button> 
-                                    
-                                    <button *ngIf="verificarFecha(alumno)==true && verificarRutina(alumno)==true" class="btn btn-success" data-bs-toggle="tooltip" data-bs-placement="bottom"
-                                    title="" (click)="agregarRutina(alumno)">Al dia
+                                    <button *ngIf="verificarFecha(alumno)==false" class="btn btn-dark fs-5 rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Cuota pendiente" (click)="mostrarCuotaImpaga()">
+                                        <i class="bi bi-x-lg m-0"></i>
                                     </button>
-                                    
-                                    <button *ngIf="verificarFecha(alumno)==true && verificarRutina(alumno)==false" class="btn btn-danger" data-bs-toggle="tooltip" data-bs-placement="bottom"
-                                    title="" (click)="agregarRutina(alumno)">Actualizar
-                                    </button>
-                                    
-
-
-                                </td>
-                                <td class="d-flex justify-content-evenly">
-                                    <button class="btn btn-success fs-5 rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Registrar plan de alimentación" (click)="registrarPlanAlimentacionAlumno(alumno._id)">
+                                    <button *ngIf="verificarFecha(alumno)==true && verificarRutina(alumno)==true" class="btn btn-success fs-5 rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Actualizada" (click)="agregarRutina(alumno)">
                                         <i class="bi bi-check-all m-0"></i>
+                                    </button>
+                                    <button *ngIf="verificarFecha(alumno)==true && verificarRutina(alumno)==false" class="btn btn-danger fs-5 rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Desactualizada" (click)="agregarRutina(alumno)">
+                                        <i class="bi bi-x-lg m-0"></i>
+                                    </button>
+                                </td>
+
+                                <td class="d-flex justify-content-evenly">
+                                    <button *ngIf="verificarFecha(alumno)==true && verificarPlan(alumno)==true" class="btn btn-success fs-5 rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Actualizado" (click)="mostrarActualizado()">
+                                        <i class="bi bi-check-all m-0"></i>
+                                    </button>
+                                    <button *ngIf="verificarFecha(alumno)==true && verificarPlan(alumno)==false" class="btn btn-danger fs-5 rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Desactualizado" (click)="registrarPlanAlimentacionAlumno(alumno._id)">
+                                        <i class="bi bi-x-lg m-0"></i>
+                                    </button>
+                                    <button *ngIf="verificarFecha(alumno)==false && verificarPlan(alumno)==true" class="btn btn-dark fs-5 rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Cuota pendiente" (click)="mostrarCuotaImpaga()">
+                                        <i class="bi bi-x-lg m-0"></i>
                                     </button>
                                     <button class="btn btn-dark fs-5 rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Ver registros de planes" (click)="verRegistrosPlanAlimentacion(alumno._id)">
                                         <i class="bi bi-eye"></i>

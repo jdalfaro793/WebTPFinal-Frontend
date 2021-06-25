@@ -83,11 +83,10 @@ export class RegistroDietaComponent implements OnInit {
   saveRegistroDieta(): void {
     if (this.validar()) {
       this.registroDieta.fecha = new Date();
-      this.registroDietaService
-        .addRegistro(this.registroDieta)
-        .subscribe((result) => {
+      this.registroDietaService.addRegistro(this.registroDieta).subscribe((result) => {
           console.log(result);
           if (result.status == 1) {
+            this.actualizarMesUltimaPlan();
             this.toastr.success(
               'Se ha guardado el registro',
               'OPERACIÓN EXITOSA'
@@ -99,6 +98,26 @@ export class RegistroDietaComponent implements OnInit {
         });
     }
   }
+
+  actualizarMesUltimaPlan(){
+    this.alumnoService.getAlumno(this.registroDieta.alumno._id).subscribe(
+      (result) => {
+        let vAlumno = new Alumno;
+        Object.assign(vAlumno, result);
+        vAlumno.ultimoPlanMes=vAlumno.ultimoPlanMes + 1;
+        this.alumnoService.updateAlumno(vAlumno).subscribe(
+          (result)=>{
+            console.log(result)
+          },
+          (error)=>{console.log(error);
+          }
+        )
+      },
+      (error) => {
+        console.log(error);
+        alert('error en la peticion');
+      });
+    }
 
   validar(): boolean {
     if (this.registroDieta.plan_dieta != undefined) {

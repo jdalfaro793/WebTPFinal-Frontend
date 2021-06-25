@@ -69,13 +69,27 @@ export class GestionAlumnosComponent implements OnInit {
   }
 
   verificarRutina(alumno: Alumno): boolean{
-
     if(alumno.mes == alumno.ultimaRutinaMes){
       return true;
     }else{
       return false;
     }
+  }
 
+  verificarPlan(alumno: Alumno): boolean{
+    if(alumno.mes == alumno.ultimoPlanMes){
+      return true;
+    }else{
+      return false;
+    }
+  }
+
+  mostrarActualizado(){
+    this.toastr.info("El plan alimenticio del alumno se encuentra actualizado");
+  }
+
+  mostrarCuotaImpaga(){
+    this.toastr.info("No se puede actualizar, cuota impaga");
   }
 
 limpiarFiltro(){
