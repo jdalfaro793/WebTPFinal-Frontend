@@ -1,7 +1,9 @@
+import { Plan } from './../../../models/plan/plan';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MesDieta } from 'src/app/models/mesDieta/mes-dieta';
 import { MesDietaService } from 'src/app/services/dieta/mes-dieta.service';
+import { Dieta } from 'src/app/models/dieta/dieta';
 
 @Component({
   selector: 'app-gestion-plan-alimenticion',
@@ -15,6 +17,8 @@ export class GestionPlanAlimenticionComponent implements OnInit {
   filtersObjetivo: string;
   filtersMes: any;
 
+  planDieta: Dieta;
+
   constructor(
     private mesDietaService: MesDietaService,
     private router: Router
@@ -25,8 +29,8 @@ export class GestionPlanAlimenticionComponent implements OnInit {
   }
 
   init(): void {
-    console.log("iniciar")
     this.planesAlimenticios = new Array<MesDieta>();
+    this.planDieta = new Dieta();
     this.initFiltersPlanAlimenticio();
     this.cargarPlanesAlimenticios();
   }
@@ -47,7 +51,6 @@ export class GestionPlanAlimenticionComponent implements OnInit {
   deletePlan(plan:MesDieta): void {
     this.mesDietaService.deletePlanAlimetacion(plan._id).subscribe(
       (result) => {
-        console.log(result)
         this.cargarPlanesAlimenticios()
       }
     )
@@ -55,15 +58,12 @@ export class GestionPlanAlimenticionComponent implements OnInit {
 
   cargarPlanesAlimenticios(): void {
     this.mesDietaService.get(this.filtersObjetivo, this.filtersMes).subscribe((result) => {
-      console.log(result)
       this.planesAlimenticios = new Array<MesDieta>();
       result.forEach((element) => {
         let p = new MesDieta();
         Object.assign(p, element);
-        console.log(p)
         this.planesAlimenticios.push(p);
       });
-      console.log(this.planesAlimenticios)
     });
   }
 
@@ -81,4 +81,7 @@ export class GestionPlanAlimenticionComponent implements OnInit {
     this.cargarPlanesAlimenticios();
   }
 
+  selectPlanDieta(plan: Dieta) {
+    this.planDieta = plan;
+  }
 }

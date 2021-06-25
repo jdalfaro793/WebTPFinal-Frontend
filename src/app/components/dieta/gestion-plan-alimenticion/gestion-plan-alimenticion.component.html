@@ -10,18 +10,7 @@
         <div class="row p-2 p-sm-4 row-cols-1 row-cols-2 bg-light">
             <form class="col-12 p-0">
                 <div class="row mb-3 m-0 ">
-                    <!--
-                    <label for="objetivo" class="col-sm-1 col-form-label">Objetivo</label>
-                    <div class="col-sm-3 d-flex align-items-center">
-                        <select class="form-select form-select-sm" name="objetivo" id="objetivo">
-                            <option selected disabled>Eliga una opción</option>
-                            <option value="1">Definición</option>
-                            <option value="2">Bajar de peso</option>
-                            <option value="3">Ganar músculo</option>
-                        </select>
-                    </div>
-                    -->
-                    <div class="col-sm-4">
+                    <div class="col-sm-5">
                         <input type="text" name="nombreAlu" class="form-control form-select-sm" placeholder="Buscar por objetivo..." [(ngModel)]="filtersObjetivo">
                     </div>
                     <div class="col-sm-1">
@@ -75,56 +64,96 @@
                     No se encontraron coincidencias
                 </div>
             </div>
-            
+
             <div class="col-12 p-0" *ngIf="planesAlimenticios.length > 0">
                 <div class="table-responsive">
-                    <table class="table align-middle m-0 bg-white">
-                        <thead class="">
-                            <tr class="text-center ">
-                                <th scope="col" rowspan="1">Acciones</th>
-                                <th scope="col" rowspan="1">Objetivo</th>
-                                <th scope="col" rowspan="1">Mes</th>
-                                <th scope="col" rowspan="1">Día</th>
-                                <th scope="col" rowspan="1">Desayuno</th>
-                                <th scope="col" rowspan="1">Almuerzo</th>
-                                <th scope="col" rowspan="1">Merienda</th>
-                                <th scope="col" rowspan="1">Cena</th>
+                    <table class="table table-striped align-middle" [mfData]="planesAlimenticios" #mf="mfDataTable" [mfRowsOnPage]="10">
+                        <thead>
+                            <tr class="text-center">
+                                <th style="width: 40%">
+                                    <mfDefaultSorter by="name">Objetivo</mfDefaultSorter>
+                                </th>
+                                <th style="width: 15%">
+                                    <mfDefaultSorter by="email">Mes</mfDefaultSorter>
+                                </th>
+                                <th style="width: 15%">
+                                    <mfDefaultSorter by="age">Dietas</mfDefaultSorter>
+                                </th>
+                                <th style="width: 15%">
+                                    <mfDefaultSorter by="city">Acciones</mfDefaultSorter>
+                                </th>
                             </tr>
                         </thead>
-                        <tbody class="text-center border-bottom border-dark" *ngFor="let p of planesAlimenticios">
-                            <tr class="">
-                                <td scope="col" rowspan="8">
+                        <tbody>
+                            <tr *ngFor="let item of mf.data" class="text-center">
+                                <td>{{item.objetivo}}</td>
+                                <td>{{item.mes}}</td>
+                                <td>
+                                    <button class="btn btn-outline-dark" title="Mostrar más info" type="button" data-bs-toggle="modal" (click)="selectPlanDieta(item)" data-bs-target="#mostrarDieta">
+                                        <i class="bi bi-eye"></i>
+                                </button>
+
+                                <!-- Modal -->
+                                <div class="modal fade" id="mostrarDieta" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-title py-3">
+                                                <h2 class="text-center fs-3 fw-light">Mes: <span class="fw-bold">{{planDieta.mes}}</span></h2>
+                                            </div>
+                                            <div class="modal-body table-responsive">
+                                                <table class="table align-middle table-hover m-0 bg-white text-center">
+                                                    <thead class="table-dark">
+                                                        <tr>
+                                                            <th scope="col" rowspan="1">Día</th>
+                                                            <th scope="col" rowspan="1">Desayuno</th>
+                                                            <th scope="col" rowspan="1">Almuerzo</th>
+                                                            <th scope="col" rowspan="1">Merienda</th>
+                                                            <th scope="col" rowspan="1">Cena</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr *ngFor="let d of planDieta.planSemanal">
+                                                            <td> {{d.dia}} </td>
+                                                            <td> {{d.desayuno}} </td>
+                                                            <td> {{d.almuerzo}} </td>
+                                                            <td> {{d.merienda}} </td>
+                                                            <td> {{d.cena}} </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                </td>
+                                <td>
                                     <div class="d-flex justify-content-evenly">
-                                        <button class="btn btn-warning" (click)="editPlan(p)">
+                                        <button class="btn btn-warning" (click)="editPlan(item)">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="15" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
                                                 <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
                                                 <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
                                             </svg>
                                         </button>
-                                        <button class="btn btn-danger" (click)="deletePlan(p)">
+                                        <button class="btn btn-danger" (click)="deletePlan(item)">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="15" fill="currentColor" class="bi bi-x-square" viewBox="0 0 16 16">
                                                 <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
                                                 <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
                                               </svg>
                                         </button>
-                                    </div> 
+                                    </div>
                                 </td>
-                                <td scope="col" rowspan="8"> {{p.objetivo}} </td>
-                                <td scope="col" rowspan="8"> {{p.mes}} </td>
-                            </tr>
-                            <tr *ngFor="let d of p.planSemanal">
-                                <td scope="col" > {{d.dia}} </td>
-                                <td scope="col" > {{d.desayuno}} </td>
-                                <td scope="col" > {{d.almuerzo}} </td>
-                                <td scope="col" > {{d.merienda}} </td>
-                                <td scope="col" > {{d.cena}} </td>
                             </tr>
                         </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="4">
+                                    <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
+                                </td>
+                            </tr>
+                        </tfoot>
                     </table>
                 </div>
             </div>
-
-        
         </div>
     </div>
 </div>

@@ -56,7 +56,7 @@ export class FormAlumnoComponent implements OnInit {
 
   cargarPlanes():void{
     this.planes = new Array<Plan>();
-    this.planService.getPlans().subscribe(
+    this.planService.get('', '').subscribe(
       result =>{
         result.forEach(element => {
           let p = new Plan();

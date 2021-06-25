@@ -4,7 +4,7 @@
         <div class="row text-uppercase bg-dark py-3 py-sm-5 text-center align-items-center">
             <div class="col-12">
                 <p class=" fs-2 fw-bold text-white m-0">
-                    Registros de <span class="text-primary">{{alumno.apellido}}, {{alumno.nombre}}</span>
+                    Mis dietas
                 </p>
             </div>
         </div>
@@ -15,14 +15,49 @@
             </div>
         </div>
         
+        <div class="row p-2 p-sm-4 row-cols-1 row-cols-2 bg-light">
+
+            <div class="col-12 mb-3">
+                <p class=" fs-4 fw-bold text-center text-decoration-underline">Plan de alimentación vigente</p>
+            </div>
+
+            <div class="col-12 p-0 table-responsive">
+                    <table class="table align-middle table-hover m-0 bg-white text-center">
+                        <thead class="table-dark">
+                            <tr>
+                                <th scope="col" rowspan="1">Día</th>
+                                <th scope="col" rowspan="1">Desayuno</th>
+                                <th scope="col" rowspan="1">Almuerzo</th>
+                                <th scope="col" rowspan="1">Merienda</th>
+                                <th scope="col" rowspan="1">Cena</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let p of registroVigente.plan_dieta.planSemanal">
+                                <td> {{p.dia}} </td>
+                                <td> {{p.desayuno}} </td>
+                                <td> {{p.almuerzo}} </td>
+                                <td> {{p.merienda}} </td>
+                                <td> {{p.cena}} </td>
+                            </tr>
+                        </tbody>
+                    </table>
+            </div>
+        </div>
 
         <div class="row p-2 p-sm-4 bg-light">
+            <!--
             <div class="col-12 p-0" *ngIf="registros.length == 0">
                 <div class="py-5 alert alert-danger fs-2 fw-bold fst-italic text-uppercase text-center" role="alert">
                     El alumno no tiene registros para visualizar
                 </div>
             </div>
-            <div class="col-12 p-0" *ngIf="registros.length > 0">
+            -->
+            <div class="col-12 mb-3">
+                <p class=" fs-4 fw-bold text-center text-decoration-underline">Planes anteriores</p>
+            </div>
+
+            <div class="col-12 p-0">
                 <div class="table-responsive">
 
                     <table class="table align-middle table-hover m-0 bg-white text-center">
@@ -43,7 +78,7 @@
                                 <td scope="col" rowspan="1"> {{r.objetivo}} </td>
                                 <td scope="col" rowspan="1"> <p class="m-0"><span>{{r.peso}}</span> Kgrs.</p> </td>
                                 <td scope="col" rowspan="1">
-                                    <button class="btn btn-outline-dark" title="Mostrar más info" type="button" data-bs-toggle="modal"
+                                    <button class="btn btn-outline-dark" title="Mostrar más info" type="button" data-bs-toggle="modal" (click)="selectPlanDieta(r.plan_dieta)"
                                     data-bs-target="#mostrarDieta">
                                             <i class="bi bi-eye"></i>
                                     </button>
@@ -53,7 +88,7 @@
                                         <div class="modal-dialog">
                                             <div class="modal-content">
                                                 <div class="modal-title py-3">
-                                                    <h2 class="text-center fs-3 fw-light">Mes: <span class="fw-bold">{{r.plan_dieta.mes}}</span></h2>
+                                                    <h2 class="text-center fs-3 fw-light">Mes: <span class="fw-bold">{{planDieta.mes}}</span></h2>
                                                 </div>
                                                 <div class="modal-body table-responsive">
                                                     <table class="table align-middle table-hover m-0 bg-white text-center">
@@ -67,7 +102,7 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr *ngFor="let p of r.plan_dieta.planSemanal">
+                                                            <tr *ngFor="let p of planDieta.planSemanal">
                                                                 <td> {{p.dia}} </td>
                                                                 <td> {{p.desayuno}} </td>
                                                                 <td> {{p.almuerzo}} </td>
@@ -100,7 +135,7 @@
                                 </td>
                             </tr>
                         </tbody>
-                      </table>
+                    </table>
                 </div>
             </div>
 

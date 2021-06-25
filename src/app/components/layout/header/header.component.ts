@@ -58,4 +58,8 @@ export class HeaderComponent implements OnInit {
   misRutinas(){
     this.router.navigate(["mis-rutinas/"+this.idAlumno])
   }
+
+  misRegistros(){
+    this.router.navigate(["misDietas/"+this.idAlumno])
+  }
 }

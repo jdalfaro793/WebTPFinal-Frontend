@@ -41,7 +41,6 @@ export class RegistroDietaComponent implements OnInit {
     this.activatedRoute.params.subscribe((params) => {
       this.cargarAlumno(params.id);
       this.cargarPlanesAlimenticios();
-      console.log(this.planesAlimenticios);
     });
   }
 
@@ -50,7 +49,6 @@ export class RegistroDietaComponent implements OnInit {
     this.registroDieta = new RegistroDieta();
     this.planesAlimenticios = new Array<MesDieta>();
     this.initFiltersPlanAlimenticio();
-    console.log(this.registroDieta.plan_dieta);
   }
 
   initFiltersPlanAlimenticio(): void {
@@ -62,21 +60,15 @@ export class RegistroDietaComponent implements OnInit {
     this.alumnoService.getAlumno(id).subscribe((result) => {
       this.alumno = result;
       this.registroDieta.alumno = this.alumno;
-      console.log(this.alumno);
     });
   }
 
   onFileChanges(files) {
-    //console.log("File has changed:", files);
     this.registroDieta.foto = files[0].base64;
     this.foto = files[0].base64;
-    //console.log(this.noticia.img)
-    //this.file = files[0]
-    console.log('Change After: ', this.registroDieta);
   }
 
   verFoto() {
-    //this.nombre=ejercicio.nombre;
     this.foto = this.registroDieta.foto;
   }
 
@@ -150,10 +142,8 @@ export class RegistroDietaComponent implements OnInit {
         result.forEach((element) => {
           let p = new MesDieta();
           Object.assign(p, element);
-          console.log(p);
           this.planesAlimenticios.push(p);
         });
-        console.log(this.planesAlimenticios);
       });
   }
 

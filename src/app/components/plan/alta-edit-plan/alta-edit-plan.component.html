@@ -1,0 +1,83 @@
+<!-- Contenedor principal -->
+<div class="row my-5 min-vh-100 m-0 ">
+    <div class="col-12 col-sm-10 mx-auto bg-body">
+        <div class="row text-uppercase bg-dark py-3 py-sm-5 text-center align-items-center">
+            <div class="col-12">
+                <p class=" fs-2 fw-bold text-white m-0">Plan</p>
+            </div>
+        </div>
+
+        <div class="row p-2 p-sm-4 row-cols-1 row-cols-2 bg-light">
+            <div class="col-6 rounded cont-img d-none d-sm-block">
+            </div>
+            <div class="col-12 col-sm-6 ps-sm-3">
+                <form #planForm="ngForm">
+                    <div class="form-floating mb-3">
+                        <textarea class="form-control" id="nombre" name="nombre" style="height: 100px" [(ngModel)]="plan.nombre" required="true" #nombrePlan="ngModel"></textarea>
+                        <label for="nombre">Nombre</label>
+                    </div>
+
+                    <div *ngIf="nombrePlan.invalid && nombrePlan.touched" class="alert alert-danger text-center p-2 fst-italic text-uppercase">
+                        <div *ngIf="nombrePlan.errors.required">
+                            Debe escribir el nombre del plan
+                        </div>
+                    </div>
+
+                    <div class="form-floating mb-3 mt-5">
+                        <textarea class="form-control" id="descripcion" name="descripcion" style="height: 100px" [(ngModel)]="plan.descripcion" required="true" #descripcionPlan="ngModel"></textarea>
+                        <label for="descripcion">Descripción</label>
+                    </div>
+
+                    <div *ngIf="descripcionPlan.invalid && descripcionPlan.touched" class="alert alert-danger text-center p-2 fst-italic text-uppercase">
+                        <div *ngIf="descripcionPlan.errors.required">
+                            Debe escribir una descripción para el plan
+                        </div>
+                    </div>
+
+                    <div class="row mb-4 mt-5 m-0 ">
+                        <label for="precio" class="col-sm-4 col-form-label">Precio</label>
+                        <div class="col-sm-8 p-0">
+                            <input type="number" class="form-control" id="precio" name="precio" required #precioPlan="ngModel" [(ngModel)]="plan.precio">
+                        </div>
+                    </div>
+
+                    <div *ngIf="precioPlan.invalid && precioPlan.touched" class="alert alert-danger text-center p-2 fst-italic text-uppercase">
+                        <div *ngIf="precioPlan.errors.required">
+                            Debe ingresar el costo del plan
+                        </div>
+                    </div>
+
+                    <div class="row mb-3 mt-5 m-0 ">
+                        <label for="mes" class="col-sm-4 col-form-label">Dias por semana</label>
+                        <div class="col-sm-8 d-flex align-items-center p-0">
+                            <select class="form-select" name="mes" id="mes" [(ngModel)]="plan.dias" required="true" #diasPlan="ngModel">
+                                <option selected disabled>Eliga una opción</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div *ngIf="diasPlan.invalid && diasPlan.touched" class="alert alert-danger text-center p-2 fst-italic text-uppercase">
+                        <div *ngIf="diasPlan.errors.required">
+                            Debe seleccionar los días
+                        </div>
+                    </div>
+                </form>
+                
+            </div>
+        </div>
+        <div class="row p-2 p-sm-4 mt-5 bg-light d-flex justify-content-evenly">
+            <div class="col-4">
+                <button class="btn btn-danger btn-lg w-100" (click)="cancel()">Cancelar</button>
+            </div>
+            <div class="col-4">
+                <button class="btn btn-success btn-lg w-100" (click)="savePlan()"  [disabled]="planForm.invalid">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>

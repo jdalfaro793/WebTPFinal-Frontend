@@ -1,0 +1,98 @@
+<!-- Contenedor principal -->
+<div class="row my-5 min-vh-100 m-0 rounded">
+    <div class="col-12 col-sm-10 mx-auto bg-body">
+        <div class="row text-uppercase bg-dark py-3 py-sm-5 text-center align-items-center">
+            <div class="col-12">
+                <p class=" fs-2 fw-bold text-white m-0">Planes</p>
+            </div>
+        </div>
+
+        <div class="row p-2 p-sm-4 row-cols-1 row-cols-2 bg-light">
+            <form class="col-12 p-0">
+                <div class="row mb-3 m-0 ">
+                    <div class="col-sm-7">
+                        <input type="text" name="nombre" class="form-control form-select-sm" placeholder="Buscar por nombre de plan..." [(ngModel)]="nombreFilter">
+                    </div>
+                    <div class="col-sm-1">
+                        <button class="btn btn-primary w-100 btn-sm" (click)="searchPlanes()">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="12" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="col-sm-2">
+                        <button class="btn btn-warning w-100 btn-sm" (click)="viewAll()">
+                            Mostrar todos
+                        </button>
+                    </div>
+                    <div class="col-sm-2">
+                        <button class="btn btn-primary w-100 btn-sm" (click)="addPlan()">
+                            Nuevo&nbsp;
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
+                                <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                              </svg>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        
+        <div class="row p-2 p-sm-4 bg-light">
+            <div class="col-12 p-0" *ngIf="planes.length == 0">
+                <div class="py-5 alert alert-danger fs-2 fw-bold fst-italic text-uppercase text-center" role="alert">
+                    No se encontraron coincidencias
+                </div>
+            </div>
+
+            <div class="col-12 p-0" *ngIf="planes.length > 0">
+                <div class="table-responsive">
+                    <table class="table table-striped align-middle" [mfData]="planes" #mf="mfDataTable" [mfRowsOnPage]="5">
+                        <thead>
+                            <tr class="text-center">
+                                <th style="width: 25%">
+                                    <mfDefaultSorter by="name">Nombre</mfDefaultSorter>
+                                </th>
+                                <th style="width: 30%">
+                                    <mfDefaultSorter by="email">Descripción</mfDefaultSorter>
+                                </th>
+                                <th style="width: 15%">
+                                    <mfDefaultSorter by="age">Precio</mfDefaultSorter>
+                                </th>
+                                <th style="width: 20%">
+                                    <mfDefaultSorter by="city">Días</mfDefaultSorter>
+                                </th>
+                                <th style="width: 10%">
+                                    <mfDefaultSorter by="city">Acciones</mfDefaultSorter>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of mf.data" class="text-center">
+                                <td>{{item.nombre}}</td>
+                                <td>{{item.descripcion}}</td>
+                                <td>{{item.precio | currency}}</td>
+                                <td>{{item.dias}}</td>
+                                <td>
+                                    <button class="btn btn-warning" (click)="editPlan(item._id)">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="15" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                                            <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                                            <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+                                        </svg>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="4">
+                                    <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { GestionCuotaComponent } from './gestion-cuota.component';
+import { AltaEditPlanComponent } from './alta-edit-plan.component';
 
-describe('GestionCuotaComponent', () => {
-  let component: GestionCuotaComponent;
-  let fixture: ComponentFixture<GestionCuotaComponent>;
+describe('AltaEditPlanComponent', () => {
+  let component: AltaEditPlanComponent;
+  let fixture: ComponentFixture<AltaEditPlanComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ GestionCuotaComponent ]
+      declarations: [ AltaEditPlanComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(GestionCuotaComponent);
+    fixture = TestBed.createComponent(AltaEditPlanComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

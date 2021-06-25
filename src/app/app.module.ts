@@ -9,7 +9,6 @@ import { FooterComponent } from './components/layout/footer/footer.component';
 import { HomeComponent } from './components/home/home.component';
 import { NgxDataTableModule} from "angular-9-datatable";
 import { LoginComponent } from './components/login/login.component';
-import { GestionCuotaComponent } from './components/cuota/gestion-cuota/gestion-cuota.component';
 import { FormsModule } from '@angular/forms';
 import { FormAlumnoComponent } from './components/form-alumno/form-alumno/form-alumno.component';
 import { GestionAlumnosComponent } from './components/entrenador/gestion-alumnos/gestion-alumnos.component';
@@ -41,6 +40,9 @@ import { RegistroDietaComponent } from './components/dieta/registro-dieta/regist
 import { ViewRegistrosAlumnoComponent } from './components/dieta/view-registros-alumno/view-registros-alumno.component';
 import { SoloNumeros } from './directivas/validacion.directive';
 import { SoloLetras } from './directivas/validacion.directive';
+import { ShowRegistrosComponent } from './components/dieta/show-registros/show-registros.component';
+import { GestionPlanesComponent } from './components/plan/gestion-planes/gestion-planes.component';
+import { AltaEditPlanComponent } from './components/plan/alta-edit-plan/alta-edit-plan.component';
 
 
 @NgModule({
@@ -50,7 +52,6 @@ import { SoloLetras } from './directivas/validacion.directive';
     FooterComponent,
     HomeComponent,
     LoginComponent,
-    GestionCuotaComponent,
     FormAlumnoComponent,
     GestionAlumnosComponent,
     MisCuotasComponent,
@@ -70,7 +71,10 @@ import { SoloLetras } from './directivas/validacion.directive';
     RegistroDietaComponent,
     ViewRegistrosAlumnoComponent,
     SoloNumeros,
-    SoloLetras
+    SoloLetras,
+    ShowRegistrosComponent,
+    GestionPlanesComponent,
+    AltaEditPlanComponent
   ],
   imports: [
     BrowserModule,

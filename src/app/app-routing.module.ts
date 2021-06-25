@@ -1,7 +1,8 @@
+import { AltaEditPlanComponent } from './components/plan/alta-edit-plan/alta-edit-plan.component';
+import { ShowRegistrosComponent } from './components/dieta/show-registros/show-registros.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
-import { GestionCuotaComponent } from './components/cuota/gestion-cuota/gestion-cuota.component';
 import { FormAlumnoComponent } from './components/form-alumno/form-alumno/form-alumno.component';
 import { GestionAlumnosComponent } from './components/entrenador/gestion-alumnos/gestion-alumnos.component';
 import { MisCuotasComponent } from './components/cuota/mis-cuotas/mis-cuotas.component';
@@ -19,12 +20,12 @@ import { GestionarRutinaComponent } from './components/entrenador/gestionar-ruti
 import { PublicacionFacebookComponent } from './components/publicacion-facebook/publicacion-facebook.component';
 import { RegistroDietaComponent } from './components/dieta/registro-dieta/registro-dieta.component';
 import { ViewRegistrosAlumnoComponent } from './components/dieta/view-registros-alumno/view-registros-alumno.component';
+import { GestionPlanesComponent } from './components/plan/gestion-planes/gestion-planes.component';
 
 const routes: Routes = [
   { path: '', redirectTo:'home', pathMatch:'full'},
   { path: 'home', component: HomeComponent},
   { path: 'login',component: LoginComponent },
-  { path: 'gestion-cuota', component: GestionCuotaComponent},
   { path: 'gestion-rutina/:id', component: GestionRutinaComponent},
 
 
@@ -49,7 +50,10 @@ const routes: Routes = [
   { path : 'registrar-dieta/:id', component: RegistroDietaComponent},
   { path: 'form-plan-alimentacion/:id', component: FormPlanAlimentacionComponent},
   { path : 'registrar-dieta/:id', component: RegistroDietaComponent},
-  { path: 'verRegistrosDieta/:id' , component: ViewRegistrosAlumnoComponent}
+  { path: 'verRegistrosDieta/:id' , component: ViewRegistrosAlumnoComponent},
+  { path: 'misDietas/:id', component: ShowRegistrosComponent },
+  { path: 'gestion-planes', component: GestionPlanesComponent},
+  { path: 'gestion-planes/plan/:id', component: AltaEditPlanComponent}
 ];
 
 @NgModule({

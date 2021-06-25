@@ -1,7 +1,7 @@
+import { Dieta } from './../../../models/dieta/dieta';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Alumno } from 'src/app/models/alumno/alumno';
-import { Dieta } from 'src/app/models/dieta/dieta';
 import { MesDieta } from 'src/app/models/mesDieta/mes-dieta';
 import { RegistroDieta } from 'src/app/models/registroDieta/registro-dieta';
 import { AlumnoService } from 'src/app/services/alumno/alumno.service';
@@ -9,19 +9,23 @@ import { MesDietaService } from 'src/app/services/dieta/mes-dieta.service';
 import { RegistroDietaService } from 'src/app/services/dieta/registro-dieta.service';
 
 @Component({
-  selector: 'app-view-registros-alumno',
-  templateUrl: './view-registros-alumno.component.html',
-  styleUrls: ['./view-registros-alumno.component.css']
+  selector: 'app-show-registros',
+  templateUrl: './show-registros.component.html',
+  styleUrls: ['./show-registros.component.css']
 })
-export class ViewRegistrosAlumnoComponent implements OnInit {
+export class ShowRegistrosComponent implements OnInit {
 
   registros: Array<RegistroDieta>;
 
+  registroVigente: RegistroDieta;
+
+  _idUser: string;
+
   _idALumno: string;
 
-  alumno: Alumno;
-
   planDieta: Dieta;
+
+  //alumno: Alumno;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -33,20 +37,30 @@ export class ViewRegistrosAlumnoComponent implements OnInit {
 
   ngOnInit(): void {
     this.init();
-    this.cargarRegistrosAlumno();
-    this.cargarAlumno(this._idALumno);
   }
 
   init(): void {
     this.registros = new Array<RegistroDieta>();
-    this.alumno = new Alumno();
+    this.registroVigente = new RegistroDieta();
+    this.registroVigente.plan_dieta = new MesDieta();
+    this.planDieta = new Dieta();
     this.assingID();
+    this.getAlumno();
   }
 
   assingID(): void {
     this.activatedRoute.params.subscribe(
       (params) => {
-        this._idALumno = params.id;
+        this._idUser = params.id;
+      }
+    )
+  }
+
+  getAlumno(): void {
+    this.alumnoService.getByIdUsuario(this._idUser).subscribe(
+      (result) => {
+        this._idALumno = result._id;
+        this.cargarRegistrosAlumno();
       }
     )
   }
@@ -58,18 +72,12 @@ export class ViewRegistrosAlumnoComponent implements OnInit {
           (element) => {
             let reg = new RegistroDieta();
             Object.assign(reg, element);
-            reg.plan_dieta = this.getPlanALimentacion(element.plan_dieta)
             this.registros.push(reg);
           }
-        )
+        );
+        this.getUltimoRegistro(this.registros);
       }
     )
-  }
-
-  cargarAlumno(id: string): void {
-    this.alumnoService.getAlumno(id).subscribe((result) => {
-      this.alumno = result;
-    });
   }
 
   getPlanALimentacion(id: string): MesDieta {
@@ -80,6 +88,22 @@ export class ViewRegistrosAlumnoComponent implements OnInit {
       }
     )
     return plan;
+  }
+
+  getUltimoRegistro(registros: Array<RegistroDieta>) {
+    if(registros.length == 0)
+      return null;
+    else {
+      var reg = registros[0];
+      registros.forEach(
+        (element) => {
+          if(element.fecha.valueOf() > reg.fecha.valueOf()){
+            reg = element;
+          }
+        }
+      );
+      this.registroVigente = reg;
+    }
   }
 
   selectPlanDieta(plan: Dieta) {
