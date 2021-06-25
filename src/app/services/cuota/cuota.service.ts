@@ -43,4 +43,12 @@ export class CuotaService {
     let body = JSON.stringify(cuota);
     return this._http.post(this.URL,body,options);
   }
+
+  getAll():Observable<any>{
+    let options = {
+      headers:new HttpHeaders({}),
+      parms: new HttpParams({})
+    }
+    return this._http.get(this.URL+"/allCuotas",options);
+  }
 }

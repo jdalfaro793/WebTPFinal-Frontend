@@ -44,7 +44,7 @@ import { SoloLetras } from './directivas/validacion.directive';
 import { ShowRegistrosComponent } from './components/dieta/show-registros/show-registros.component';
 import { GestionPlanesComponent } from './components/plan/gestion-planes/gestion-planes.component';
 import { AltaEditPlanComponent } from './components/plan/alta-edit-plan/alta-edit-plan.component';
-import { EstadisticasComponent } from './components/estadisticas/estadisticas/estadisticas.component';
+import { EstadisticasComponent } from './components/entrenador/estadisticas/estadisticas/estadisticas.component';
 
 
 

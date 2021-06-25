@@ -21,7 +21,7 @@ import { PublicacionFacebookComponent } from './components/publicacion-facebook/
 import { RegistroDietaComponent } from './components/dieta/registro-dieta/registro-dieta.component';
 import { ViewRegistrosAlumnoComponent } from './components/dieta/view-registros-alumno/view-registros-alumno.component';
 import { GestionPlanesComponent } from './components/plan/gestion-planes/gestion-planes.component';
-import { EstadisticasComponent } from './components/estadisticas/estadisticas/estadisticas.component';
+import { EstadisticasComponent } from './components/entrenador/estadisticas/estadisticas/estadisticas.component';
 
 const routes: Routes = [
   { path: '', redirectTo:'home', pathMatch:'full'},
