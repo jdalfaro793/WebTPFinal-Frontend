@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { FacebookService, InitParams, LoginResponse } from 'ngx-fb';
 import { ApiMethod } from 'ngx-fb/dist/esm/providers/facebook';
 import { ToastrService } from 'ngx-toastr';
 import { PublicacionFacebook } from 'src/app/models/publicacion-facebook/publicacion-facebook';
 import { PublicacionFacebookService } from 'src/app/services/publicacion-facebook/publicacion-facebook.service';
+import { ConfirmDialogComponent } from 'src/app/utils/confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-publicacion-facebook',
@@ -20,7 +22,8 @@ export class PublicacionFacebookComponent implements OnInit {
     private router: Router,
     private toastr: ToastrService,
     private fb: FacebookService,
-    private publicacionFacebookService: PublicacionFacebookService
+    private publicacionFacebookService: PublicacionFacebookService,
+    private dialog: MatDialog
   ) {
     this.iniciarFb();
 
@@ -156,5 +159,27 @@ export class PublicacionFacebookComponent implements OnInit {
     this.publicacionFacebook = new PublicacionFacebook();
     this.toastr.info('Operacion Cancelada');
     this.router.navigate(['home']);
+  }
+
+  confirmDelete(publicacion: PublicacionFacebook): void {
+    //dialog.open - recibe el componente que va a lanzar la ventana emergente, y un objeto que incluye un mensaje y el objeto a guardar
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      data: "¿Seguro que desea eliminar?",
+    });
+    dialogRef.afterClosed().subscribe((res) => {
+      if (res) 
+        this.borrarNoticia(publicacion);
+    });
+  }
+
+  confirmChangeStatus(publicacion: PublicacionFacebook): void {
+    //dialog.open - recibe el componente que va a lanzar la ventana emergente, y un objeto que incluye un mensaje y el objeto a guardar
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      data: "¿Cambiar el estado de la publicación?",
+    });
+    dialogRef.afterClosed().subscribe((res) => {
+      if (res) 
+        this.cambiarEstadoNoticia(publicacion);
+    });
   }
 }

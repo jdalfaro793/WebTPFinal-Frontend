@@ -1,9 +1,12 @@
+import { ToastrService } from 'ngx-toastr';
 import { Plan } from './../../../models/plan/plan';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MesDieta } from 'src/app/models/mesDieta/mes-dieta';
 import { MesDietaService } from 'src/app/services/dieta/mes-dieta.service';
 import { Dieta } from 'src/app/models/dieta/dieta';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmDialogComponent } from 'src/app/utils/confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-gestion-plan-alimenticion',
@@ -21,7 +24,9 @@ export class GestionPlanAlimenticionComponent implements OnInit {
 
   constructor(
     private mesDietaService: MesDietaService,
-    private router: Router
+    private router: Router,
+    private dialog: MatDialog,
+    private toastr: ToastrService
   ) { }
 
   ngOnInit(): void {
@@ -51,6 +56,11 @@ export class GestionPlanAlimenticionComponent implements OnInit {
   deletePlan(plan:MesDieta): void {
     this.mesDietaService.deletePlanAlimetacion(plan._id).subscribe(
       (result) => {
+        if(result.status == '1'){
+          this.toastr.success("El plan alimenticio ha sido eliminado", "OPERACIÓN EXITOSA")
+        } else  {
+          this.toastr.error("Error inesperado", "ERROR")
+        }
         this.cargarPlanesAlimenticios()
       }
     )
@@ -83,5 +93,27 @@ export class GestionPlanAlimenticionComponent implements OnInit {
 
   selectPlanDieta(plan: Dieta) {
     this.planDieta = plan;
+  }
+
+  confirmDelete(plan: MesDieta): void {
+    //dialog.open - recibe el componente que va a lanzar la ventana emergente, y un objeto que incluye un mensaje y el objeto a guardar
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      data: "¿Seguro que desea eliminar?",
+    });
+    dialogRef.afterClosed().subscribe((res) => {
+      if (res) 
+        this.deletePlan(plan);
+    });
+  }
+
+  confirmEdit(plan: MesDieta): void {
+    //dialog.open - recibe el componente que va a lanzar la ventana emergente, y un objeto que incluye un mensaje y el objeto a guardar
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      data: "¿Modificar plan?",
+    });
+    dialogRef.afterClosed().subscribe((res) => {
+      if (res) 
+        this.editPlan(plan);
+    });
   }
 }
