@@ -57,6 +57,6 @@ getAsistencias():Observable<any>{
       })
     }
   
-    return this._http.get(this.url+"/all",httpOption);
+    return this._http.get(this.url+"all",httpOption);
   }
 }
