@@ -1,139 +1,144 @@
+<div class="container-fluid m-0">
+    <div class="row bg-one min-vh-100 align-items-center p-0 m-0">
+        <div class="w-100 h-100 m-0 p-0">
+            <!--<div *ngIf="listaPublicaciones.length != 0"  id="caruselNoticias" class="mb-3 carousel carousel-fade slide"  data-ride="carousel">
+                <div class="carousel-inner">
+                    <h4 class="text-white-50">{{publicacion.fecha | date:"MM/dd/yy" }}</h4>
+                    <h4 class="text-white fw-bolder">NOVEDADES:</h4>
+                    <div class="carousel-item active text-center text-white" data-bs-interval="10000">
+                    
+                        <h3 class="fw-bolder titulo" style="color: rgb(255, 174, 0)">{{publicacion.titulo}}</h3>
+                        <h3 class="fs-1">{{publicacion.noticia}}</h3>
+                    </div>
+                </div>
+            <button class="carousel-control-prev" type="button" (click)="previo()" data-bs-target="#caruselNoticias" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" (click)="siguiente()" data-bs-target="#caruselNoticias" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+            </div>*/-->
 
 
-<div class="row bg-one min-vh-100 align-items-center">
-    <div class="w-100 h-100">
-        <div *ngIf="listaPublicaciones.length != 0"  id="caruselNoticias" class="mb-3 carousel carousel-fade slide"  data-ride="carousel">
+            <div class="col-10 col-sm-6 col-md-4 text-white mx-5 ">
+                <p class="fw-bolder titulo">SOMOS PARTE DE LA <span style="color: rgb(255, 174, 0)">SOLUCION</span> </p>
+                <h3 class="fs-1">El ejercicio es un aliado para la salud fisica y mental</h3>
+            </div>
+        </div>
+    </div>
+    <div class="row bg-noticia">
+        <div *ngIf="listaPublicaciones.length != 0" id="caruselNoticias" class="mb-3 carousel carousel-fade slide"
+            data-ride="carousel">
             <div class="carousel-inner">
                 <h4 class="text-white-50">{{publicacion.fecha | date:"MM/dd/yy" }}</h4>
-                <h4 class="text-white fw-bolder">NOVEDADES:</h4>
+                <h4 class="text-white fw-bolder">NOVEDADES:  </h4>   
                 <div class="carousel-item active text-center text-white" data-bs-interval="10000">
-                   
-                    <h3 class="fw-bolder titulo" style="color: rgb(255, 174, 0)">{{publicacion.titulo}}</h3>
+                    <h3 class="fw-bolder titulo" >
+                         {{publicacion.titulo}}</h3>
                     <h3 class="fs-1">{{publicacion.noticia}}</h3>
                 </div>
             </div>
-        <button class="carousel-control-prev" type="button" (click)="previo()" data-bs-target="#caruselNoticias" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" (click)="siguiente()" data-bs-target="#caruselNoticias" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
-        </div>
-
-
-        <div class="col-10 col-sm-6 col-md-4 text-white mx-5 ">
-            <p class="fw-bolder titulo">SOMOS PARTE DE LA <span style="color: rgb(255, 174, 0)">SOLUCION</span> </p>
-            <h3 class="fs-1">El ejercicio es un aliado para la salud fisica y mental</h3>
+            <button class="carousel-control-prev" type="button" (click)="previo()" data-bs-target="#caruselNoticias"
+                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" (click)="siguiente()" data-bs-target="#caruselNoticias"
+                data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
         </div>
     </div>
-</div>
-<div class="row min-vh-100">
-    <div class="d-none d-md-block bg-two col-6">
-    </div>
-    <div class="col-12 col-md-6 bg-body">
-        <div class="row h-100 align-items-center">
-            <div class=" row justify-content-center fs-5">
-                <div class="w-75">
-                    <h1>CLASES PERSONALIZADAS</h1>
-                    <p style="color: rgb(63,63,63);">
-                        Para todos los niveles, desde las clases de iniciacion hasta entrenamientos mas avanzados
-                    </p>
-                    <h2>ALCANZA TUS OBJETIVOS</h2>
-                    <P style="color: rgb(63,63,63);">Contamos con las mejores rutinas personalizadas para que vos puedas
-                        alcanzar tus objetivos. Contamos con rutinas para ayudarte a consegui: </P>
-                    <ol style="color: rgb(63,63,63);">
-                        <li>ADELGAZAR Y DEFINIR</li>
-                        <li>GANAR MASA MUSCULAR</li>
-                        <li>EQUILIBRIO Y BIENESTAR</li>
-                        <li>DIVERTIRSE Y ESTAR EN FORMA</li>
-                    </ol>
+    <div class="row min-vh-100">
+        <div class="d-none d-md-block bg-two col-6">
+        </div>
+        <div class="col-12 col-md-6 bg-body">
+            <div class="row h-100 align-items-center">
+                <div class=" row justify-content-center fs-5">
+                    <div class="w-75">
+                        <h1>CLASES PERSONALIZADAS</h1>
+                        <p style="color: rgb(63,63,63);">
+                            Para todos los niveles, desde las clases de iniciacion hasta entrenamientos mas avanzados
+                        </p>
+                        <h2>ALCANZA TUS OBJETIVOS</h2>
+                        <P style="color: rgb(63,63,63);">Contamos con las mejores rutinas personalizadas para que vos puedas
+                            alcanzar tus objetivos. Contamos con rutinas para ayudarte a consegui: </P>
+                        <ol style="color: rgb(63,63,63);">
+                            <li>ADELGAZAR Y DEFINIR</li>
+                            <li>GANAR MASA MUSCULAR</li>
+                            <li>EQUILIBRIO Y BIENESTAR</li>
+                            <li>DIVERTIRSE Y ESTAR EN FORMA</li>
+                        </ol>
+                    </div>
+
                 </div>
-
             </div>
         </div>
     </div>
-</div>
-<div class="row bg-three min-vh-100 ">
-    <div class="col-10 col-sm-6 col-md-5 text-white mx-5 " style="background: rgba(56, 56, 54, 0.6);">
-        <div class="row  h-100 align-items-center">
-            <div class="row">
-                <p class="fw-bolder fs-1">NO NECESITAS COMER <span style="color: rgb(255, 174, 0)">MENOS
-                    </span>, SOLO NECESITAS COMER <span style="color: rgb(255, 174, 0)">BIEN</span> </p>
-                <h3 class="fs-1">Las mejores recetas para Vos !! Nuestros menus son certificados por especialistas en
-                    Nutricion</h3>
+    <div class="row bg-three min-vh-100 ">
+        <div class="col-10 col-sm-6 col-md-5 text-white mx-5 " style="background: rgba(56, 56, 54, 0.6);">
+            <div class="row  h-100 align-items-center">
+                <div class="row">
+                    <p class="fw-bolder fs-1">NO NECESITAS COMER <span style="color: rgb(255, 174, 0)">MENOS
+                        </span>, SOLO NECESITAS COMER <span style="color: rgb(255, 174, 0)">BIEN</span> </p>
+                    <h3 class="fs-1">Las mejores recetas para Vos !! Nuestros menus son certificados por especialistas en
+                        Nutricion</h3>
+                </div>
             </div>
         </div>
     </div>
-</div>
-<div class="row bg-four min-vh-100 ">
-    <div class="col-12" style="background: rgba(0, 0, 0, 0.8);">
-        <div class="row h-100 align-items-center">
-            <div class="row justify-content-center">
-                <div class="col-12 col-md-10">
-                    <h1 class="titulo text-center mb-3 text-white">Nuestros Planes</h1>
-                    <div class="row row-cols-1 row-cols-md-3 g-4">
+    <div class="row bg-four min-vh-100 " *ngIf="listaPlanes.length != 0">
+        <div class="col-12" style="background: rgba(0, 0, 0, 0.8);">
+            <div class="row h-100 align-items-center">
+                <div class="row justify-content-center">
+                    <div class="col-12 col-md-10">
+                        <h1 class="titulo text-center mb-3 text-white">Nuestros Planes</h1>
+                        <div class="row row-cols-1 row-cols-md-3 g-4">
 
-                        <div class="col">
-                            <div class="card h-100">
-                                <div class="card-body">
-                                    <h2 class="card-title text-center">Pase Simple (3 dias)</h2>
-                                    <h1 class=" card-text text-center"><i class="bi bi-currency-dollar "
-                                            style="font-size: 4vw; color:rgb(255, 174, 0) ;">799/ Mes</i></h1>
-                                    <h1 class="text-center text-decoration-line-through"><i
-                                            class="bi bi-currency-dollar "
-                                            style="font-size: 3vw; color:rgb(136, 136, 136) ;">1099</i></h1>
-                                    <p class="card-text fs-5">Asesoria con Instructor <br>
-                                        Guia de alimentacion saludable. <br>
-                                        Control de medidas. <br>
-                                        Plan de Entrenamiento <br>
-                                        Asistencia x 3 dias</p>
-                                </div>
-                                <div class="card-footer text-center">
-                                    <button class="btn btn-dark fs-5">Contratar</button>
+                            <div class="col">
+                                <div class="card h-100">
+                                    <div class="card-body">
+                                        <h2 class="card-title text-center">{{listaPlanes[0].nombre}}</h2>
+                                        <h1 class=" card-text text-center"><i class="bi bi-currency-dollar "
+                                                style="font-size: 4vw; color:rgb(255, 174, 0) ;">{{listaPlanes[0].precio}}/ Mes</i></h1>
+                                        <h1 class="text-center text-decoration-line-through"><i
+                                                class="bi bi-currency-dollar "
+                                                style="font-size: 3vw; color:rgb(136, 136, 136) ;">{{listaPlanes[0].precio + 200}}</i></h1>
+                                        <p class="card-text fs-5">{{listaPlanes[0].descripcion}}</p>
+                                    </div>
+                                    
                                 </div>
                             </div>
-                        </div>
-                        <div class="col">
-                            <div class="card h-100">
-                                <div class="card-body">
-                                    <h2 class="card-title text-center">Pase Full (5 dias)</h2>
-                                    <h1 class=" card-text text-center"><i class="bi bi-currency-dollar "
-                                            style="font-size: 4vw; color:rgb(255, 174, 0) ;">1199/ Mes</i></h1>
-                                    <h1 class="text-center text-decoration-line-through"><i
-                                            class="bi bi-currency-dollar "
-                                            style="font-size: 3vw; color:rgb(136, 136, 136) ;">1499</i></h1>
-                                    <p class="card-text fs-5">Asesoria con Instructor <br>
-                                        Guia de alimentacion saludable. <br>
-                                        Control de medidas mensual. <br>
-                                        Plan de Entrenamiento <br>
-                                        Asistencia x 5 dias.
-                                    </p>
-                                </div>
-                                <div class="card-footer text-center">
-                                    <button class="btn btn-dark fs-5">Contratar</button>
+                            <div class="col">
+                                <div class="card h-100">
+                                    <div class="card-body">
+                                        <h2 class="card-title text-center">{{listaPlanes[1].nombre}}</h2>
+                                        <h1 class=" card-text text-center"><i class="bi bi-currency-dollar "
+                                                style="font-size: 4vw; color:rgb(255, 174, 0) ;">{{listaPlanes[1].precio}}/ Mes</i></h1>
+                                        <h1 class="text-center text-decoration-line-through"><i
+                                                class="bi bi-currency-dollar "
+                                                style="font-size: 3vw; color:rgb(136, 136, 136) ;">{{listaPlanes[1].precio + 200}}</i></h1>
+                                        <p class="card-text fs-5">{{listaPlanes[1].descripcion}}
+                                        </p>
+                                    </div>
+                                   
                                 </div>
                             </div>
-                        </div>
-                        <div class="col">
-                            <div class="card h-100">
-                                <div class="card-body">
-                                    <h2 class="card-title text-center">Pase Libre</h2>
-                                    <h1 class=" card-text text-center"><i class="bi bi-currency-dollar "
-                                            style="font-size: 4vw; color:rgb(255, 174, 0) ;">1599/ Mes</i></h1>
-                                    <h1 class="text-center text-decoration-line-through"><i
-                                            class="bi bi-currency-dollar "
-                                            style="font-size: 3vw; color:rgb(136, 136, 136) ;">1899</i></h1>
-                                    <p class="card-text fs-5">Asesoria 24/7 con Instructor <br>
-                                        Guia de alimentacion saludable. <br>
-                                        Control de medidas semanal. <br>
-                                        Plan de Entrenamiento. <br>
-                                        Asistencia: Pase libre.
-                                        Acceso a todas las maquinas.</p>
-                                </div>
-                                <div class="card-footer text-center">
-                                    <button class="btn btn-dark fs-5">Contratar</button>
+                            <div class="col">
+                                <div class="card h-100">
+                                    <div class="card-body">
+                                        <h2 class="card-title text-center">{{listaPlanes[2].nombre}}</h2>
+                                        <h1 class=" card-text text-center"><i class="bi bi-currency-dollar "
+                                                style="font-size: 4vw; color:rgb(255, 174, 0) ;">{{listaPlanes[2].precio}}/ Mes</i></h1>
+                                        <h1 class="text-center text-decoration-line-through"><i
+                                                class="bi bi-currency-dollar "
+                                                style="font-size: 3vw; color:rgb(136, 136, 136) ;">{{listaPlanes[2].precio + 200}}</i></h1>
+                                        <p class="card-text fs-5">{{listaPlanes[2].descripcion}}
+                                    </div>
+                                   
                                 </div>
                             </div>
                         </div>

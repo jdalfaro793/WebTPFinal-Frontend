@@ -80,8 +80,8 @@
                             <td>{{publicacion.noticia  }}</td>
                             <td>{{publicacion.vigente | estadonoticia }}</td>
                             <td>
-                                <button class="btn btn-success" (click)="cambiarEstadoNoticia(publicacion)">Estado</button>
-                                <button class="btn btn-danger" (click)="borrarNoticia(publicacion)">Borrar</button>
+                                <button class="btn btn-success" (click)="confirmChangeStatus(publicacion)">Estado</button>
+                                <button class="btn btn-danger" (click)="confirmDelete(publicacion)">Borrar</button>
                             </td>
                         </tr>
                     </tbody>

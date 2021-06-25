@@ -1,10 +1,12 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
 import { Ejercicio } from 'src/app/models/ejercicio/ejercicio';
 import { Rutina } from 'src/app/models/rutina/rutina';
 import { EjercicioService } from 'src/app/services/ejercicio/ejercicio.service';
 import { RutinaService } from 'src/app/services/rutina/rutina.service';
+import { ConfirmDialogComponent } from 'src/app/utils/confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-gestion-ejercicio',
@@ -24,7 +26,9 @@ export class GestionEjercicioComponent implements OnInit {
 
   constructor(private ejercicioService: EjercicioService,
               private rutinaService: RutinaService,
-              private toastr: ToastrService) { }
+              private toastr: ToastrService,
+              private dialog: MatDialog
+  ) { }
 
   ngOnInit(): void {
     this.iniciarVariable();
@@ -106,20 +110,19 @@ export class GestionEjercicioComponent implements OnInit {
             if(vRutina.ejercicio[i]._id==ejercicio2._id){
               encontrado = true;}}})
         if (encontrado == false){
-          if (confirm("Esta seguro que desea eliminar este ejercicio?")){
-            this.ejercicioService.deleteEjercicio(ejercicio2).subscribe(
-              result=>{
-                if (result.status == '1' ){
-                  this.toastr.success("El ejercicio fue eliminado correctamente", "OPERACION EXITOSA");
-                  this.cargarEjercicios();
-                }
-                else{
-                  this.toastr.error("Error al eliminar el ejercicio", "OPERACION FALLIDA");
-                }
-              },
-              error=>{
-                console.log(error);
-              })}
+          this.ejercicioService.deleteEjercicio(ejercicio2).subscribe(
+            result=>{
+              if (result.status == '1' ){
+                this.toastr.success("El ejercicio fue eliminado correctamente", "OPERACION EXITOSA");
+                this.cargarEjercicios();
+              }
+              else{
+                this.toastr.error("Error al eliminar el ejercicio", "OPERACION FALLIDA");
+              }
+            },
+            error=>{
+              console.log(error);
+            })
         }else{
           this.toastr.error("El ejercicio se encuentra siendo usado, no se puede eliminar", "OPERACION FALLIDA");
         }},
@@ -149,5 +152,16 @@ export class GestionEjercicioComponent implements OnInit {
     this.ejercicio = new Ejercicio();
     formEjercicio.reset();
     this.miImagen.nativeElement.value = '';
+  }
+
+  confirmDelete(ejercicio: Ejercicio): void {
+    //dialog.open - recibe el componente que va a lanzar la ventana emergente, y un objeto que incluye un mensaje y el objeto a guardar
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      data: "¿Seguro que desea eliminar?",
+    });
+    dialogRef.afterClosed().subscribe((res) => {
+      if (res) 
+        this.eliminarEjercicio(ejercicio);
+    });
   }
 }

@@ -44,7 +44,10 @@ import { ShowRegistrosComponent } from './components/dieta/show-registros/show-r
 import { GestionPlanesComponent } from './components/plan/gestion-planes/gestion-planes.component';
 import { AltaEditPlanComponent } from './components/plan/alta-edit-plan/alta-edit-plan.component';
 import { EstadisticasComponent } from './components/entrenador/estadisticas/estadisticas/estadisticas.component';
+import { ConfirmDialogComponent } from './utils/confirm-dialog/confirm-dialog.component';
 
+
+import {MatDialogModule} from '@angular/material/dialog';
 
 
 @NgModule({
@@ -76,7 +79,8 @@ import { EstadisticasComponent } from './components/entrenador/estadisticas/esta
     ShowRegistrosComponent,
     GestionPlanesComponent,
     AltaEditPlanComponent,
-    EstadisticasComponent
+    EstadisticasComponent,
+    ConfirmDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -89,7 +93,8 @@ import { EstadisticasComponent } from './components/entrenador/estadisticas/esta
     ToastrModule.forRoot(),
     NgbModule,
     FacebookModule.forRoot(),
-    ChartsModule
+    ChartsModule,
+    MatDialogModule
   ],
   providers: [DatePipe, UsuarioService,
   {

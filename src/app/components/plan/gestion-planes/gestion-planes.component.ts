@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Plan } from 'src/app/models/plan/plan';
 import { PlanService } from 'src/app/services/plan/plan.service';
+import { ConfirmDialogComponent } from 'src/app/utils/confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-gestion-planes',
@@ -17,7 +19,8 @@ export class GestionPlanesComponent implements OnInit {
 
   constructor(
     private planService: PlanService,
-    private router: Router
+    private router: Router,
+    private dialog: MatDialog
     ) {}
 
   ngOnInit(): void {
@@ -59,6 +62,17 @@ export class GestionPlanesComponent implements OnInit {
 
   editPlan(id: string): void {
     this.router.navigate(['gestion-planes/plan/'+ id])
+  }
+
+  confirmEdit(id: string): void {
+    //dialog.open - recibe el componente que va a lanzar la ventana emergente, y un objeto que incluye un mensaje y el objeto a guardar
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      data: "¿Modificar plan?",
+    });
+    dialogRef.afterClosed().subscribe((res) => {
+      if (res) 
+        this.editPlan(id);
+    });
   }
 
 }
