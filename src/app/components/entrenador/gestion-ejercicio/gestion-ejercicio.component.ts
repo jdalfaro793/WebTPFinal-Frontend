@@ -1,11 +1,13 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Ejercicio } from 'src/app/models/ejercicio/ejercicio';
 import { Rutina } from 'src/app/models/rutina/rutina';
 import { EjercicioService } from 'src/app/services/ejercicio/ejercicio.service';
 import { RutinaService } from 'src/app/services/rutina/rutina.service';
+import { UsuarioService } from 'src/app/services/usuario/usuario.service';
 import { ConfirmDialogComponent } from 'src/app/utils/confirm-dialog/confirm-dialog.component';
 
 @Component({
@@ -27,8 +29,18 @@ export class GestionEjercicioComponent implements OnInit {
   constructor(private ejercicioService: EjercicioService,
               private rutinaService: RutinaService,
               private toastr: ToastrService,
-              private dialog: MatDialog
-  ) { }
+              private dialog: MatDialog,
+              private usuarioService : UsuarioService,
+               private router : Router
+  ) { 
+    if (this.usuarioService.userLoggedIn() == false) {
+      alert("Debe validarse e ingresar su usuario y clave");
+      this.router.navigate(['login']);
+    } else if (this.usuarioService.isLoggedAlumno() == true) {
+      alert("No tiene permisos para esta seccion");
+      this.router.navigate(['home']);
+    }
+  }
 
   ngOnInit(): void {
     this.iniciarVariable();

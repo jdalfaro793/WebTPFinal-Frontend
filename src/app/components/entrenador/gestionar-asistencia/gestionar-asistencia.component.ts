@@ -7,6 +7,7 @@ import { Asistencia } from 'src/app/models/asistencia/asistencia';
 import { Plan } from 'src/app/models/plan/plan';
 import { AlumnoService } from 'src/app/services/alumno/alumno.service';
 import { AsistenciaService } from 'src/app/services/asistencia/asistencia.service';
+import { UsuarioService } from 'src/app/services/usuario/usuario.service';
 
 @Component({
   selector: 'app-gestionar-asistencia',
@@ -21,10 +22,20 @@ export class GestionarAsistenciaComponent implements OnInit {
   cambiarFecha: boolean = true;
 
   constructor(private router: Router,
-              private asistenciaService: AsistenciaService,
-              private alumnoService: AlumnoService,
-              private activatedRoute: ActivatedRoute,
-              private toastr: ToastrService) { }
+    private asistenciaService: AsistenciaService,
+    private alumnoService: AlumnoService,
+    private activatedRoute: ActivatedRoute,
+    private toastr: ToastrService,
+    private usuarioService : UsuarioService,
+  ) {
+    if (this.usuarioService.userLoggedIn() == false) {
+      alert("Debe validarse e ingresar su usuario y clave");
+      this.router.navigate(['login']);
+    } else if (this.usuarioService.isLoggedAlumno() == true) {
+      alert("No tiene permisos para esta seccion");
+      this.router.navigate(['home']);
+    }
+  }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(

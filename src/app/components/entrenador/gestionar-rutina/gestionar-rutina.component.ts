@@ -7,6 +7,7 @@ import { Rutina } from 'src/app/models/rutina/rutina';
 import { AlumnoService } from 'src/app/services/alumno/alumno.service';
 import { EjercicioService } from 'src/app/services/ejercicio/ejercicio.service';
 import { RutinaService } from 'src/app/services/rutina/rutina.service';
+import { UsuarioService } from 'src/app/services/usuario/usuario.service';
 
 @Component({
   selector: 'app-gestionar-rutina',
@@ -44,9 +45,17 @@ export class GestionarRutinaComponent implements OnInit {
     private ejercicioService: EjercicioService,
     private rutinaService: RutinaService,
     private toastr: ToastrService,
-    private alumnoService:AlumnoService
+    private alumnoService:AlumnoService,
+    private usuarioService : UsuarioService,
   ) {
-    this.getEjercicios();
+    if (this.usuarioService.userLoggedIn() == false) {
+      alert("Debe validarse e ingresar su usuario y clave");
+      this.router.navigate(['login']);
+    } else if (this.usuarioService.isLoggedAlumno() == true) {
+      alert("No tiene permisos para esta seccion");
+      this.router.navigate(['home']);
+    }
+    
   }
 
   getEjercicios() {
@@ -73,6 +82,7 @@ export class GestionarRutinaComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.getEjercicios();
     this.activatedRoute.params.subscribe((params) => {
       this.cargarAlumno(params.id);
       this.rutina.mes=params.mes;

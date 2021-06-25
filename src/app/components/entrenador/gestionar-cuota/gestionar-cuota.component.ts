@@ -8,6 +8,7 @@ import { Plan } from 'src/app/models/plan/plan';
 import { AlumnoService } from 'src/app/services/alumno/alumno.service';
 import { CuotaService } from 'src/app/services/cuota/cuota.service';
 import * as printJS from 'print-js';
+import { UsuarioService } from 'src/app/services/usuario/usuario.service';
 
 @Component({
   selector: 'app-gestionar-cuota',
@@ -22,10 +23,21 @@ export class GestionarCuotaComponent implements OnInit {
   cuotaComprobante: Cuota;
 
   constructor(private router: Router,
-              private cuotaService: CuotaService,
-              private alumnoService: AlumnoService,
-              private activatedRoute: ActivatedRoute,
-              private toastr: ToastrService) { }
+    private cuotaService: CuotaService,
+    private alumnoService: AlumnoService,
+    private activatedRoute: ActivatedRoute,
+    private toastr: ToastrService,
+    private usuarioService : UsuarioService,
+  
+  ) {
+    if (this.usuarioService.userLoggedIn() == false) {
+      alert("Debe validarse e ingresar su usuario y clave");
+      this.router.navigate(['login']);
+    } else if (this.usuarioService.isLoggedAlumno() == true) {
+      alert("No tiene permisos para esta seccion");
+      this.router.navigate(['home']);
+    }
+  }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(

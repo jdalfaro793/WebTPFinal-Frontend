@@ -74,8 +74,10 @@ export class UsuarioService {
     //borro el vble almacenado mediante el storage
     //variable cookie definidas como sessionStorage
     sessionStorage.removeItem("user");
-    sessionStorage.removeItem("perfil");
+    sessionStorage.removeItem("rol");
     sessionStorage.removeItem("id");
+    sessionStorage.removeItem("token");
+    sessionStorage.removeItem("state");
     
   }
 

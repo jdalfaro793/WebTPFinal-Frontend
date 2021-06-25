@@ -26,7 +26,15 @@ export class GestionAlumnosComponent implements OnInit {
     private router: Router,
     private toastr: ToastrService,
     private dialog: MatDialog
-  ) {}
+  ) {
+    if (this.usuarioService.userLoggedIn() == false) {
+      alert("Debe validarse e ingresar su usuario y clave");
+      this.router.navigate(['login']);
+    } else if (this.usuarioService.isLoggedAlumno() == true) {
+      alert("No tiene permisos para esta seccion");
+      this.router.navigate(['home']);
+    }
+  }
 
   ngOnInit(): void {
     this.findByApellido = '';

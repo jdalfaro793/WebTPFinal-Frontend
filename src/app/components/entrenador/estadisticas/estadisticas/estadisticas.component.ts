@@ -1,10 +1,12 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ChartDataSets, ChartType } from 'chart.js';
 import { Color, Label } from 'ng2-charts';
 import { Cuota } from 'src/app/models/cuota/cuota';
 import { CuotaService } from 'src/app/services/cuota/cuota.service';
 import { EstadisticaService } from 'src/app/services/estadistica/estadistica.service';
+import { UsuarioService } from 'src/app/services/usuario/usuario.service';
 
 @Component({
   selector: 'app-estadisticas',
@@ -40,9 +42,18 @@ export class EstadisticasComponent implements OnInit {
   constructor(
     private estadisticaService:EstadisticaService,
     private cuotaService: CuotaService,
-    private datePipe:DatePipe
-  ) { }
-
+    private datePipe:DatePipe,
+    private usuarioService: UsuarioService,
+    private router: Router
+  ) {
+    if(this.usuarioService.userLoggedIn() == false){
+        alert("Debe validarse e ingresar su usuario y clave");
+        this.router.navigate(['login']);
+    }else if(this.usuarioService.isLoggedAlumno() == true){
+      alert("No tiene permisos para esta seccion");
+        this.router.navigate(['home']);
+    }
+  }
   ngOnInit(): void {
     this.mesActual= new Date();
     this.nMesActual = parseInt(this.datePipe.transform(this.mesActual, 'M'));
