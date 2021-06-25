@@ -27,6 +27,8 @@ export class RegistroDietaComponent implements OnInit {
 
   planSelect: MesDieta;
 
+  planSemanalView: MesDieta;
+
   constructor(
     private activatedRoute: ActivatedRoute,
     private mesDietaService: MesDietaService,
@@ -48,6 +50,7 @@ export class RegistroDietaComponent implements OnInit {
     this.alumno = new Alumno();
     this.registroDieta = new RegistroDieta();
     this.planesAlimenticios = new Array<MesDieta>();
+    this.planSemanalView = new MesDieta;
     this.initFiltersPlanAlimenticio();
   }
 
@@ -167,4 +170,11 @@ export class RegistroDietaComponent implements OnInit {
     this.planSelect = plan;
     this.toastr.info('', 'Plan Seleccionado');
   }
+
+  select(plan: MesDieta): void {
+    console.log(plan);
+    this.planSemanalView = plan;
+  }
+
+
 }
