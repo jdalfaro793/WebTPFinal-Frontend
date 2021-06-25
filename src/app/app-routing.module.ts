@@ -21,6 +21,7 @@ import { PublicacionFacebookComponent } from './components/publicacion-facebook/
 import { RegistroDietaComponent } from './components/dieta/registro-dieta/registro-dieta.component';
 import { ViewRegistrosAlumnoComponent } from './components/dieta/view-registros-alumno/view-registros-alumno.component';
 import { GestionPlanesComponent } from './components/plan/gestion-planes/gestion-planes.component';
+import { EstadisticasComponent } from './components/estadisticas/estadisticas/estadisticas.component';
 
 const routes: Routes = [
   { path: '', redirectTo:'home', pathMatch:'full'},
@@ -30,7 +31,7 @@ const routes: Routes = [
 
 
   { path: 'gestionAlumno/form-alumno', component: FormAlumnoComponent},
-
+  { path: 'estadisticas', component: EstadisticasComponent },
   { path: 'mis-asistencias/:id',component: MisAsistenciasComponent },
   { path: 'mis-cuotas/:id', component: MisCuotasComponent},
   { path: 'mis-rutinas/:id', component: MisRutinasComponent},

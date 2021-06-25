@@ -18,6 +18,7 @@ import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { ToastrModule } from 'ngx-toastr';
+import { ChartsModule } from 'ng2-charts';
 import { GestionRutinaComponent } from './components/rutina/gestion-rutina/gestion-rutina.component';
 import { MisRutinasComponent } from './components/rutina/mis-rutinas/mis-rutinas.component';
 import { MisAsistenciasComponent } from './components/asistencia/mis-asistencias/mis-asistencias.component';
@@ -43,6 +44,8 @@ import { SoloLetras } from './directivas/validacion.directive';
 import { ShowRegistrosComponent } from './components/dieta/show-registros/show-registros.component';
 import { GestionPlanesComponent } from './components/plan/gestion-planes/gestion-planes.component';
 import { AltaEditPlanComponent } from './components/plan/alta-edit-plan/alta-edit-plan.component';
+import { EstadisticasComponent } from './components/estadisticas/estadisticas/estadisticas.component';
+
 
 
 @NgModule({
@@ -74,7 +77,8 @@ import { AltaEditPlanComponent } from './components/plan/alta-edit-plan/alta-edi
     SoloLetras,
     ShowRegistrosComponent,
     GestionPlanesComponent,
-    AltaEditPlanComponent
+    AltaEditPlanComponent,
+    EstadisticasComponent
   ],
   imports: [
     BrowserModule,
@@ -87,7 +91,7 @@ import { AltaEditPlanComponent } from './components/plan/alta-edit-plan/alta-edi
     ToastrModule.forRoot(),
     NgbModule,
     FacebookModule.forRoot(),
-
+    ChartsModule
   ],
   providers: [DatePipe, UsuarioService,
   {
