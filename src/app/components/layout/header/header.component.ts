@@ -13,6 +13,8 @@ export class HeaderComponent implements OnInit {
   habilitarMenuAlumno:string;
   habilitarMenuEntrenador:string;
   idAlumno:string="0";
+  alumnoLogeado:boolean;
+  entrenadorLogeado: boolean;
   constructor(
     public usuarioService:UsuarioService,
     private toastr: ToastrService,
@@ -20,7 +22,7 @@ export class HeaderComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-  
+
   }
 
   logout(){

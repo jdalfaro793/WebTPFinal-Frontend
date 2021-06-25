@@ -42,7 +42,7 @@ export class LoginComponent implements OnInit {
               sessionStorage.setItem("rol", result.rol);
               sessionStorage.setItem("state", result.state);
               //redirigimos a home o a pagina que llamo
-              this.router.navigateByUrl(this.returnUrl);
+              this.router.navigate(['home']);
             }else{
               this.datosCorrectos = false;
               this.toastr.info("Contacte con su entrenador, cuenta bloqueada", "Iniciar Sesion");

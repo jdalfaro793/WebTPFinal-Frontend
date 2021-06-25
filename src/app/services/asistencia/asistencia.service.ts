@@ -48,4 +48,15 @@ getAsistencias():Observable<any>{
     return this._http.post(this.url,body,options);
   }
 
+  getAll():Observable<any>{
+
+    const httpOption={
+      headers:new HttpHeaders({
+      }),
+      params: new HttpParams({
+      })
+    }
+  
+    return this._http.get(this.url+"/all",httpOption);
+  }
 }

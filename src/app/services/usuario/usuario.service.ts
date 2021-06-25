@@ -118,13 +118,13 @@ export class UsuarioService {
     let body = JSON.stringify(usuario);
     return this.http.put(this.urlBase + usuario._id, body, option);
   }
-
+//determina el tipo de usuario logeado
   determinarUsuario():void{
     if(sessionStorage.getItem("rol") == "alumno"){
      this.alumnoService.getByIdUsuario(sessionStorage.getItem("id")).subscribe(
        result=>{
           Object.assign(this.alumnoLogeado,result);
-          console.log(this.alumnoLogeado);
+          
        },
        error=>{
         console.log(error);
@@ -134,7 +134,7 @@ export class UsuarioService {
       this.entrenadorService.getByIdUsuario(sessionStorage.getItem("id")).subscribe(
         result=>{
           Object.assign(this.entrenadorLogeado, result);
-          console.log(this.entrenadorLogeado);
+        
         },
         error=>{
           console.log(error);

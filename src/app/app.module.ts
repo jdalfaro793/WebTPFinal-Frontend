@@ -48,6 +48,7 @@ import { ConfirmDialogComponent } from './utils/confirm-dialog/confirm-dialog.co
 
 
 import {MatDialogModule} from '@angular/material/dialog';
+import { EsAsistenciaComponent } from './components/entrenador/estadisticas/estAsistencia/es-asistencia/es-asistencia.component';
 
 
 @NgModule({
@@ -80,7 +81,8 @@ import {MatDialogModule} from '@angular/material/dialog';
     GestionPlanesComponent,
     AltaEditPlanComponent,
     EstadisticasComponent,
-    ConfirmDialogComponent
+    ConfirmDialogComponent,
+    EsAsistenciaComponent
   ],
   imports: [
     BrowserModule,
