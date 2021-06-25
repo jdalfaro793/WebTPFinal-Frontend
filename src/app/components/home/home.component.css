@@ -22,6 +22,10 @@
     background-size: cover;
     background-repeat:  no-repeat;
 }
+.bg-noticia{
+    height: 30vw;
+    background: rgba(14, 139, 241, 0.8);
+}
 .titulo{
     font-size: 5vw;
 }

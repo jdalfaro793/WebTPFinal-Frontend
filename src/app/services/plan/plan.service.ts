@@ -13,6 +13,15 @@ export class PlanService {
     private _http: HttpClient
   ) { }
 
+  getAllPlans():Observable<any>{
+    let options = {
+      headers: new HttpHeaders({}),
+      params: new HttpParams({})
+    }
+    return this._http.get(this.urlBase+"/allPlans",options);
+  }
+  
+
   getPlans():Observable<any>{
     let options = {
       headers: new HttpHeaders({}),
