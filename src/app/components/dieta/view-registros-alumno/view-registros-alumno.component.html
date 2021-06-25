@@ -44,7 +44,7 @@
                                 <td scope="col" rowspan="1"> <p class="m-0"><span>{{r.peso}}</span> Kgrs.</p> </td>
                                 <td scope="col" rowspan="1">
                                     <button class="btn btn-outline-dark" title="Mostrar más info" type="button" data-bs-toggle="modal"
-                                    data-bs-target="#mostrarDieta">
+                                    data-bs-target="#mostrarDieta" (click)="mostrarDieta(r)">
                                             <i class="bi bi-eye"></i>
                                     </button>
 
@@ -53,7 +53,7 @@
                                         <div class="modal-dialog">
                                             <div class="modal-content">
                                                 <div class="modal-title py-3">
-                                                    <h2 class="text-center fs-3 fw-light">Mes: <span class="fw-bold">{{r.plan_dieta.mes}}</span></h2>
+                                                    <h2 class="text-center fs-3 fw-light">Mes: <span class="fw-bold">{{mesRegistro}}</span></h2>
                                                 </div>
                                                 <div class="modal-body table-responsive">
                                                     <table class="table align-middle table-hover m-0 bg-white text-center">
@@ -67,7 +67,7 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr *ngFor="let p of r.plan_dieta.planSemanal">
+                                                            <tr *ngFor="let p of planSemanalRegistro">
                                                                 <td> {{p.dia}} </td>
                                                                 <td> {{p.desayuno}} </td>
                                                                 <td> {{p.almuerzo}} </td>

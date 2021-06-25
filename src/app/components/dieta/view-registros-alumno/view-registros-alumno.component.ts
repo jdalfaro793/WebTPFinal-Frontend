@@ -22,6 +22,8 @@ export class ViewRegistrosAlumnoComponent implements OnInit {
   alumno: Alumno;
 
   planDieta: Dieta;
+  planSemanalRegistro: Array<Dieta>;
+  mesRegistro: number = 0;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -58,7 +60,7 @@ export class ViewRegistrosAlumnoComponent implements OnInit {
           (element) => {
             let reg = new RegistroDieta();
             Object.assign(reg, element);
-            reg.plan_dieta = this.getPlanALimentacion(element.plan_dieta)
+            reg.plan_dieta = this.getPlanALimentacion(reg.plan_dieta._id)
             this.registros.push(reg);
           }
         )
@@ -80,6 +82,12 @@ export class ViewRegistrosAlumnoComponent implements OnInit {
       }
     )
     return plan;
+  }
+
+  mostrarDieta(registro: RegistroDieta){
+    this.planSemanalRegistro = new Array<Dieta>();
+    this.planSemanalRegistro = registro.plan_dieta.planSemanal;
+    this.mesRegistro = registro.plan_dieta.mes;
   }
 
   selectPlanDieta(plan: Dieta) {
