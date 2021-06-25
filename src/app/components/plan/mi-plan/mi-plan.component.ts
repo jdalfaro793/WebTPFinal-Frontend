@@ -46,7 +46,7 @@ export class MiPlanComponent implements OnInit {
   }
 
   viewMisRutinas(): void {
-    this.router.navigate(['rutinapersonal'])
+    this.router.navigate(['mis-rutinas/',this.usuarioService.idLogged()])
   }
 
 }

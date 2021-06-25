@@ -16,17 +16,11 @@ import { UsuarioService } from 'src/app/services/usuario/usuario.service';
 export class MisRutinasComponent implements OnInit {
   listaRutina:Array<Rutina>=new Array<Rutina>();
   listaRutinaComprobante:Array<Rutina>=new Array<Rutina>();
-
-  Meses:Array<number>= [1,2,3,4,5,6,7,8,9,10,11,12];
   MesesRut: Array<number> = new Array<number>();
-
-  listaEjercicios:Array<Ejercicio>=new Array<Ejercicio>();
   nombre:string;
   nombreAlumno:string;
-
   foto:string;
   descrip:string;
-  idAlum:string;
   mes:number;
   btnPDF:boolean=false;
 

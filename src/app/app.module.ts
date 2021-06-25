@@ -19,7 +19,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { ToastrModule } from 'ngx-toastr';
 import { ChartsModule } from 'ng2-charts';
-import { GestionRutinaComponent } from './components/rutina/gestion-rutina/gestion-rutina.component';
 import { MisRutinasComponent } from './components/rutina/mis-rutinas/mis-rutinas.component';
 import { MisAsistenciasComponent } from './components/asistencia/mis-asistencias/mis-asistencias.component';
 import { GestionarAsistenciaComponent } from './components/entrenador/gestionar-asistencia/gestionar-asistencia.component';
@@ -62,7 +61,6 @@ import {MatDialogModule} from '@angular/material/dialog';
     GestionAlumnosComponent,
     MisCuotasComponent,
     MiPlanComponent,
-    GestionRutinaComponent,
     MisRutinasComponent,
     MisAsistenciasComponent,
     GestionarAsistenciaComponent,
