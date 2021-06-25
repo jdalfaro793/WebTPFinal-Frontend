@@ -9,7 +9,6 @@ import { MisCuotasComponent } from './components/cuota/mis-cuotas/mis-cuotas.com
 import { MiPlanComponent } from './components/plan/mi-plan/mi-plan.component';
 import { MisRutinasComponent } from './components/rutina/mis-rutinas/mis-rutinas.component';
 import { MisAsistenciasComponent } from './components/asistencia/mis-asistencias/mis-asistencias.component';
-import { GestionRutinaComponent } from './components/rutina/gestion-rutina/gestion-rutina.component';
 import { GestionarAsistenciaComponent } from './components/entrenador/gestionar-asistencia/gestionar-asistencia.component';
 import { GestionarCuotaComponent } from './components/entrenador/gestionar-cuota/gestionar-cuota.component';
 import { HomeComponent } from './components/home/home.component';
@@ -27,7 +26,6 @@ const routes: Routes = [
   { path: '', redirectTo:'home', pathMatch:'full'},
   { path: 'home', component: HomeComponent},
   { path: 'login',component: LoginComponent },
-  { path: 'gestion-rutina/:id', component: GestionRutinaComponent},
 
 
   { path: 'gestionAlumno/form-alumno', component: FormAlumnoComponent},

@@ -110,8 +110,6 @@ export class ShowRegistrosComponent implements OnInit {
     this.planDieta = plan;
   }
 
-  volver(): void {
-    this.router.navigate(['gestionAlumno']);
-  }
+
 
 }
