@@ -7,8 +7,8 @@
             </div>
         </div>
     </div>
-    <div class="row bg-noticia">
-        <div *ngIf="listaPublicaciones.length != 0" id="caruselNoticias" class="mb-3 carousel carousel-fade slide"
+    <div *ngIf="listaPublicaciones.length != 0" class="row bg-noticia">
+        <div  id="caruselNoticias" class="mb-3 carousel carousel-fade slide"
             data-ride="carousel">
             <div class="carousel-inner">
                 <h4 class="text-white-50">{{publicacion.fecha | date:"MM/dd/yy" }}</h4>
