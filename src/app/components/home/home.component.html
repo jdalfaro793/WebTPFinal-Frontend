@@ -7,16 +7,14 @@
             </div>
         </div>
     </div>
-    <div *ngIf="listaPublicaciones.length != 0" class="row bg-noticia">
-        <div  id="caruselNoticias" class="mb-3 carousel carousel-fade slide"
-            data-ride="carousel">
+    <div *ngIf="listaPublicaciones.length != 0" class="row bg-noticia p-2 p-sm-5 h-100 d-flex align-items-center">
+        <div  id="caruselNoticias" class="carousel carousel-fade slide p-0" data-ride="carousel">
             <div class="carousel-inner">
                 <h4 class="text-white-50">{{publicacion.fecha | date:"MM/dd/yy" }}</h4>
-                <h4 class="text-white fw-bolder">NOVEDADES:  </h4>   
+                <h4 class="text-white fw-bolder mb-4">NOVEDADES:  </h4>   
                 <div class="carousel-item active text-center text-white" data-bs-interval="10000">
-                    <h3 class="fw-bolder titulo" >
-                         {{publicacion.titulo}}</h3>
-                    <h3 class="fs-1">{{publicacion.noticia}}</h3>
+                    <h3 class="fw-bolder titulo mb-4" >{{publicacion.titulo}}</h3>
+                    <h3 class="fs-1 mb-4">{{publicacion.noticia}}</h3>
                 </div>
             </div>
             <button class="carousel-control-prev" type="button" (click)="previo()" data-bs-target="#caruselNoticias"
