@@ -17,7 +17,7 @@ export class EstadisticasComponent implements OnInit {
   public lineChartData: ChartDataSets[] = [
     { data: [], label: 'Ingresos' }
   ];
-  public lineChartLabels: Label[] = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+  public lineChartLabels: Label[] = [];
   public lineChartOptions = {
     responsive: true
   };
@@ -39,6 +39,7 @@ export class EstadisticasComponent implements OnInit {
   cuota:Cuota;
   mesActual:Date;
   nMesActual:number;
+  meses: Array<string>;
   constructor(
     private estadisticaService:EstadisticaService,
     private cuotaService: CuotaService,
@@ -55,6 +56,7 @@ export class EstadisticasComponent implements OnInit {
     }
   }
   ngOnInit(): void {
+    this.meses  = ['January', 'February', 'March', 'April', 'May', 'June', 'July','August','September','October','November','December'];
     this.mesActual= new Date();
     this.nMesActual = parseInt(this.datePipe.transform(this.mesActual, 'M'));
     for(let i= 0; i<this.nMesActual;i++){
@@ -68,6 +70,7 @@ export class EstadisticasComponent implements OnInit {
             monto = monto + this.cuota.monto;          
           })
           this.lineChartData[0].data[i]=monto;
+          this.lineChartLabels[i] = this.meses[i];
         }
       )
     }

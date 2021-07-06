@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Plan } from 'src/app/models/plan/plan';
 import { PlanService } from 'src/app/services/plan/plan.service';
+import { UsuarioService } from 'src/app/services/usuario/usuario.service';
 import { ConfirmDialogComponent } from 'src/app/utils/confirm-dialog/confirm-dialog.component';
 
 @Component({
@@ -20,9 +21,17 @@ export class GestionPlanesComponent implements OnInit {
   constructor(
     private planService: PlanService,
     private router: Router,
-    private dialog: MatDialog
-    ) {}
-
+    private dialog: MatDialog,
+    private usuarioService : UsuarioService
+    ) {
+      if(this.usuarioService.userLoggedIn() == false){
+          alert("Debe validarse e ingresar su usuario y clave");
+          this.router.navigate(['login']);
+      }else if(this.usuarioService.isLoggedAlumno() == true){
+        alert("No tiene permisos para esta seccion");
+          this.router.navigate(['home']);
+      }
+    }
   ngOnInit(): void {
     this.init();
     this.cargarPlanes();

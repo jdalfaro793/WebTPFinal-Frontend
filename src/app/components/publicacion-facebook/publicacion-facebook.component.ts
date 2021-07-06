@@ -6,6 +6,7 @@ import { ApiMethod } from 'ngx-fb/dist/esm/providers/facebook';
 import { ToastrService } from 'ngx-toastr';
 import { PublicacionFacebook } from 'src/app/models/publicacion-facebook/publicacion-facebook';
 import { PublicacionFacebookService } from 'src/app/services/publicacion-facebook/publicacion-facebook.service';
+import { UsuarioService } from 'src/app/services/usuario/usuario.service';
 import { ConfirmDialogComponent } from 'src/app/utils/confirm-dialog/confirm-dialog.component';
 
 @Component({
@@ -23,14 +24,24 @@ export class PublicacionFacebookComponent implements OnInit {
     private toastr: ToastrService,
     private fb: FacebookService,
     private publicacionFacebookService: PublicacionFacebookService,
-    private dialog: MatDialog
-  ) {
+    private dialog: MatDialog,
+    private usuarioService: UsuarioService
+    ) {
+      if(this.usuarioService.userLoggedIn() == false){
+          alert("Debe validarse e ingresar su usuario y clave");
+          this.router.navigate(['login']);
+      }else if(this.usuarioService.isLoggedAlumno() == true){
+        alert("No tiene permisos para esta seccion");
+          this.router.navigate(['home']);
+      }
+    }
+
+  ngOnInit(): void {
+
     this.iniciarFb();
 
     this.getPublicacionesBD();
   }
-
-  ngOnInit(): void {}
 
   postFb(publicacion: PublicacionFacebook) {
     var apiMethod: ApiMethod = 'post';

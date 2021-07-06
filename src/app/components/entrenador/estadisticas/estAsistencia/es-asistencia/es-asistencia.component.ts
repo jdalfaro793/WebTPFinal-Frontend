@@ -3,7 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ChartDataSets, ChartType } from 'chart.js';
 import { Color, Label } from 'ng2-charts';
-import { Asistencia } from 'src/app/models/asistencia/asistencia';
 import { EstadisticaService } from 'src/app/services/estadistica/estadistica.service';
 import { UsuarioService } from 'src/app/services/usuario/usuario.service';
 
@@ -17,7 +16,7 @@ export class EsAsistenciaComponent implements OnInit {
   public lineChartData: ChartDataSets[] = [
     { data: [], label: 'Asistencias' }
   ];
-  public lineChartLabels: Label[] = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+  public lineChartLabels: Label[] = [];
   public lineChartOptions = {
     responsive: true
   };
@@ -37,6 +36,7 @@ export class EsAsistenciaComponent implements OnInit {
 
   private mesActual:Date;
   private nMesActual:number;
+  meses: Array<string>;
   constructor(
     private estadisticaService:EstadisticaService,
     private datePipe:DatePipe,
@@ -53,6 +53,7 @@ export class EsAsistenciaComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.meses  = ['January', 'February', 'March', 'April', 'May', 'June', 'July','August','September','October','November','December'];
     this.mesActual= new Date();
     this.nMesActual = parseInt(this.datePipe.transform(this.mesActual, 'M'));
     for(let i= 0; i<this.nMesActual;i++){
@@ -63,6 +64,7 @@ export class EsAsistenciaComponent implements OnInit {
             monto = monto +1;         
           })
           this.lineChartData[0].data[i]=monto;
+          this.lineChartLabels[i] = this.meses[i];
         }
       )
     }

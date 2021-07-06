@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Alumno } from 'src/app/models/alumno/alumno';
 import { Cuota } from 'src/app/models/cuota/cuota';
 import { CuotaService } from 'src/app/services/cuota/cuota.service';
@@ -19,11 +19,20 @@ export class MisCuotasComponent implements OnInit {
   filters: Cuota;
   cuotaComprobante: Cuota;
 
-  constructor(private cuotaService: CuotaService, 
-              private activatedRoute: ActivatedRoute,
-              private alumnoService: AlumnoService,
-              private usuarioService:UsuarioService
-              ) { }
+  constructor(private cuotaService: CuotaService,
+    private activatedRoute: ActivatedRoute,
+    private alumnoService: AlumnoService,
+    private usuarioService: UsuarioService,
+    private router: Router
+  ) {
+    if (this.usuarioService.userLoggedIn() == false) {
+      alert("Debe validarse e ingresar su usuario y clave");
+      this.router.navigate(['login']);
+    } else if (this.usuarioService.isLoggedAlumno() == false) {
+      alert("No tiene permisos para esta seccion");
+      this.router.navigate(['home']);
+    }
+  }
 
   ngOnInit(): void {
     this.initFilters();

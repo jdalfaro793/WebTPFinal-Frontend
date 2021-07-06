@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Asistencia } from 'src/app/models/asistencia/asistencia';
 import { AsistenciaService } from 'src/app/services/asistencia/asistencia.service';
 import { UsuarioService } from 'src/app/services/usuario/usuario.service';
@@ -12,8 +13,17 @@ export class MisAsistenciasComponent implements OnInit {
   listaAsistencias: Array<Asistencia>;
   constructor(
     private asistenciaService: AsistenciaService,
-    private usuarioService:UsuarioService
-  ) {}
+    private usuarioService:UsuarioService,
+    private router : Router
+  ) {
+    if(this.usuarioService.userLoggedIn() == false){
+      alert("Debe validarse e ingresar su usuario y clave");
+      this.router.navigate(['login']);
+    }else if(this.usuarioService.isLoggedAlumno() == false){
+      alert("No tiene permisos para esta seccion");
+        this.router.navigate(['home']);
+    }
+  }
 
   ngOnInit(): void {
   

@@ -29,7 +29,15 @@ export class FormAlumnoComponent implements OnInit {
               private alumnoService: AlumnoService,
               private toastr: ToastrService,
               private router: Router,
-            ) { }
+            ) {
+              if (this.usuarioService.userLoggedIn() == false) {
+                alert("Debe validarse e ingresar su usuario y clave");
+                this.router.navigate(['login']);
+              } else if (this.usuarioService.isLoggedAlumno() == true) {
+                alert("No tiene permisos para esta seccion");
+                this.router.navigate(['home']);
+              }
+             }
 
   ngOnInit(): void {
     this.iniciarVariables();

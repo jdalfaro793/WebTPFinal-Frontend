@@ -7,6 +7,7 @@ import { MesDietaService } from 'src/app/services/dieta/mes-dieta.service';
 import { Dieta } from 'src/app/models/dieta/dieta';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent } from 'src/app/utils/confirm-dialog/confirm-dialog.component';
+import { UsuarioService } from 'src/app/services/usuario/usuario.service';
 
 @Component({
   selector: 'app-gestion-plan-alimenticion',
@@ -26,8 +27,17 @@ export class GestionPlanAlimenticionComponent implements OnInit {
     private mesDietaService: MesDietaService,
     private router: Router,
     private dialog: MatDialog,
-    private toastr: ToastrService
-  ) { }
+    private toastr: ToastrService,
+    private usuarioService: UsuarioService
+    ) { 
+      if(this.usuarioService.userLoggedIn() == false){
+        alert("Debe validarse e ingresar su usuario y clave");
+        this.router.navigate(['login']);
+    }else if(this.usuarioService.isLoggedAlumno() == true){
+      alert("No tiene permisos para esta seccion");
+        this.router.navigate(['home']);
+    }
+    }
 
   ngOnInit(): void {
     this.init();

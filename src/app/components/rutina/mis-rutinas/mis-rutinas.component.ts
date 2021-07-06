@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { fakeAsync } from '@angular/core/testing';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import * as printJS from 'print-js';
 import { Ejercicio } from 'src/app/models/ejercicio/ejercicio';
@@ -27,9 +27,17 @@ export class MisRutinasComponent implements OnInit {
   constructor(
     private usuarioService: UsuarioService,
     private rutinaService: RutinaService,
-    private toastr:ToastrService
-  ) {}
-
+    private toastr:ToastrService,
+    private router : Router
+    ) {
+      if(this.usuarioService.userLoggedIn() == false){
+        alert("Debe validarse e ingresar su usuario y clave");
+        this.router.navigate(['login']);
+      }else if(this.usuarioService.isLoggedAlumno() == false){
+        alert("No tiene permisos para esta seccion");
+          this.router.navigate(['home']);
+      }
+    }
   ngOnInit(): void {
       this.cargarAluRutina();
      

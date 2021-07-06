@@ -4,6 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Dieta } from 'src/app/models/dieta/dieta';
 import { MesDieta } from 'src/app/models/mesDieta/mes-dieta';
 import { MesDietaService } from 'src/app/services/dieta/mes-dieta.service';
+import { UsuarioService } from 'src/app/services/usuario/usuario.service';
 
 @Component({
   selector: 'app-form-plan-alimentacion',
@@ -28,8 +29,17 @@ export class FormPlanAlimentacionComponent implements OnInit {
     private mesDietaService: MesDietaService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private toastr: ToastrService
-  ) { }
+    private toastr: ToastrService,
+    private usuarioService: UsuarioService
+  ) { 
+    if(this.usuarioService.userLoggedIn() == false){
+      alert("Debe validarse e ingresar su usuario y clave");
+      this.router.navigate(['login']);
+  }else if(this.usuarioService.isLoggedAlumno() == true){
+    alert("No tiene permisos para esta seccion");
+      this.router.navigate(['home']);
+  }
+  }
 
   ngOnInit(): void {
     this.init();

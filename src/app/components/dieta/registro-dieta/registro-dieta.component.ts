@@ -7,6 +7,7 @@ import { RegistroDieta } from 'src/app/models/registroDieta/registro-dieta';
 import { AlumnoService } from 'src/app/services/alumno/alumno.service';
 import { MesDietaService } from 'src/app/services/dieta/mes-dieta.service';
 import { RegistroDietaService } from 'src/app/services/dieta/registro-dieta.service';
+import { UsuarioService } from 'src/app/services/usuario/usuario.service';
 
 @Component({
   selector: 'app-registro-dieta',
@@ -35,8 +36,17 @@ export class RegistroDietaComponent implements OnInit {
     private alumnoService: AlumnoService,
     private toastr: ToastrService,
     private registroDietaService: RegistroDietaService,
-    private router: Router
-  ) {}
+    private router: Router,
+    private usuarioService: UsuarioService
+    ) { 
+      if(this.usuarioService.userLoggedIn() == false){
+        alert("Debe validarse e ingresar su usuario y clave");
+        this.router.navigate(['login']);
+    }else if(this.usuarioService.isLoggedAlumno() == true){
+      alert("No tiene permisos para esta seccion");
+        this.router.navigate(['home']);
+    }
+    }
 
   ngOnInit(): void {
     this.init();

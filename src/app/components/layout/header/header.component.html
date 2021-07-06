@@ -23,29 +23,29 @@
                 </li>
 
                 <li *ngIf="usuarioService.userLoggedIn() && usuarioService.isLoggedAlumno()" class="nav-item dropdown  mx-3" >
-                    <a (click)="verificarPermiso()"  class="nav-link dropdown-toggle active" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Alumno</a>
+                    <a   class="nav-link dropdown-toggle active" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Alumno</a>
                     <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
-                        <li><a [class]="habilitarMenuAlumno" class="dropdown-item" style="cursor:pointer;" (click)="miPlan()">Mi plan</a></li>
-                        <li><a [class]="habilitarMenuAlumno" class="dropdown-item" style="cursor:pointer;" (click)="misRutinas()">Rutinas</a></li>
-                        <li><a [class]="habilitarMenuAlumno" class="dropdown-item" style="cursor:pointer;" (click)="misCuotas()">Cuotas</a></li>
-                        <li><a [class]="habilitarMenuAlumno" class="dropdown-item" style="cursor:pointer;" (click)="misAsistencias()">Asistencias</a></li>
-                        <li><a [class]="habilitarMenuAlumno" class="dropdown-item" style="cursor:pointer;" (click)="misRegistros()">Mi dieta</a></li>
+                        <li><a  class="dropdown-item" style="cursor:pointer;" (click)="miPlan()">Mi plan</a></li>
+                        <li><a  class="dropdown-item" style="cursor:pointer;" (click)="misRutinas()">Rutinas</a></li>
+                        <li><a class="dropdown-item" style="cursor:pointer;" (click)="misCuotas()">Cuotas</a></li>
+                        <li><a  class="dropdown-item" style="cursor:pointer;" (click)="misAsistencias()">Asistencias</a></li>
+                        <li><a  class="dropdown-item" style="cursor:pointer;" (click)="misRegistros()">Mi dieta</a></li>
                     </ul>
                 </li>
 
                 <li *ngIf="usuarioService.userLoggedIn() && usuarioService.isLoggedAlumno()==false" class="nav-item dropdown  mx-3" >
-                    <a (click)="verificarPermiso()"  class="nav-link dropdown-toggle active" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Entrenador</a>
+                    <a   class="nav-link dropdown-toggle active" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Entrenador</a>
                     <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
-                        <li><a [class]="habilitarMenuEntrenador" class="dropdown-item" [routerLink]="['gestionAlumno']">Gestión Alumnos</a></li>
-                        <li><a [class]="habilitarMenuEntrenador" class="dropdown-item" [routerLink]="['gestionEjercicio']">Gestión Ejercicios</a></li>
-                        <li><a [class]="habilitarMenuEntrenador" class="dropdown-item" [routerLink]="['plan-alimentacion']">Gestión Planes Alimenticios</a></li>
-                        <li><a [class]="habilitarMenuEntrenador" class="dropdown-item" [routerLink]="['gestion-planes']">Gestionar Planes</a></li>
-                        <li><a [class]="habilitarMenuEntrenador" class="dropdown-item" [routerLink]="['publicacion-facebook']">Publicar Noticia en Facebook/Home</a></li>
+                        <li><a  class="dropdown-item" [routerLink]="['gestionAlumno']">Gestión Alumnos</a></li>
+                        <li><a  class="dropdown-item" [routerLink]="['gestionEjercicio']">Gestión Ejercicios</a></li>
+                        <li><a  class="dropdown-item" [routerLink]="['plan-alimentacion']">Gestión Planes Alimenticios</a></li>
+                        <li><a  class="dropdown-item" [routerLink]="['gestion-planes']">Gestionar Planes</a></li>
+                        <li><a  class="dropdown-item" [routerLink]="['publicacion-facebook']">Publicar Noticia en Facebook/Home</a></li>
                     </ul>
                 </li>
 
                 <li *ngIf="usuarioService.userLoggedIn() && usuarioService.isLoggedAlumno()==false" class="nav-item  mx-3" >
-                    <a   (click)="verificarPermiso()" [class]="habilitarMenuEntrenador" class="nav-link active" [routerLink]="['estadisticas']">Estadísticas</a>
+                    <a   class="nav-link active" [routerLink]="['estadisticas']">Estadísticas</a>
                 </li>
 
             </ul>

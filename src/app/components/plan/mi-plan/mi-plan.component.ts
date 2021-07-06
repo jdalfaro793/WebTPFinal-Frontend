@@ -21,8 +21,17 @@ export class MiPlanComponent implements OnInit {
     private activatedRoute: ActivatedRoute, 
     private usuarioService:UsuarioService,
     private router: Router,
-    private alumnoService: AlumnoService
-    ) { }
+    private alumnoService: AlumnoService,
+    private usaurioService:UsuarioService
+    ) {
+      if(this.usuarioService.userLoggedIn() == false){
+        alert("Debe validarse e ingresar su usuario y clave");
+        this.router.navigate(['login']);
+      }else if(this.usuarioService.isLoggedAlumno() == false){
+        alert("No tiene permisos para esta seccion");
+          this.router.navigate(['home']);
+      }
+    }
 
   ngOnInit(): void {
     this.plan = new Plan();
